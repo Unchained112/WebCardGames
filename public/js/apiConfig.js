@@ -1,0 +1,1 @@
+const BASE_URL="https://deckofcardsapi.com/api/deck/"; // Deck of Cards: an API
