@@ -1,0 +1,3 @@
+function HomePresenter(){
+    return <HomeView />
+}

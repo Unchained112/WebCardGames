@@ -11,8 +11,12 @@
 <script src="js/apiConfig.js"></script>
 <script src="js/cardSource.js"></script>
 <script src="js/views/promiseNoData.js" type="text/jsx"></script>
+<script src="js/views/homeView.js" type="text/jsx"></script>
+<script src="vuejs/homePresenter.js" type="text/jsx"></script>
 
 <link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
 
 <script>
   // Babel generates calls to React.createElement by default, so we redefine that:
@@ -51,9 +55,9 @@ Promise.all(
 
 
 <!-- TW2.5 PromiseNoData -->
-<!-- <script type="text/jsx">
-    Vue.render(promiseNoData(null), document.getElementById("app"));
-</script> -->
+<script type="text/jsx">
+    Vue.render(<App />, document.getElementById("app"));
+</script>
 
 <!-- <script type="text/jsx">
     Vue.render(promiseNoData("a promise", null, null), document.getElementById("app"));
