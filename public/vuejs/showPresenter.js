@@ -1,4 +1,4 @@
-const Show={    // subscribe to browser-wide event (location.hash as "mini-model")
+const Show = {    // subscribe to browser-wide event (location.hash as "mini-model")
     props:["hash"],
     data(){ return {hashState:window.location.hash}; },
     created(){  

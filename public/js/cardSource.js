@@ -1,10 +1,12 @@
 const CardSource={
     apiCall(params){
-        return fetch(BASE_URL+params)
-        .then(response=>response.json())
-        .then(response =>{
-            console.log(response);
-            return response;
+        return fetch(BASE_URL+params, {"method": "GET"})
+        .then(response=>{
+            return response.json();
+        })
+        .then(data =>{
+            console.log(data);
+            return data;
         });
     },
     getDeck(){

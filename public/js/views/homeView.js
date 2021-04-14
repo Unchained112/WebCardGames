@@ -2,7 +2,7 @@ function HomeView(){
     return (
     <div class="w3-green">
     <header class="w3-container w3-padding" id="myHeader">
-    <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button "></i> 
+    
     <div class="w3-center">
     <h4>Online Poker Game Collection</h4>
     <h1 class="w3-xxxlarge w3-animate-bottom">Web Card Games</h1>
