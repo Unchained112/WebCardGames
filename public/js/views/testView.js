@@ -2,8 +2,8 @@ function TestView(props){
     console.log(props.testtext);
     writeText(props.testtext);
     return (
-        <div>
-        <canvas id="canvas"  width="400" height="400">Install gentoo</canvas>
+        <div class="w3-center">
+        <canvas id="canvas"  width="400" height="400" style="background: url('./assets/table_pattern.jpg')">Install gentoo</canvas>
 		<div id="out"></div>
         <script>
             var a = VARIABLE.my_variable(0);
@@ -25,8 +25,14 @@ var c = canvas.getContext("2d");
 var out = document.getElementById("out");
 window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
-var player = new Player(300,380,80,15);
-var ball = new Ball(200,200,5,Math.floor(Math.random()*2+2),Math.floor(Math.random()*2+2),"red");
+var paddle_img = new Image;
+paddle_img.src = "./assets/paddle_2.png"
+
+var ball_img = new Image;
+ball_img.src = "./assets/ball_32_32.png";
+
+var player = new Player(300,380,80,15, paddle_img);
+var ball = new Ball(200,200,5,Math.floor(Math.random()*2+2),Math.floor(Math.random()*2+2),"red", ball_img);
 var bricks;
 var dKeyDown = false;
 var aKeyDown = false;
@@ -46,16 +52,17 @@ function Brick(x,y,width,height,color){
 	this.color = color;
 }
 
-function Ball(x,y,r,dx,dy,color){
+function Ball(x,y,r,dx,dy,color,ball_img){
 	this.x = x;
 	this.y = y;
 	this.r = r;
 	this.dx = dx;
 	this.dy = dy;
 	this.color = color;
+    this.ball_img = ball_img;
 }
 
-function Player(x,y,width,height){
+function Player(x,y,width,height,paddle){
 	this.x = x;
 	this.y = y;
 	this.width = width;
@@ -66,6 +73,7 @@ function Player(x,y,width,height){
 	this.xVel = 0;
 	this.yVel = 0;
 	this.color = "black";
+    this.paddle = paddle;
 }
 
 function start(){
@@ -85,6 +93,8 @@ function start(){
 	renderBricks();
 	checkWinner();
 	if(gameOver === false){
+        out.innerHTML = "Press S to start"
+        out.innerHTML += "<br>";
 		requestAnimationFrame(start);
 	} else {
 		out.innerHTML = "Game over";
@@ -93,7 +103,9 @@ function start(){
 		}
 		out.innerHTML += "<br>";
 		out.innerHTML += "Press R to restart";
+        out.innerHTML += "<br>";
 	}
+    out.innerHTML += "Press P to pause" 
 		
 }
 
@@ -248,8 +260,9 @@ function checkPlayer_BoundsCollision(){
 
 function renderPlayer(){
 	c.save();
-	c.fillStyle = player.color;
-	c.fillRect(player.x,player.y,player.width,player.height);
+	// c.fillStyle = player.color;
+	// c.fillRect(player.x,player.y,player.width,player.height);
+    c.drawImage(player.paddle, 0, 0, 512, 128, player.x, player.y, player.width, player.height);
 	c.restore();
 }
 
@@ -312,10 +325,11 @@ function restart(){
 
 function renderBall(){
 	c.save();
-	c.fillStyle = ball.color;
-	c.beginPath();
-	c.arc(ball.x,ball.y,ball.r,0,Math.PI*2);
-	c.fill();
+	// c.fillStyle = ball.color;
+	// c.beginPath();
+	// c.arc(ball.x,ball.y,ball.r,0,Math.PI*2);
+	// c.fill();
+    c.drawImage(ball.ball_img, 0, 0, 32, 32, ball.x, ball.y, 10, 10);
 	c.restore();
 }
 

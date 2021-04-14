@@ -13,11 +13,9 @@ const App= (props)=>
     </nav>
     <div>
         <Show hash="#home"><HomePresenter/></Show>
-        <Show hash="#ankanoid"><TestPresenter/></Show>
+        <Show hash="#arkanoid"><TestPresenter/></Show>
     </div>
     {/* <Show hash="#arkanoid"><ArkanoikPresenter model={props.model.arkanoid} /></Show> */}
-    {/* <Show hash="#search"><SearchPresenter model={props.model} /></Show> 
-    <Show hash="#summary" class="mainContent debug"><SummaryPresenter model={props.model} /></Show> */}
 </div>
 
 function defaultRoute(){
