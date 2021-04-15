@@ -8,8 +8,6 @@ const Show = {    // subscribe to browser-wide event (location.hash as "mini-mod
     },
     unmounted(){ window.removeEventListener("hashchange", this.listener); },
     render(){
-        console.log("hashstate"+ this.hashState + ", hash" + this.hash);
-        console.log(this.hashState === this.hash);
         if(this.hashState === this.hash){
             return <div>{this.$slots.default()}</div>;
         }

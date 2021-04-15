@@ -2,7 +2,6 @@ const TestPresenter = {
     props:["model"],
     data(){ return {promise:null, data:null, error:null};},
 	created(){ 
-        CardSource.reShuffle(DECK_ID_BREAKOUT);
         this.promise = CardSource.drawCards(DECK_ID_BREAKOUT, 52);
     },          // lifecycle 1, execute at creation
 	watch:{
@@ -18,8 +17,10 @@ const TestPresenter = {
         }
     } ,
     render(){ 
+        CardSource.reShuffle(DECK_ID_BREAKOUT);
         return <div class="w3-highway-green">
-            {promiseNoData(this.promise, this.data, this.error) || <TestView testtext={this.data.deck_id}/>}
+            {promiseNoData(this.promise, this.data, this.error) || <TestView testtext={this.data}/>}
         </div>
+        
     }
 }

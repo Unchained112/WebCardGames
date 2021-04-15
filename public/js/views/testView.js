@@ -7,19 +7,18 @@ function TestView(props){
 		<div id="out"></div>
         <script>
             var a = VARIABLE.my_variable(0);
-            console.log(a);
-            test();    
+            console.log(a.cards);
+            test(a.cards);    
         </script>
         </div>
     );
 }
 
 function writeText(text){
-    console.log("Write: " + text);
-    VARIABLE.init([text, 2, "thirdValue"]);
+    VARIABLE.init([text]);
 }
 
-function test(){
+function test(cards){
 var canvas = document.getElementById("canvas");
 var c = canvas.getContext("2d");
 var out = document.getElementById("out");
@@ -41,15 +40,16 @@ var gameOver = false;
 var winner = false;
 var isPause = false;
 
-loadMap();
+loadMap(cards);
 start();
 
-function Brick(x,y,width,height,color){
+function Brick(x,y,width,height,color,card){
 	this.x = x;
 	this.y = y;
 	this.width = width;
 	this.height = height;
 	this.color = color;
+    this.card = card;
 }
 
 function Ball(x,y,r,dx,dy,color,ball_img){
@@ -123,7 +123,7 @@ document.onkeydown = function(e){
 	}
 	if(e.keyCode === 82){
         console.log(gameStart);
-		if(gameOver) restart();
+		if(gameOver) restart(cards);
 	}
     if(e.keyCode === 83){
         gameStart = true;
@@ -266,45 +266,55 @@ function renderPlayer(){
 	c.restore();
 }
 
-function loadMap(){
-	bricks = [
-		new Brick(50,50,50,10,"blue"),
-		new Brick(101,50,50,10,"blue"),
-		new Brick(152,50,50,10,"blue"),
-		new Brick(203,50,50,10,"blue"),
-		new Brick(254,50,50,10,"blue"),
-		new Brick(305,50,50,10,"blue"), //Row 1
-		new Brick(50,61,50,10,"green"),
-		new Brick(101,61,50,10,"green"),
-		new Brick(152,61,50,10,"green"),
-		new Brick(203,61,50,10,"green"),
-		new Brick(254,61,50,10,"green"),
-		new Brick(305,61,50,10,"green"), //Row 2
-		new Brick(50,72,50,10,"darkcyan"),
-		new Brick(101,72,50,10,"darkcyan"),
-		new Brick(152,72,50,10,"darkcyan"),
-		new Brick(203,72,50,10,"darkcyan"),
-		new Brick(254,72,50,10,"darkcyan"),
-		new Brick(305,72,50,10,"darkcyan"), //Row 3
-		new Brick(50,83,50,10,"coral"),
-		new Brick(101,83,50,10,"coral"),
-		new Brick(152,83,50,10,"coral"),
-		new Brick(203,83,50,10,"coral"),
-		new Brick(254,83,50,10,"coral"),
-		new Brick(305,83,50,10,"coral"), //Row 4
-		new Brick(50,94,50,10,"darkolivegreen"),
-		new Brick(101,94,50,10,"darkolivegreen"),
-		new Brick(152,94,50,10,"darkolivegreen"),
-		new Brick(203,94,50,10,"darkolivegreen"),
-		new Brick(254,94,50,10,"darkolivegreen"),
-		new Brick(305,94,50,10,"darkolivegreen"), //Row 5
-		new Brick(50,105,50,10,"lightsteelblue"),
-		new Brick(101,105,50,10,"lightsteelblue"),
-		new Brick(152,105,50,10,"lightsteelblue"),
-		new Brick(203,105,50,10,"lightsteelblue"),
-		new Brick(254,105,50,10,"lightsteelblue"),
-		new Brick(305,105,50,10,"lightsteelblue")  //Row 6
-	];
+function loadMap(cards){
+    bricks = [];
+    for(var i = 0; i < 52; i++){
+        var card_img = new Image;
+        card_img.src = cards[i].image;
+        var x_pos = 24 + (i % 13)*27;
+        var y_pos = 25 + Math.floor(i / 13)*37;
+        var single_brick = new Brick(x_pos, y_pos, 25, 35, "blue", card_img);
+        bricks = [...bricks, single_brick];
+    }
+
+	// bricks = [
+	// 	new Brick(50,50,50,10,"blue"),
+	// 	new Brick(101,50,50,10,"blue"),
+	// 	new Brick(152,50,50,10,"blue"),
+	// 	new Brick(203,50,50,10,"blue"),
+	// 	new Brick(254,50,50,10,"blue"),
+	// 	new Brick(305,50,50,10,"blue"), //Row 1
+	// 	new Brick(50,61,50,10,"green"),
+	// 	new Brick(101,61,50,10,"green"),
+	// 	new Brick(152,61,50,10,"green"),
+	// 	new Brick(203,61,50,10,"green"),
+	// 	new Brick(254,61,50,10,"green"),
+	// 	new Brick(305,61,50,10,"green"), //Row 2
+	// 	new Brick(50,72,50,10,"darkcyan"),
+	// 	new Brick(101,72,50,10,"darkcyan"),
+	// 	new Brick(152,72,50,10,"darkcyan"),
+	// 	new Brick(203,72,50,10,"darkcyan"),
+	// 	new Brick(254,72,50,10,"darkcyan"),
+	// 	new Brick(305,72,50,10,"darkcyan"), //Row 3
+	// 	new Brick(50,83,50,10,"coral"),
+	// 	new Brick(101,83,50,10,"coral"),
+	// 	new Brick(152,83,50,10,"coral"),
+	// 	new Brick(203,83,50,10,"coral"),
+	// 	new Brick(254,83,50,10,"coral"),
+	// 	new Brick(305,83,50,10,"coral"), //Row 4
+	// 	new Brick(50,94,50,10,"darkolivegreen"),
+	// 	new Brick(101,94,50,10,"darkolivegreen"),
+	// 	new Brick(152,94,50,10,"darkolivegreen"),
+	// 	new Brick(203,94,50,10,"darkolivegreen"),
+	// 	new Brick(254,94,50,10,"darkolivegreen"),
+	// 	new Brick(305,94,50,10,"darkolivegreen"), //Row 5
+	// 	new Brick(50,105,50,10,"lightsteelblue"),
+	// 	new Brick(101,105,50,10,"lightsteelblue"),
+	// 	new Brick(152,105,50,10,"lightsteelblue"),
+	// 	new Brick(203,105,50,10,"lightsteelblue"),
+	// 	new Brick(254,105,50,10,"lightsteelblue"),
+	// 	new Brick(305,105,50,10,"lightsteelblue")  //Row 6
+	// ];
 }
 
 function checkWinner(){
@@ -314,12 +324,12 @@ function checkWinner(){
 	}
 }
 
-function restart(){
+function restart(cards){
 	out.innerHTML = "";
 	gameOver = false;
-	loadMap();
-	ball = new Ball(200,200,5,Math.floor(Math.random()*2+2),Math.floor(Math.random()*2+2),"red");
-	player = new Player(300,380,80,15);
+	loadMap(cards);
+    player = new Player(300,380,80,15, paddle_img);
+    ball = new Ball(200,200,5,Math.floor(Math.random()*2+2),Math.floor(Math.random()*2+2),"red", ball_img);
 	start();
 }
 
@@ -340,8 +350,9 @@ function clear(){
 function renderBricks(){
 	for(var i = 0; i < bricks.length; i++){
 		c.save();
-		c.fillStyle = bricks[i].color;
-		c.fillRect(bricks[i].x,bricks[i].y,bricks[i].width,bricks[i].height);
+		// c.fillStyle = bricks[i].color;
+		// c.fillRect(bricks[i].x,bricks[i].y,bricks[i].width,bricks[i].height);
+        c.drawImage(bricks[i].card, 0, 0, 226, 314, bricks[i].x, bricks[i].y, bricks[i].width, bricks[i].height);
 		c.restore();	
 	}
 }
