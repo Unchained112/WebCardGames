@@ -30,7 +30,7 @@ function HomeView(){
       <footer class="w3-container w3-text-white w3-highway-green">
       <p>Reference: </p>
       <ol>
-      <li>Breakout / Arkanoid: <a href="https://everything2.com/title/Breakout">https://everything2.com/title/Breakout</a> </li>
+      <li>Breakout: <a href="https://everything2.com/title/Breakout">https://everything2.com/title/Breakout</a> </li>
       <li>Leonhard, Woody (2009). <a href="https://books.google.se/books?id=BjhFgc4DdjIC&pg=PA293&redir_esc=y#v=onepage&q&f=false">Windows 7 All-in-One for Dummies.</a> John Wiley & Sons. p. 293. ISBN 9780470487631.</li>
       <li>XXX <a href="">XXX</a> </li>
       </ol>

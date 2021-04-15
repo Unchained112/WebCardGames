@@ -1,4 +1,4 @@
-const TestPresenter = {
+const BreakoutPresenter = {
     props:["model"],
     data(){ return {promise:null, data:null, error:null};},
 	created(){ 
@@ -15,11 +15,11 @@ const TestPresenter = {
                 }
             }
         }
-    } ,
+    },
     render(){ 
         CardSource.reShuffle(DECK_ID_BREAKOUT);
         return <div class="w3-highway-green">
-            {promiseNoData(this.promise, this.data, this.error) || <TestView testtext={this.data}/>}
+            {promiseNoData(this.promise, this.data, this.error) || <BreakoutView breakout_data={this.data}/>}
         </div>
         
     }

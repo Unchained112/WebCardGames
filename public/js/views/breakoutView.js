@@ -1,24 +1,24 @@
-function TestView(props){
-    console.log(props.testtext);
-    writeText(props.testtext);
+function BreakoutView(props){
+    console.log(props.breakout_data);
+    writeData(props.breakout_data);
     return (
         <div class="w3-center">
         <canvas id="canvas"  width="400" height="400" style="background: url('./assets/table_pattern.jpg')">Install gentoo</canvas>
 		<div id="out"></div>
         <script>
-            var a = VARIABLE.my_variable(0);
-            console.log(a.cards);
-            test(a.cards);    
+            var breakout = VARIABLE.my_variable(0);
+            console.log(breakout.cards);
+            runBreakout(breakout.cards);    
         </script>
         </div>
     );
 }
 
-function writeText(text){
-    VARIABLE.init([text]);
+function writeData(data){
+    VARIABLE.init([data]);
 }
 
-function test(cards){
+function runBreakout(cards){
 var canvas = document.getElementById("canvas");
 var c = canvas.getContext("2d");
 var out = document.getElementById("out");
@@ -276,45 +276,6 @@ function loadMap(cards){
         var single_brick = new Brick(x_pos, y_pos, 25, 35, "blue", card_img);
         bricks = [...bricks, single_brick];
     }
-
-	// bricks = [
-	// 	new Brick(50,50,50,10,"blue"),
-	// 	new Brick(101,50,50,10,"blue"),
-	// 	new Brick(152,50,50,10,"blue"),
-	// 	new Brick(203,50,50,10,"blue"),
-	// 	new Brick(254,50,50,10,"blue"),
-	// 	new Brick(305,50,50,10,"blue"), //Row 1
-	// 	new Brick(50,61,50,10,"green"),
-	// 	new Brick(101,61,50,10,"green"),
-	// 	new Brick(152,61,50,10,"green"),
-	// 	new Brick(203,61,50,10,"green"),
-	// 	new Brick(254,61,50,10,"green"),
-	// 	new Brick(305,61,50,10,"green"), //Row 2
-	// 	new Brick(50,72,50,10,"darkcyan"),
-	// 	new Brick(101,72,50,10,"darkcyan"),
-	// 	new Brick(152,72,50,10,"darkcyan"),
-	// 	new Brick(203,72,50,10,"darkcyan"),
-	// 	new Brick(254,72,50,10,"darkcyan"),
-	// 	new Brick(305,72,50,10,"darkcyan"), //Row 3
-	// 	new Brick(50,83,50,10,"coral"),
-	// 	new Brick(101,83,50,10,"coral"),
-	// 	new Brick(152,83,50,10,"coral"),
-	// 	new Brick(203,83,50,10,"coral"),
-	// 	new Brick(254,83,50,10,"coral"),
-	// 	new Brick(305,83,50,10,"coral"), //Row 4
-	// 	new Brick(50,94,50,10,"darkolivegreen"),
-	// 	new Brick(101,94,50,10,"darkolivegreen"),
-	// 	new Brick(152,94,50,10,"darkolivegreen"),
-	// 	new Brick(203,94,50,10,"darkolivegreen"),
-	// 	new Brick(254,94,50,10,"darkolivegreen"),
-	// 	new Brick(305,94,50,10,"darkolivegreen"), //Row 5
-	// 	new Brick(50,105,50,10,"lightsteelblue"),
-	// 	new Brick(101,105,50,10,"lightsteelblue"),
-	// 	new Brick(152,105,50,10,"lightsteelblue"),
-	// 	new Brick(203,105,50,10,"lightsteelblue"),
-	// 	new Brick(254,105,50,10,"lightsteelblue"),
-	// 	new Brick(305,105,50,10,"lightsteelblue")  //Row 6
-	// ];
 }
 
 function checkWinner(){

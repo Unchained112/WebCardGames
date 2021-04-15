@@ -15,9 +15,10 @@
 <script src="vuejs/homePresenter.js" type="text/jsx"></script>
 <script src="vuejs/showPresenter.js" type="text/jsx"></script>
 
+<!-- Breakout -->
 <script src="js/variable.js"></script>
-<script src="js/views/testView.js" type="text/jsx"></script>
-<script src="vuejs/testPresenter.js" type="text/jsx"></script>
+<script src="js/views/breakoutView.js" type="text/jsx"></script>
+<script src="vuejs/breakoutPresenter.js" type="text/jsx"></script>
 
 
 <link rel="stylesheet" href="w3.css">
@@ -34,6 +35,14 @@
 <div id="app"></div>
 </body>
 
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/8.4.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
 
 <!-- TW2.3 DinnerModel Presenter -->
 <!-- <script type="text/jsx">
@@ -46,39 +55,8 @@
     Vue.render(<TopLevelModel />,document.getElementById("app"));
 </script> -->
 
-
-<!-- const AA=548321;
-const BB=758118;
-const CC=1152690;
-Promise.all(
-    [DishSource.getDishDetails(AA), 
-    DishSource.getDishDetails(BB),
-    DishSource.getDishDetails(CC)]
-    ).then(function(values){ 
-    values.map(d=>myModel.addToMenu(d));   // add the dishes to the model
-    Vue.render(<TopLevelModel />,document.getElementById("app"));
-    }); -->
-
-
-<!-- TW2.5 PromiseNoData -->
 <script type="text/jsx">
     Vue.render(<App />, document.getElementById("app"));
 </script>
-
-<!-- <script type="text/jsx">
-    Vue.render(promiseNoData("a promise", null, null), document.getElementById("app"));
-</script> -->
-
-<!-- <script type="text/jsx">
-    Vue.render(promiseNoData("promise", null, "some error"), document.getElementById("app"));
-</script> -->
-
-<!-- <script type="text/jsx">
-    Vue.render(promiseNoData("promise", "some data", null) || <div>Hello world</div>, document.getElementById("app"));
-</script> -->
-
-<!-- 3.1 Test -->
-<!-- <script>const myModel=new DinnerModel();</script> -->
-
 
 </html>

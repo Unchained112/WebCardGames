@@ -3,7 +3,7 @@ function promiseNoData(promise, data, error){
         return (<span> no data </span>)
     }
 	if (promise != null && data === null && error === null){
-        return (<img src="http://www.csc.kth.se/~cristi/loading.gif"/>)
+        return (<img src="assets/loading.gif"/>)
     }
 	if (promise != null && data === null && error != null){
         return (<span style="color:red" > {error} </span>)
