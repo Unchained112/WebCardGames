@@ -10,6 +10,7 @@
 <script src="js/pokerModel.js"></script>
 <script src="js/apiConfig.js"></script>
 <script src="js/cardSource.js"></script>
+<script src="js/gamesCollection.js"></script>
 <script src="js/views/promiseNoData.js" type="text/jsx"></script>
 <script src="js/views/homeView.js" type="text/jsx"></script>
 <script src="vuejs/homePresenter.js" type="text/jsx"></script>
@@ -70,14 +71,15 @@
 </script> -->
 
 <script type="text/jsx">
-    const myModel= new game24Model();
+    const myModel = new GamesCollection();
+    const game24Model = new game24Model();
+    myModel.setGame24(game24Model);
     const TopLevelModel={
         data(){return {model:myModel}},
         render(){return<App model={this.model}/>}
     }
 
     Vue.render(<TopLevelModel/>,document.getElementById("app"))
-
 </script>
 
 </html>
