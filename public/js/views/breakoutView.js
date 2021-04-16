@@ -3,8 +3,8 @@ function BreakoutView(props){
     writeData(props.breakout_data);
     return (
         <div class="w3-center">
-        <canvas id="canvas"  width="400" height="400" style="background: url('./assets/table_pattern.jpg')">Install gentoo</canvas>
 		<div id="out"></div>
+        <canvas id="canvas"  width="400" height="400" style="background: url('./assets/table_pattern.jpg')">Install gentoo</canvas>
         <script>
             var breakout = VARIABLE.my_variable(0);
             console.log(breakout.cards);
