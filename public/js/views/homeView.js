@@ -22,7 +22,7 @@ function HomeView(){
         We are a team from KTH Royal Institute of Technology, Interaction Programming and the Dynamic Web course. In this project, we are going to design a website where you can enjoy free poker card games online. 
       <ul>
         <li>Bosen Cheng <a href="bosen@kth.se">bosen@kth.se</a></li>
-        <li>Yating Liu</li>
+        <li>Yating Liu <a href="yatingli@kth.se">yatingli@kth.se</a></li>
         <li>Yifei Wang</li>
         <li>Ziyu Tang</li>
       </ul>
@@ -32,6 +32,7 @@ function HomeView(){
       <ol>
       <li>Breakout: <a href="https://everything2.com/title/Breakout">https://everything2.com/title/Breakout</a> </li>
       <li>Leonhard, Woody (2009). <a href="https://books.google.se/books?id=BjhFgc4DdjIC&pg=PA293&redir_esc=y#v=onepage&q&f=false">Windows 7 All-in-One for Dummies.</a> John Wiley & Sons. p. 293. ISBN 9780470487631.</li>
+      <li>24 game. 4 numbers. <a href="https://www.4nums.com/24_game/">{"https://www.4nums.com/24_game/"}</a> </li>
       <li>XXX <a href="">XXX</a> </li>
       </ol>
       </footer>
