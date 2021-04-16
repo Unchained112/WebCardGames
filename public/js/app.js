@@ -17,11 +17,15 @@ const App= (props)=>
         <Show hash="#home"><HomePresenter/></Show>
         <Show hash="#breakout"><BreakoutPresenter/></Show>
         <Show hash="#24Game"><StartPresenter/></Show>
+        <Show hash="#24gameContent">
+            <CalculatorPresentor model={props.model}/>
+            <Card4Presenter model={props.model}/>
+        </Show>
     </div>
     {/* <Show hash="#arkanoid"><ArkanoikPresenter model={props.model.arkanoid} /></Show> */}
 </div>
 
 function defaultRoute(){
-    if(["#home", "#breakout", "#freecell", "#spider","#24Game"].find(e=>e===window.location.hash)===undefined) window.location.hash="#home";
+    if(["#home", "#breakout", "#freecell", "#spider","#24Game","#24gameContent"].find(e=>e===window.location.hash)===undefined) window.location.hash="#home";
 }
 defaultRoute();
