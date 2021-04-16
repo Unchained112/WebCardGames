@@ -13,12 +13,14 @@ We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, a
 
 ### Bosen Cheng
 **Current Stage**
-1. something 1
-2. something 2
+1. Build up the homepage
+2. Build the breakout game with poker cards (version 1)
+    - Score system in the breakout model
+    - Well-designed layout 
 
 **Plan to do**
-1. something 1
-2. something 2
+1. Fill the content and add more components on the homepage 
+2. Build the Free Cell and Spider game on new pages
 
 
 ### Yating Liu

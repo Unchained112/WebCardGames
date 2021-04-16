@@ -11,7 +11,6 @@ const App= (props)=>
     <a onClick={r=>{window.location.hash = "#freecell";}} class="w3-bar-item w3-button">Freecell</a>
     <a onClick={r=>{window.location.hash = "#spider";}} class="w3-bar-item w3-button">Spider</a>
     <a onClick={r=>{window.location.hash = "#24Game";}} class="w3-bar-item w3-button">24Game</a>
-
     </nav>
     <div>
         <Show hash="#home"><HomePresenter/></Show>
