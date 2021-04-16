@@ -16,6 +16,7 @@ const App= (props)=>
     <div>
         <Show hash="#home"><HomePresenter/></Show>
         <Show hash="#breakout"><BreakoutPresenter/></Show>
+        <Show hash="#24Game"><StartPresenter/></Show>
     </div>
     {/* <Show hash="#arkanoid"><ArkanoikPresenter model={props.model.arkanoid} /></Show> */}
 </div>

@@ -23,12 +23,15 @@ We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, a
 
 ### Yating Liu
 **Current Stage**
-1. something 1
-2. something 2
+1. Implement a calculator to calculate the user input formula.
+2. Implement a view of 4 cards assigned to the user and a view of user input formula.
 
 **Plan to do**
-1. something 1
-2. something 2
+1. Implement a change of 4 cards when user finished a round
+2. Implement a timer
+3. Implement a restart function
+4. Implement a solution function
+5. Implement a score function
 
 ### Yifei Wang
 **Current Stage**
