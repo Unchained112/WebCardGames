@@ -42,7 +42,7 @@ We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, a
 
 **Plan to do**
 1. Build the Blackjack game in MVP
-2. Try to implement multiple decks for Ai
+2. Try to implement multiple decks for AI
 
 ###  Ziyu Tang
 **Current Stage**

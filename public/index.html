@@ -31,6 +31,7 @@
 
 <!-- Breakout -->
 <script src="js/variable.js"></script>
+<script src="js/breakoutModel.js"></script>
 <script src="js/views/breakoutView.js" type="text/jsx"></script>
 <script src="vuejs/breakoutPresenter.js" type="text/jsx"></script>
 
@@ -46,7 +47,7 @@
 </script>
 </head>
 
-<body style="background: url('./assets/web_background.png'); background-size: 100% ">
+<body>
 <div id="app"></div>
 </body>
 
@@ -72,8 +73,13 @@
 
 <script type="text/jsx">
     const myModel = new GamesCollection();
+
     const game24Model = new game24Model();
     myModel.setGame24(game24Model);
+    
+    const breakout = new Breakout();
+    myModel.setBreakout(breakout);
+
     const TopLevelModel={
         data(){return {model:myModel}},
         render(){return<App model={this.model}/>}

@@ -2,14 +2,23 @@ function BreakoutView(props){
     console.log(props.breakout_data);
     writeData(props.breakout_data);
     return (
-        <div class="w3-center">
-		<div id="out"></div>
-        <canvas id="canvas"  width="400" height="400" style="background: url('./assets/table_pattern.jpg')">Install gentoo</canvas>
-        <script>
+		<div class="w3-row">
+
+        <div class="w3-half w3-card w3-highway-green" id="breakout game" style="max-width:600px">
+		<div class="w3-center" id="out"></div>
+		<div class="w3-center">
+        <canvas class="w3-center" id="canvas"  width="400" height="400" style="background: url('./assets/table_pattern.jpg')">Install gentoo</canvas>
+        </div>
+		<script>
             var breakout = VARIABLE.my_variable(0);
-            console.log(breakout.cards);
             runBreakout(breakout.cards);    
         </script>
+
+		<div class="w3-half" id="breakout introduction">
+
+		</div>
+
+		</div>
         </div>
     );
 }
@@ -20,6 +29,11 @@ function writeData(data){
 
 function runBreakout(cards){
 var canvas = document.getElementById("canvas");
+var cWidth = document.getElementById('breakout game').offsetWidth-10;
+canvas.width = cWidth;
+var cHeight = document.getElementById('breakout game').offsetWidth-10;
+canvas.height = cHeight 
+
 var c = canvas.getContext("2d");
 var out = document.getElementById("out");
 window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -30,8 +44,8 @@ paddle_img.src = "./assets/paddle_2.png"
 var ball_img = new Image;
 ball_img.src = "./assets/ball_32_32.png";
 
-var player = new Player(300,380,80,15, paddle_img);
-var ball = new Ball(200,200,5,Math.floor(Math.random()*2+2),Math.floor(Math.random()*2+2),"red", ball_img);
+var player = new Player(0.4*cWidth, 0.95*cHeight,0.2*cWidth,0.04*cHeight, paddle_img);
+var ball = new Ball(0.5*cWidth, 0.5*cHeight, 0.02*cWidth, Math.floor(Math.random()*2+2),Math.floor(Math.random()*2+2),"red", ball_img);
 var bricks;
 var dKeyDown = false;
 var aKeyDown = false;
@@ -271,9 +285,9 @@ function loadMap(cards){
     for(var i = 0; i < 52; i++){
         var card_img = new Image;
         card_img.src = cards[i].image;
-        var x_pos = 24 + (i % 13)*27;
-        var y_pos = 25 + Math.floor(i / 13)*37;
-        var single_brick = new Brick(x_pos, y_pos, 25, 35, "blue", card_img);
+        var x_pos = 0.06*cWidth + (i % 13)*(0.065*cWidth+2);
+        var y_pos = 0.06*cWidth + Math.floor(i / 13)*(0.09*cWidth+2);
+        var single_brick = new Brick(x_pos, y_pos, 0.065*cWidth, 0.09*cWidth, "blue", card_img);
         bricks = [...bricks, single_brick];
     }
 }
@@ -289,8 +303,8 @@ function restart(cards){
 	out.innerHTML = "";
 	gameOver = false;
 	loadMap(cards);
-    player = new Player(300,380,80,15, paddle_img);
-    ball = new Ball(200,200,5,Math.floor(Math.random()*2+2),Math.floor(Math.random()*2+2),"red", ball_img);
+	player = new Player(0.5*cWidth, 0.95*cHeight,0.2*cWidth,0.04*cHeight, paddle_img);
+	ball = new Ball(0.5*cWidth, 0.5*cHeight, 0.02*cWidth, Math.floor(Math.random()*2+2),Math.floor(Math.random()*2+2),"red", ball_img);
 	start();
 }
 
@@ -300,7 +314,7 @@ function renderBall(){
 	// c.beginPath();
 	// c.arc(ball.x,ball.y,ball.r,0,Math.PI*2);
 	// c.fill();
-    c.drawImage(ball.ball_img, 0, 0, 32, 32, ball.x, ball.y, 10, 10);
+    c.drawImage(ball.ball_img, 0, 0, 32, 32, ball.x, ball.y, ball.r, ball.r);
 	c.restore();
 }
 

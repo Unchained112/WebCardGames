@@ -1,8 +1,8 @@
 function HomeView(){
     return (
-    <div class="w3-green">
-    <header class="w3-container w3-padding" id="myHeader">
-    
+    <div>
+
+    <header class="w3-container w3-padding w3-green" id="myHeader">
     <div class="w3-center">
     <h4>Online Poker Game Collection</h4>
     <h1 class="w3-xxxlarge w3-animate-bottom">Web Card Games</h1>
@@ -11,6 +11,7 @@ function HomeView(){
     </div>
     </div>
     </header>
+
     <div id="id01" class="w3-modal">
     <div class="w3-modal-content w3-card-4 w3-animate-top">
       <header class="w3-container w3-text-white w3-highway-green"> 
@@ -38,6 +39,27 @@ function HomeView(){
       </footer>
     </div>
     </div>
+
+    <div class="w3-container w3-row" style="padding:64px">  
+      <div class="w3-quarter w3-container" style="min-width: 250px; max-width: 300px">
+        <img src="./assets/2006_WSOP_Main_Event_Table.jpg" style="width:100%"></img>
+        <br></br>
+        <p class="w3-center">2006 World Series of Poker <br></br>
+        main event table</p>
+      </div>
+
+      <div class="w3-rest w3-container">
+      <h2>Poker Game Collection</h2>
+      <p>Our project aims to provides players with several small games related to poker cards online. Players can learn and play different games on our website. Besides, we also hope to offer some interesting story about the game together with the game introduction. We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, and draw cards Deck of Cards API. You are welcome to visit our project's <a href="https://github.com/Unchained112/WebCardGames">GitHub repository</a>. </p>
+
+      <h2>A Brief Introduction about Poker</h2>
+      <p>Poker is any of a number of card games in which players wager over which hand is best according to that specific game's rules in ways similar to these rankings. Often using a standard deck, poker games vary in deck configuration, the number of cards in play, the number dealt face up or face down, and the number shared by all players, but all have rules that involve one or more rounds of betting. <a href="https://en.wikipedia.org/wiki/Poker">[1]</a> </p>
+      <p>According to folklore, there are 52 cards in one deck of poker, representing 52 weeks in a year, and two decks. Hearts, Clubs, Diamonds, and Spades represent the spring, summer, autumn, and winter seasons. The red card represents the day, the black card represents the night. Each season has 13 weeks and poker each suit contains exactly 13  cards. 12 Royals represent the 12 months. </p>
+      </div>
+      
+
+    </div>
+
     </div>);
 }
 
