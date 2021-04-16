@@ -13,40 +13,40 @@ We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, a
 
 ### Bosen Cheng
 **Current Stage**
-1. 
-2. 
+1. something 1
+2. something 2
 
 **Plan to do**
-1. 
-2. 
+1. something 1
+2. something 2
 
 
 ### Yating Liu
 **Current Stage**
-1. 
-2. 
+1. something 1
+2. something 2
 
 **Plan to do**
-1. 
-2. 
+1. something 1
+2. something 2
 
 ### Yifei Wang
 **Current Stage**
-1. 
-2. 
+1. something 1
+2. something 2
 
 **Plan to do**
-1. 
-2. 
+1. something 1
+2. something 2
 
 ###  Ziyu Tang
 **Current Stage**
-1. 
-2. 
+1. something 1
+2. something 2
 
 **Plan to do**
-1. 
-2. 
+1. something 1
+2. something 2
 
 
 
