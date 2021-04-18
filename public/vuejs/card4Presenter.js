@@ -3,7 +3,7 @@ const Card4Presenter={
     data(){return {promise:null, data:null, error:null}},
     created(){
         this.promise =Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
-    },
+        },
     watch:{
         'promise': {   // note: not this.promise!
             immediate:true,
@@ -33,7 +33,9 @@ const Card4Presenter={
                 <BasicActionView clear={e=>this.model.ac()}
                                  del={e=>this.model.delete()}
                                  addOperator={e=>this.model.addOperatortoFormula(e)}
-                                 OK={e=>{this.model.generatecomplexformula();}}
+                                 OK={()=>{this.model.computeresult();
+                                    this.promise=Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
+                                 }}
                 />
                 {promiseNoData(this.promise, this.data, this.error) ||
                 <Game4CardResultView game4nextcardsResult={this.data} cardChosen={code=>{console.log("The user chose card",code); this.model.addCardtoFormula(code)}}/>}

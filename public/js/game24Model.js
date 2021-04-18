@@ -89,7 +89,7 @@ class game24Model{
         }
     }
 
-    generatecomplexformula(){
+    computeresult(){
         for(var i=0;i<this.formulastack.length;i++){
             switch (this.formulastack[i]) {
                 /*case "+":
@@ -112,7 +112,6 @@ class game24Model{
         }
 
     }
-
 
     showtime(){
         var leftm
