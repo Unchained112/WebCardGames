@@ -17,7 +17,6 @@ const App= (props)=>
         <Show hash="#breakout"><BreakoutPresenter model={props.model.BreakoutModel}/></Show>
         <Show hash="#24Game"><StartPresenter/></Show>
         <Show hash="#24gameContent">
-            <CalculatorPresentor model={props.model.game24Model}/>
             <Card4Presenter model={props.model.game24Model}/>
         </Show>
     </div>
