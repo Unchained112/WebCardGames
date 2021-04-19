@@ -65,9 +65,8 @@ function HomeView(){
 
 function w3_open() {
     var x = document.getElementById("mySidebar");
-    x.style.width = "100%";
-    x.style.fontSize = "40px";
-    x.style.paddingTop = "10%";
+    x.style.width = "200px";
+    x.style.fontSize = "30px";
     x.style.display = "block";
 }
 
