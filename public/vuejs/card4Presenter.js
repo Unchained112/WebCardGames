@@ -29,11 +29,15 @@ const Card4Presenter={
     render(){
         return(
             <div>
+                <TitleView thisRound={this.model.thisround}/>
                 <CalculatorScreenView formula={this.model.simpleformula}/>
                 <BasicActionView clear={e=>this.model.ac()}
                                  del={e=>this.model.delete()}
                                  addOperator={e=>this.model.addOperatortoFormula(e)}
                                  OK={()=>{this.model.computeresult();
+                                    this.promise=Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
+                                 }}
+                                 noSolution={()=>{this.model.nosolution();
                                     this.promise=Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
                                  }}
                 />

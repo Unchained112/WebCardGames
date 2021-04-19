@@ -9,6 +9,7 @@ class game24Model{
         this.cardFlag=false
         this.lefttime=""
         this.settime=120000
+        this.thisround=1
     }
 
     addCardtoFormula(x){
@@ -108,19 +109,31 @@ class game24Model{
             this.result="Syntax Error"
         }finally {
             console.log(this.result)
+            this.thisround=this.thisround+1
             this.ac()
         }
 
     }
 
-    showtime(){
-        var leftm
-        var lefts
-        leftm = Math.floor(this.lefttime/(1000*60)%60)
-        lefts = Math.floor(this.lefttime/1000%60)
+    nosolution(){
+        console.log("No Solution")
+        this.thisround=this.thisround+1
+        this.ac()
     }
 
-    nosolution(){
-        this.result="No Solution"
+    showtime(){
+        var endtime= new Date()
+        var nowtime=new Date()
+        var now_s=nowtime.getTime()
+        endtime.setTime(now_s+1000*60*2)
+        var lefttime=endtime.getTime()-nowtime.getTime()
+        var leftm = Math.floor(lefttime/(1000*60)%60)
+        var lefts = Math.floor(lefttime/1000%60)
+        console.log(leftm + ":" + lefts)
+        this.lefttime= leftm + ":" + lefts
+        console.log(this.lefttime)
+        return this.lefttime
     }
+
+
 }

@@ -1,7 +1,10 @@
 function TimerPresenter(props){
     return(
         <div>
-            <TimerView reduceTime={e=>props.model.showtime()} lefttime={props.model.lefttime}/>
+
+            <TimerView lefttime={()=>{
+                setInterval(props.model.showtime(),1000);
+            }}/>
         </div>
     )
 }
