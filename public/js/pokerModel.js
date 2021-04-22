@@ -3,5 +3,6 @@ class PokerModel{
         this.observer = [];
         this.deck_count = deck_count;  
         this.decks
+        
     }
 }

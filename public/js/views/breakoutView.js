@@ -2,21 +2,30 @@ function BreakoutView(props){
     console.log(props.breakout_data);
     writeData(props.breakout_data);
     return (
-		<div class="w3-row">
+		<div class="w3-row-padding">
 
-        <div class="w3-half w3-card w3-highway-green" id="breakout game" style="max-width:600px">
-		<div class="w3-center" id="out"></div>
+        <div class="w3-half" id="breakout game" style="max-width:600px">
+		<div class="w3-center w3-dark-grey" id="out"></div>
 		<div class="w3-center">
-        <canvas class="w3-center" id="canvas"  width="400" height="400" style="background: url('./assets/table_pattern.jpg')">Install gentoo</canvas>
+        <canvas id="canvas"  width="400" height="400" style="background: url('./assets/table_pattern.jpg')">Install gentoo</canvas>
         </div>
 		<script>
             var breakout = VARIABLE.my_variable(0);
             runBreakout(breakout.cards);    
         </script>
-
-		<div class="w3-half" id="breakout introduction">
-
 		</div>
+		<div class="w3-half" id="breakout introduction">
+			<h2>Breakout</h2>
+			<p>This is not a game related to Poker. We implement this game in our project for two main reasons. One is to test the run-time animation game using Model-View-Presenter structure and  Vue. The other reason is to test the Poker Card API. However, the development of Breakout game is still an interesting story to know.   </p>
+			<h3>A Brief History of Breakout </h3>
+			<p>"Breakout" is an arcade game conceived by Nolan Bushnell and Steve Bristol. They deliberately changed the simulated table tennis game "Pong" to a single-player game. After that, they had the inspiration to make the Breakout game. "Pong"'s developer Alan Alcorn was appointed as the person in charge of the game development work, and in 1975 developed the game in cooperation with Cyan Engineering. In the same year, Alcon appointed Steve Jobs to design the arcade prototype of this game, and Jobs also promised to complete the design prototype within 4 days.</p>
+			<p><img src="./assets/breakout-A.png" width="200" align="right">Atari Breakout Arcade</img> Although Jobs did not have much experience in circuit board design, he knew that his friend Steve Wozniak had the ability to make circuit boards. Jobs successfully persuaded Wozniak to cooperate with him. In order to reduce the number of circuit boards, Wozniak used his "tricky little design" to design prototypes. Towards the end of the development work, Wozniak wanted to move the scoreboard to the top of the screen, but Jobs claimed that Bushnell wanted to place the scoreboard at the bottom of the screen, so Wozniak gave up the idea. The two successfully completed the design within 4 days, and Jobs received $5,000 as a reward. However, Wozniak did not know about the $5,000 award, so he only received $350 as salary.</p>
+			<p>In the end, Atari could not use the prototype designed by Wozniak, because he reduced the number of transistors-transistor logic to 42, which made the arcade too sophisticated and complicated, making it difficult for Atari to manufacture them in large quantities. However, Wozniak pointed out that this was because Atari could not understand his design. Finally, Atari used their own design, which requires up to 100 transistors-transistor logic. Ironically, Wozniak's suggestion to move the scoreboard to the top of the screen was accepted instead.</p>
+
+
+			<p>Reference <br></br>
+			 Marty "Retro Rogue" Goldberg. <a href="https://web.archive.org/web/20140623034804/http://classicgaming.gamespy.com/View.php?view=Articles.Detail&id=395">"A Complete History of Breakout"</a> 
+			</p>
 
 		</div>
         </div>
