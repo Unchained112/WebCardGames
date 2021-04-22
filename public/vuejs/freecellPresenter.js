@@ -18,7 +18,10 @@ const FreeCellPresenter = {
     },
     render(){
         return <div>
-            {promiseNoData(this.promise, this.data, this.error) || <FreeCellView model={this.model} cards={this.data}/>}
+            {promiseNoData(this.promise, this.data, this.error) || 
+            <FreeCellView model={this.model} 
+                cards={this.data} 
+                cardChosen={r=>{console.log(r); this.model.setCurrentCard(r);}}/>}
         </div>
         
     }

@@ -19,6 +19,7 @@ const App= (props)=>
         <Show hash="#24gameContent">
             <Card4Presenter model={props.model.game24Model}/>
         </Show>
+        <Show hash="#freecell"><FreeCellPresenter model={props.model.freeCellModel}/></Show>
     </div>
 
     {/* <Show hash="#arkanoid"><ArkanoikPresenter model={props.model.arkanoid} /></Show> */}

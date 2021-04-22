@@ -7,7 +7,6 @@
 <script src="https://unpkg.com/vue@next/dist/vue.global.js"></script>
 
 <script src="js/app.js" type="text/jsx"></script>
-<script src="js/pokerModel.js"></script>
 <script src="js/apiConfig.js"></script>
 <script src="js/cardSource.js"></script>
 <script src="js/gamesCollection.js"></script>
@@ -15,6 +14,11 @@
 <script src="js/views/homeView.js" type="text/jsx"></script>
 <script src="vuejs/homePresenter.js" type="text/jsx"></script>
 <script src="vuejs/showPresenter.js" type="text/jsx"></script>
+
+<!-- FreeCell -->
+<script src="js/freeCellModel.js"></script>
+<script src="js/views/freeCellView.js" type="text/jsx"></script>
+<script src="vuejs/freeCellPresenter.js" type="text/jsx"></script>
 
 <!-- 24 Game -->
     <script src="vuejs/startPresenter.js" type="text/jsx"></script>
@@ -79,6 +83,9 @@
     
     const breakout = new Breakout();
     myModel.setBreakout(breakout);
+
+    const freeCell = new FreeCellModel();
+    myModel.setFreeCell(freeCell);
 
     const TopLevelModel={
         data(){return {model:myModel}},

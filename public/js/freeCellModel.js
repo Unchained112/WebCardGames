@@ -1,18 +1,29 @@
 class FreeCellModel{
-    constructor(guests=2, dishes=[]){
+    constructor(){
         this.observer = [];
-        this.cards = cards;
-        this.currentCard = null;
+        this.currentCard = {code:"", image:"", value:"", suit:""};
         // Four cells to store cards temporarily
-        this.cell_1 = null;
-        this.cell_2 = null;
-        this.cell_3 = null;
-        this.cell_4 = null;
+        this.cells = [0, 0, 0, 0]
         // Four foundation piles to store the complete suite of cards from Ace to King with the same suit
         this.Hearts = [];
         this.Clubs = []; 
         this.Diamonds = [];
         this.Spades = [];
+        // 8 tableau piles
+        this.pile_1 = [];
+        this.pile_2 = [];
+        this.pile_3 = [];
+        this.pile_4 = [];
+        this.pile_5 = [];
+        this.pile_6 = [];
+        this.pile_7 = [];
+        this.pile_8 = [];
+    }
+    setCurrentCard(card){
+        this.currentCard = card;
+        this.notifyObservers();
+    }
+    startGame(cards){
 
     }
     checkWin(){
