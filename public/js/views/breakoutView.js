@@ -6,8 +6,9 @@ function BreakoutView(props){
 
         <div class="w3-half" id="breakout game" style="max-width:600px">
 		<div class="w3-center w3-dark-grey" id="out"></div>
+		<div class="w3-dark-grey w3-center">Use A and D to control the paddle motion</div>
 		<div class="w3-center">
-        <canvas id="canvas"  width="400" height="400" style="background: url('./assets/table_pattern.jpg')">Install gentoo</canvas>
+        <canvas id="canvas" style="background: url('./assets/table_pattern.jpg')">Breakout Canvass</canvas>
         </div>
 		<script>
             var breakout = VARIABLE.my_variable(0);

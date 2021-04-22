@@ -50,7 +50,7 @@ function HomeView(){
 
       <div class="w3-rest w3-container">
       <h2>Poker Game Collection</h2>
-      <p>Our project aims to provides players with several small games related to poker cards online. Players can learn and play different games on our website. Besides, we also hope to offer some interesting story about the game together with the game introduction. We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, and draw cards Deck of Cards API. You are welcome to visit our project's <a href="https://github.com/Unchained112/WebCardGames">GitHub repository</a>. </p>
+      <p>Our project aims to provide players with several small games related to poker cards online. Players can learn and play different games on our website. Besides, we also hope to offer some interesting stories about the game together with the game introduction. We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, and draw cards Deck of Cards API. You are welcome to visit our project's <a href="https://github.com/Unchained112/WebCardGames">GitHub repository</a>. </p>
 
       <h2>A Brief Introduction about Poker</h2>
       <p>Poker is any of a number of card games in which players wager over which hand is best according to that specific game's rules in ways similar to these rankings. Often using a standard deck, poker games vary in deck configuration, the number of cards in play, the number dealt face up or face down, and the number shared by all players, but all have rules that involve one or more rounds of betting. <a href="https://en.wikipedia.org/wiki/Poker">[1]</a> </p>
