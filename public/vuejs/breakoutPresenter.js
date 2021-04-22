@@ -18,7 +18,7 @@ const BreakoutPresenter = {
     },
     render(){
         return <div>
-            {promiseNoData(this.promise, this.data, this.error) || <BreakoutView breakoutModel={this.model} breakout_data={this.data}/>}
+            {promiseNoData(this.promise, this.data, this.error) || <div class="w3-highway-green"><BreakoutView breakoutModel={this.model} breakout_data={this.data}/></div>}
         </div>
         
     }
