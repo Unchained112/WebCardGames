@@ -3,7 +3,7 @@ function Game4CardResultView(props){
     console.log(props.game4nextcardsResult)
     const result=props.game4nextcardsResult.cards;
     return(
-        <div>
+        <div className="w3-container w3-center w3-animate-right">
             {
                 result.map(
                     function(e){

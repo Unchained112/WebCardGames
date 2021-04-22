@@ -28,7 +28,7 @@ const Card4Presenter={
     },
     render(){
         return(
-            <div>
+            <div className="game24start">
                 <TitleView thisRound={this.model.thisround}/>
                 <CalculatorScreenView formula={this.model.simpleformula}/>
                 <BasicActionView clear={e=>this.model.ac()}

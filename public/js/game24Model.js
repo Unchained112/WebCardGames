@@ -10,6 +10,7 @@ class game24Model{
         this.lefttime=""
         this.settime=120000
         this.thisround=1
+        this.score=0
     }
 
     addCardtoFormula(x){
@@ -133,6 +134,10 @@ class game24Model{
         this.lefttime= leftm + ":" + lefts
         console.log(this.lefttime)
         return this.lefttime
+    }
+
+    calculatescore(){
+
     }
 
 

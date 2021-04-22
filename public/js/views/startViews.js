@@ -6,9 +6,9 @@ function StartView(props){
                     <img src={"./assets/24gamelogowhite.png"} style="width:200px"></img>
                 </div>
 
-                <div class="w3-display-middle w3-content w3-text-white w3-animate-opacity" style="max-width:500px">
+                <div class=" w3-content w3-text-white w3-animate-opacity" style="max-width:500px">
                     <p>The 24 game is a simple math game played with poker cards.The player draws four cards from a shuffled deck of cards and finds a way to manipulate the four
-                        values with elementary arithmetic operations (+,-,*,/) to come up with 24. </p>
+                        values with elementary arithmetic operations (,+,-,*,/,) to come up with 24. </p>
                     <button className="w3-button w3-green" onClick={e => {
                         window.location.hash = "#24gameContent"
                     }}>Start!
