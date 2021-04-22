@@ -8,8 +8,8 @@ const App= (props)=>
     <img src="./assets/pokergame.png" style="width:190px"></img>
     <a onClick={r=>{window.location.hash = "#home";}} class="w3-bar-item w3-button">Home</a>
     <a onClick={r=>{window.location.hash = "#24Game";}} class="w3-bar-item w3-button">24Game</a>
-    <a onClick={r=>{window.location.hash = "#breakout";}} class="w3-bar-item w3-button">Breakout</a>
     <a onClick={r=>{window.location.hash = "#freecell";}} class="w3-bar-item w3-button">FreeCell</a>
+    <a onClick={r=>{window.location.hash = "#breakout";}} class="w3-bar-item w3-button">Breakout</a>
     {/* <a onClick={r=>{window.location.hash = "#spider";}} class="w3-bar-item w3-button">Spider</a> */}
     </nav>
     <div>
