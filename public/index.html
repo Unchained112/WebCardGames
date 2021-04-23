@@ -39,6 +39,11 @@
 <script src="js/views/breakoutView.js" type="text/jsx"></script>
 <script src="vuejs/breakoutPresenter.js" type="text/jsx"></script>
 
+<!-- Blackjack -->
+<script src="js/blackjackModel.js"></script>
+<script src="js/views/blackjackViews.js" type="text/jsx"></script>
+<script src="vuejs/blackjackPresenter.js" type="text/jsx"></script>
+
 
 <link rel="stylesheet" href="w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -86,6 +91,9 @@
 
     const freeCell = new FreeCellModel();
     myModel.setFreeCell(freeCell);
+
+    const blackjack = new BlackjackModel();
+    myModel.setBlackjack(blackjack);
 
     const TopLevelModel={
         data(){return {model:myModel}},

@@ -12,4 +12,7 @@ class GamesCollection{
     setFreeCell(freeCellModel_){
         this.freeCellModel = freeCellModel_;
     }
+    setBlackjack(blackjackModel_){
+        this.blackjackModel = blackjackModel_;
+    }
 }
