@@ -2,9 +2,9 @@ const BlackjackPresenter = {
     props:["model"],
     data(){ return {promise:null, data:null, error:null};},
 	created(){ 
-        this.promise = Promise.all([CardSource.drawCards(DECK_ID_BREAKOUT_2, 52), CardSource.reShuffle(DECK_ID_BREAKOUT_2)]);
-    },          // lifecycle 1, execute at creation
-
+        this.promise =Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,2)]);
+    },          
+    
 	watch:{
         'promise': {   // note: not this.promise! 
             immediate:true,  
@@ -12,23 +12,21 @@ const BlackjackPresenter = {
 		        this.data = this.error = null;
                 if(this.promise){
 			        const p = this.promise;
-                    this.promise.then(dt=>{if(this.promise===p){this.data = dt[0];console.log(this.data)} }).catch(er=>{if(this.promise===p){}});
+                    this.promise.then(dt=>{if(this.promise===p)
+                        {this.data = dt[1];console.log(this.data)} })
+                        .catch(er=>{if(this.promise===p){}});
                 }
             }
         }
     },
     render(){
         return <div>
-            <BlackjackView  stand={()=>this.model.stand()}
-                            hit={()=>this.model.addcard()}
-                            clear={()=>{this.model.clear();
-                                    this.promise=Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,2)]);
-                                 }}/>
-
-            {promiseNoData(this.promise, this.data, this.error) || 
-            <BlackjackView model={this.model} 
-                cards={this.data} 
-                cardChosen={r=>{console.log(r); this.model.setCurrentCard(r);}}/>}
+            {promiseNoData(this.promise, this.data, this.error) ||
+            // <BlackjackView  stand={()=>this.model.stand()}
+            //                 hit={()=>this.model.addcard()}
+            //                 clear={()=>{this.model.clear();
+            //                         this.promise=Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,2)]);}}
+            <BlackjackView nextcardsResult={this.data} cardChosen={code=>{console.log("The user chose card",code); }}/>}
         </div>
         
     }
