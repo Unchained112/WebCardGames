@@ -17,8 +17,10 @@ function FreeCellView(props){
     var Spade = ShowTopCard(props.model.Spades);
     
     return(
-        <div class="w3-container" style="background: url('./assets/table_pattern.jpg')">
-
+        <div id="freecell" class="w3-container">
+        <p> </p>
+        <h1 class="w3-center w3-text-white" style="font-family: Georgia"><img src="./assets/freecell2.png" style="width:100"></img>  FreeCell</h1>
+        
         <div class="w3-cell-row">
         <div class="w3-col l1 m1 s1"><p> </p></div>
         {cells.map(function(e){
