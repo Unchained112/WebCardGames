@@ -2,20 +2,23 @@ function BreakoutView(props){
     console.log(props.breakout_data);
     writeData(props.breakout_data);
     return (
-		<div class="w3-row-padding">
+		<div class="w3-row-padding" id="breakout">
 
-        <div class="w3-half" id="breakout game" style="max-width:600px">
-		<div class="w3-center w3-dark-grey" id="out"></div>
-		<div class="w3-dark-grey w3-center">Use A and D to control the paddle motion</div>
+        <div class="w3-half w3-card" id="breakout game" style="max-width:600px">
+		<div class="w3-center" id="out"></div>
+		<div class="w3-center">Use A and D to control the paddle motion</div>
 		<div class="w3-center">
-        <canvas id="canvas" style="background: url('./assets/table_plain.jpg')">Breakout Canvass</canvas>
+        <canvas id="canvas" style="background: url('./assets/table_plain.png')">Breakout Canvass</canvas>
         </div>
 		<script>
             var breakout = VARIABLE.my_variable(0);
             runBreakout(breakout.cards);    
         </script>
 		</div>
-		<div class="w3-half" id="breakout introduction">
+
+		<div class="w3-col" style="width:42px"><p>  </p></div>
+
+		<div class="w3-half" id="breakout introduction" style="min-width:400px">
 			<h2>Breakout</h2>
 			<p>This is not a game related to Poker. We implement this game in our project for two main reasons. One is to test the run-time animation game using Model-View-Presenter structure and  Vue. The other reason is to test the Poker Card API. However, the development of Breakout game is still an interesting story to know.   </p>
 			<h3>A Brief History of Breakout </h3>
