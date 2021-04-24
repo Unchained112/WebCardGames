@@ -3,11 +3,14 @@ function BreakoutView(props){
     writeData(props.breakout_data);
     return (
 		<div class="w3-row-padding" id="breakout">
+		<h2 class="w3-center"> </h2>
 
-        <div class="w3-half w3-card" id="breakout game" style="max-width:600px">
-		<div class="w3-center" id="out"></div>
-		<div class="w3-center">Use A and D to control the paddle motion</div>
-		<div class="w3-center">
+		<div class="w3-col" style="width:50px"><p>  </p></div>
+
+        <div class="w3-half w3-card w3-center" id="breakout game" style="max-width:600px">
+		<div id="out"></div>
+		<div>Use A and D to control the paddle motion</div>
+		<div>
         <canvas id="canvas" style="background: url('./assets/table_plain.png')">Breakout Canvass</canvas>
         </div>
 		<script>
@@ -19,7 +22,7 @@ function BreakoutView(props){
 		<div class="w3-col" style="width:42px"><p>  </p></div>
 
 		<div class="w3-half" id="breakout introduction" style="min-width:400px">
-			<h2>Breakout</h2>
+			<h2 class="w3-center"> <img src="./assets/breakoutLogo.png" style="width:50"></img>  Breakout</h2>
 			<p>This is not a game related to Poker. We implement this game in our project for two main reasons. One is to test the run-time animation game using Model-View-Presenter structure and  Vue. The other reason is to test the Poker Card API. However, the development of Breakout game is still an interesting story to know.   </p>
 			<h3>A Brief History of Breakout </h3>
 			<p>"Breakout" is an arcade game conceived by Nolan Bushnell and Steve Bristol. They deliberately changed the simulated table tennis game "Pong" to a single-player game. After that, they had the inspiration to make the Breakout game. "Pong"'s developer Alan Alcorn was appointed as the person in charge of the game development work, and in 1975 developed the game in cooperation with Cyan Engineering. In the same year, Alcon appointed Steve Jobs to design the arcade prototype of this game, and Jobs also promised to complete the design prototype within 4 days.</p>
@@ -58,7 +61,7 @@ var ball_img = new Image;
 ball_img.src = "./assets/ball_32_32.png";
 
 var player = new Player(0.4*cWidth, 0.95*cHeight,0.2*cWidth,0.04*cHeight, paddle_img);
-var ball = new Ball(0.5*cWidth, 0.5*cHeight, 0.02*cWidth, Math.floor(Math.random()*2+2),Math.floor(Math.random()*2+2),"red", ball_img);
+var ball = new Ball(0.5*cWidth, 0.5*cHeight, 0.02*cWidth, Math.floor(Math.random()*3+3),Math.floor(Math.random()*3+3),"red", ball_img);
 var bricks;
 var dKeyDown = false;
 var aKeyDown = false;
@@ -317,7 +320,7 @@ function restart(cards){
 	gameOver = false;
 	loadMap(cards);
 	player = new Player(0.5*cWidth, 0.95*cHeight,0.2*cWidth,0.04*cHeight, paddle_img);
-	ball = new Ball(0.5*cWidth, 0.5*cHeight, 0.02*cWidth, Math.floor(Math.random()*2+2),Math.floor(Math.random()*2+2),"red", ball_img);
+	ball = new Ball(0.5*cWidth, 0.5*cHeight, 0.02*cWidth, Math.floor(Math.random()*3+3),Math.floor(Math.random()*3+3),"red", ball_img);
 	start();
 }
 
