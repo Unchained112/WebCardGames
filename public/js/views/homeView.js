@@ -40,7 +40,7 @@ function HomeView(){
     </div>
     </div>
 
-    <div class="w3-container w3-row" style="padding:64px">  
+    <div id="homepage" class="w3-container w3-row w3-text-white" style="padding:64px">  
       <div class="w3-quarter w3-container" style="min-width: 250px; max-width: 300px">
         <img src="./assets/2006_WSOP_Main_Event_Table.jpg" style="width:100%"></img>
         <br></br>

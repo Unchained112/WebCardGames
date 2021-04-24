@@ -263,3 +263,13 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     background-repeat: no-repeat;
     background-size: cover;
 }
+#homepage{
+    /* The image used */
+    background-image: url("./assets/table_pattern.jpg");
+    /* Full height */
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}

@@ -20,10 +20,37 @@ class FreeCellModel{
         this.pile_8 = [];
     }
     setCurrentCard(card){
+        if(card.code !== this.currentCard.code){
+            this.notifyObservers();
+        }
         this.currentCard = card;
-        this.notifyObservers();
     }
     startGame(cards){
+        this.allCards = cards;
+        
+
+    }
+    startGame(){
+        
+        
+        
+    }
+    addCardtoPile(){
+
+    }
+    addCardtoCell(){
+
+    }
+    addCardtoFoundation(){
+
+    }
+    removeCardtoPile(){
+
+    }
+    removeCardtoCell(){
+
+    }
+    removeCardtoFoundation(){
 
     }
     checkWin(){
@@ -34,22 +61,10 @@ class FreeCellModel{
             return false;
         }
     }
-    setNumberOfGuests(x){ 
-        var temp = this.numberOfGuests;
-        this.numberOfGuests = x;
-        if(x !== temp) this.notifyObservers();
-    } 
-    setDishes(dishes){ this.dishes= [...dishes]; this.notifyObservers();}
-    addToMenu(dish){
-        if(this.dishes.includes(dish) !== true) this.notifyObservers(); 
-        this.dishes = [...this.dishes, dish];
-    }
-    removeFromMenu(dishData){
-        var flag = false;
-        this.dishes.forEach(e=>{if(e.id === dishData.id) flag = true;});
-        if(flag === true) this.notifyObservers();
-        this.dishes = this.dishes.filter(e=>e.id !== dishData.id);
-    }
+
+
+
+
     setCurrentDish(id){ 
         if(this.currentDish){
             if(this.currentDish.id === id) return;
