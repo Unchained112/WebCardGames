@@ -1,6 +1,6 @@
 function BlackjackView(props){
-    const result=props.nextcardsResult.cards;
-    const result2=props.nextcardsResult.cards;
+    const result=props.nextcardsResult[1].cards;
+    const result2=props.nextcardsResult[2].cards;
     console.log(props.nextcardsResult);
     return(
         <div id="blackjack" >
@@ -26,7 +26,7 @@ function BlackjackView(props){
 
             <div className="w3-container w3-center w3-animate-right">
             {
-                result.map(
+                result2.map(
                     function(e){
                         var url=e.image;
                         return (<img src={url}/>)
