@@ -46,8 +46,8 @@ const FreeCellPresenter = {
                     }
                 }}
                 foundationChosen={(r,i)=>{
-                    console.log(r);
-                    console.log(i); 
+                    // console.log(r);
+                    // console.log(i); 
                     if(this.model.currentCard.code !== ""){
                         if(r.code === "" && r.suit === this.model.currentCard.suit){
                             var c_v = this.model.strToValue(this.model.currentCard.value);
@@ -79,8 +79,13 @@ const FreeCellPresenter = {
                     // console.log(i); 
                     if(this.model.currentCard.code === ""){
                         var card = this.model.removeCardtoPile(i);
-                        this.model.setCurrentCard(card);
-                        this.model.setPreviousLocation(i);
+                        if(card.code === ""){
+                            return;
+                        }
+                        else{
+                            this.model.setCurrentCard(card);
+                            this.model.setPreviousLocation(i);
+                        }
                     }
                     else{
                         if(this.model.previousLocation === i){

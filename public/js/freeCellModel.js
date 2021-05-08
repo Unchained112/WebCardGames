@@ -97,27 +97,75 @@ class FreeCellModel{
     addCardtoPile(index){
         this.notifyObservers();
         if(index === 10){
+            if(this.pile_1.length === 1){
+                if(this.pile_1[0].code === ""){
+                    this.pile_1[0] = this.currentCard;
+                    return;
+                }
+            }
             this.pile_1.push(this.currentCard);
         }
         if(index === 11){
+            if(this.pile_2.length === 1){
+                if(this.pile_2[0].code === ""){
+                    this.pile_2[0] = this.currentCard;
+                    return;
+                }
+            }
             this.pile_2.push(this.currentCard);
         }
         if(index === 12){
+            if(this.pile_3.length === 1){
+                if(this.pile_3[0].code === ""){
+                    this.pile_3[0] = this.currentCard;
+                    return;
+                }
+            }
             this.pile_3.push(this.currentCard);
         }
         if(index === 13){
+            if(this.pile_4.length === 1){
+                if(this.pile_4[0].code === ""){
+                    this.pile_4[0] = this.currentCard;
+                    return;
+                }
+            }
             this.pile_4.push(this.currentCard);
         }
         if(index === 14){
+            if(this.pile_5.length === 1){
+                if(this.pile_5[0].code === ""){
+                    this.pile_5[0] = this.currentCard;
+                    return;
+                }
+            }
             this.pile_5.push(this.currentCard);
         }
         if(index === 15){
+            if(this.pile_6.length === 1){
+                if(this.pile_6[0].code === ""){
+                    this.pile_6[0] = this.currentCard;
+                    return;
+                }
+            }
             this.pile_6.push(this.currentCard);
         }
         if(index === 16){
+            if(this.pile_7.length === 1){
+                if(this.pile_7[0].code === ""){
+                    this.pile_7[0] = this.currentCard;
+                    return;
+                }
+            }
             this.pile_7.push(this.currentCard);
         }
         if(index === 17){
+            if(this.pile_8.length === 1){
+                if(this.pile_8[0].code === ""){
+                    this.pile_8[0] = this.currentCard;
+                    return;
+                }
+            }
             this.pile_8.push(this.currentCard);
         }
     }
@@ -153,6 +201,9 @@ class FreeCellModel{
             return true;
         }
         var top = pile[pile.length-1];
+        if(top.code === ""){
+            return true;
+        }
         var top_v = this.strToValue(top.value);
         var card_v = this.strToValue(card.value);
         var top_c = this.strToColor(top.suit);
@@ -167,27 +218,75 @@ class FreeCellModel{
     removeCardtoPile(index){
         this.notifyObservers();
         if(index === 10){
+            if(this.pile_1.length === 1){
+                var card = this.pile_1.pop();
+                var temp = {code:"", image:"./assets/back_3.png", value:"", suit:""};
+                this.pile_1.push(temp);
+                this.pile_1.push(card);
+            }
             return this.pile_1.pop();
         }
         if(index === 11){
+            if(this.pile_2.length === 1){
+                var card = this.pile_2.pop();
+                var temp = {code:"", image:"./assets/back_3.png", value:"", suit:""};
+                this.pile_2.push(temp);
+                this.pile_2.push(card);
+            }
             return this.pile_2.pop();
         }
         if(index === 12){
+            if(this.pile_3.length === 1){
+                var card = this.pile_3.pop();
+                var temp = {code:"", image:"./assets/back_3.png", value:"", suit:""};
+                this.pile_3.push(temp);
+                this.pile_3.push(card);
+            }
             return this.pile_3.pop();
         }
         if(index === 13){
+            if(this.pile_4.length === 1){
+                var card = this.pile_4.pop();
+                var temp = {code:"", image:"./assets/back_3.png", value:"", suit:""};
+                this.pile_4.push(temp);
+                this.pile_4.push(card);
+            }
             return this.pile_4.pop();
         }
         if(index === 14){
+            if(this.pile_5.length === 1){
+                var card = this.pile_5.pop();
+                var temp = {code:"", image:"./assets/back_3.png", value:"", suit:""};
+                this.pile_5.push(temp);
+                this.pile_5.push(card);
+            }
             return this.pile_5.pop();
         }
         if(index === 15){
+            if(this.pile_6.length === 1){
+                var card = this.pile_6.pop();
+                var temp = {code:"", image:"./assets/back_3.png", value:"", suit:""};
+                this.pile_6.push(temp);
+                this.pile_6.push(card);
+            }
             return this.pile_6.pop();
         }
         if(index === 16){
+            if(this.pile_7.length === 1){
+                var card = this.pile_7.pop();
+                var temp = {code:"", image:"./assets/back_3.png", value:"", suit:""};
+                this.pile_7.push(temp);
+                this.pile_7.push(card);
+            }
             return this.pile_7.pop();
         }
         if(index === 17){
+            if(this.pile_8.length === 1){
+                var card = this.pile_8.pop();
+                var temp = {code:"", image:"./assets/back_3.png", value:"", suit:""};
+                this.pile_8.push(temp);
+                this.pile_8.push(card);
+            }
             return this.pile_8.pop();
         }
     }   
@@ -277,6 +376,8 @@ class FreeCellModel{
               return 1; //black
             case "HEARTS":
               return 0; //red
+            case "":
+              return -1;
             default:
               console.log("Error");
         }
