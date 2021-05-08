@@ -21,7 +21,9 @@ const FreeCellPresenter = {
             {promiseNoData(this.promise, this.data, this.error) || 
             <FreeCellView model={this.model} 
                 cards={this.data} 
-                cardChosen={r=>{console.log(r); this.model.setCurrentCard(r);}}/>}
+                cardChosen={r=>{console.log(r); this.model.setCurrentCard(r);}}
+                startFreeCell={r=>{this.model.startGame(this.data.cards);console.log(this.model.allCards);}}
+            />}
         </div>
         
     }
