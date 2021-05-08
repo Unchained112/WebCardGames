@@ -1,21 +1,21 @@
 function FreeCellView(props){
-    var cells = ["", "", "", ""];
-    for(var i = 0; i < 4; i++){
-        if(props.model.cells[i] === 0){
-            cells[i] = {code:"", image:"./assets/back_3.png", value:"", suit:""};
-        }
-        else{
-            cells[i] = props.model.cells[i];
-        }
-    }
-
+    //var cells = props.model.cells;
+    props.model.checkWin();
     var currentCard = props.model.currentCard;
 
-    var Heart = ShowTopCard(props.model.Hearts);
-    var Club = ShowTopCard(props.model.Clubs);
-    var Diamond = ShowTopCard(props.model.Diamonds);
-    var Spade = ShowTopCard(props.model.Spades);
-    
+    var Heart = ShowTopCard(props.model.Hearts, 1);
+    var Club = ShowTopCard(props.model.Clubs, 2);
+    var Diamond = ShowTopCard(props.model.Diamonds, 3);
+    var Spade = ShowTopCard(props.model.Spades, 4);
+
+    currentCard.showInfo = function(){
+        if(this.code === ""){
+            return <div class="w3-center w3-text-white"> You haven't select any card</div>
+        }
+        else{
+            return <div class="w3-center w3-text-white"> You select  <img src={this.image} style="width:100px"></img> <button class="w3-button w3-grey" onClick={r=>{props.cancelSelect()}}> Unselect </button> </div>
+        }
+    }
     return(
     <div id="freecell" class="w3-container">
         <p> </p>
@@ -23,8 +23,13 @@ function FreeCellView(props){
         
         <div class="w3-row-padding">
         <div class="w3-col l1 m1 s1"><p> </p></div>
-        {cells.map(function(e){
-            return (<div class="w3-col l1 m1 s2"><img class="w3-opacity-min" src={e.image} style="width:100%" onclick={r=>props.cardChosen(e)}></img></div>)
+        {props.model.cells.map(function(e,index){
+            if(e.code === ""){
+                return (<div class="w3-col l1 m1 s2" onclick={r=>props.cellChosen(e,index)}><img class="w3-opacity-min" src={e.image} style="width:100%"></img></div>)
+            }
+            else{
+                return (<div class="w3-col l1 m1 s2" onclick={r=>props.cellChosen(e,index)}><img src={e.image} style="width:100%"></img></div>)
+            }
         })}
 
         <div class="w3-center w3-col l2 m2 s3">
@@ -32,17 +37,17 @@ function FreeCellView(props){
             <p><button class="w3-button w3-grey"> Restart </button></p>
         </div>
 
-        <div class="w3-col l1 m1 s2 w3-text-white w3-center"><img class="w3-opacity-min" src={Heart.image} style="width:100%" onclick={r=>props.cardChosen(Heart)}></img>Heart</div>
-        <div class="w3-col l1 m1 s2 w3-text-white w3-center"><img class="w3-opacity-min" src={Club.image} style="width:100%" onclick={r=>props.cardChosen(Club)}></img>Club</div>
-        <div class="w3-col l1 m1 s2 w3-text-white w3-center"><img class="w3-opacity-min" src={Diamond.image} style="width:100%" onclick={r=>props.cardChosen(Diamond)}></img>Diamond</div>
-        <div class="w3-col l1 m1 s2 w3-text-white w3-center"><img class="w3-opacity-min" src={Spade.image} style="width:100%" onclick={r=>props.cardChosen(Spade)}></img>Spade</div>
+        <div class="w3-col l1 m1 s2 w3-text-white w3-center" onclick={r=>props.foundationChosen(Heart, 4)}><img src={Heart.image} style="width:100%"></img>Heart</div>
+        <div class="w3-col l1 m1 s2 w3-text-white w3-center" onclick={r=>props.foundationChosen(Club, 5)}><img src={Club.image} style="width:100%"></img>Club</div>
+        <div class="w3-col l1 m1 s2 w3-text-white w3-center" onclick={r=>props.foundationChosen(Diamond, 6)}><img src={Diamond.image} style="width:100%"></img>Diamond</div>
+        <div class="w3-col l1 m1 s2 w3-text-white w3-center" onclick={r=>props.foundationChosen(Spade, 7)}><img src={Spade.image} style="width:100%"></img>Spade</div>
         
         </div>
 
         <p> </p>
         <p> </p>
 
-        <div class="w3-center w3-text-white">Card currently selected: {currentCard.suit}, {currentCard.value} </div>
+        {currentCard.showInfo()}
 
         <p> </p>
         <p> </p>
@@ -66,7 +71,7 @@ function FreeCellView(props){
                     }
                     else{
                         return (<img src={url}
-                                    onClick={r=>{props.cardChosen(e)}}
+                                    onClick={r=>{props.pileChosen(e, 10)}}
                                     style="width:100%;
                                     object-fit:cover;
                                     object-position:top;"
@@ -90,7 +95,7 @@ function FreeCellView(props){
                     }
                     else{
                         return (<img src={url}
-                                    onClick={r=>{props.cardChosen(e)}}
+                                    onClick={r=>{props.pileChosen(e, 11)}}
                                     style="width:100%;
                                     object-fit:cover;
                                     object-position:top;"
@@ -114,7 +119,7 @@ function FreeCellView(props){
                     }
                     else{
                         return (<img src={url}
-                                    onClick={r=>{props.cardChosen(e)}}
+                                    onClick={r=>{props.pileChosen(e, 12)}}
                                     style="width:100%;
                                     object-fit:cover;
                                     object-position:top;"
@@ -138,7 +143,7 @@ function FreeCellView(props){
                     }
                     else{
                         return (<img src={url}
-                                    onClick={r=>{props.cardChosen(e)}}
+                                    onClick={r=>{props.pileChosen(e, 13)}}
                                     style="width:100%;
                                     object-fit:cover;
                                     object-position:top;"
@@ -162,7 +167,7 @@ function FreeCellView(props){
                     }
                     else{
                         return (<img src={url}
-                                    onClick={r=>{props.cardChosen(e)}}
+                                    onClick={r=>{props.pileChosen(e, 14)}}
                                     style="width:100%;
                                     object-fit:cover;
                                     object-position:top;"
@@ -186,7 +191,7 @@ function FreeCellView(props){
                     }
                     else{
                         return (<img src={url}
-                                    onClick={r=>{props.cardChosen(e)}}
+                                    onClick={r=>{props.pileChosen(e, 15)}}
                                     style="width:100%;
                                     object-fit:cover;
                                     object-position:top;"
@@ -210,7 +215,7 @@ function FreeCellView(props){
                     }
                     else{
                         return (<img src={url}
-                                    onClick={r=>{props.cardChosen(e)}}
+                                    onClick={r=>{props.pileChosen(e, 16)}}
                                     style="width:100%;
                                     object-fit:cover;
                                     object-position:top;"
@@ -234,7 +239,7 @@ function FreeCellView(props){
                     }
                     else{
                         return (<img src={url}
-                                    onClick={r=>{props.cardChosen(e)}}
+                                    onClick={r=>{props.pileChosen(e, 17)}}
                                     style="width:100%;
                                     object-fit:cover;
                                     object-position:top;"
@@ -251,9 +256,18 @@ function FreeCellView(props){
     )
 }
 
-function ShowTopCard(cards){
+function ShowTopCard(cards, index){
     if(cards.length === 0){
-        return {code:"", image:"./assets/back_3.png", value:"", suit:""};
+        switch(index){
+            case 1:
+                return {code:"", image:"./assets/Heart.png", value:"", suit:"HEARTS"};
+            case 2:
+                return {code:"", image:"./assets/Club.png", value:"", suit:"CLUBS"};
+            case 3:
+                return {code:"", image:"./assets/Diamond.png", value:"", suit:"DIAMONDS"};
+            case 4:
+                return {code:"", image:"./assets/Spade.png", value:"", suit:"SPADES"};
+        }
     }
     else{
         return cards[cards.length - 1];

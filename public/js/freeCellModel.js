@@ -2,9 +2,12 @@ class FreeCellModel{
     constructor(){
         this.gameStart = false;
         this.observer = [];
-        this.currentCard = {code:"", image:"", value:"", suit:""};
+        this.currentCard = {code:"", image:"./assets/back_3.png", value:"", suit:""};
         // Four cells to store cards temporarily
-        this.cells = [0, 0, 0, 0]
+        this.cells = [{code:"", image:"./assets/back_3.png", value:"", suit:""}, 
+                {code:"", image:"./assets/back_3.png", value:"", suit:""}, 
+                {code:"", image:"./assets/back_3.png", value:"", suit:""}, 
+                {code:"", image:"./assets/back_3.png", value:"", suit:""}];
         // Four foundation piles to store the complete suite of cards from Ace to King with the same suit
         this.Hearts = [];
         this.Clubs = []; 
@@ -19,7 +22,7 @@ class FreeCellModel{
         this.pile_6 = [];
         this.pile_7 = [];
         this.pile_8 = [];
-        this.previousLocation = "None";
+        this.previousLocation = -1;
     }
     setCurrentCard(card){
         if(card.code !== this.currentCard.code){
@@ -28,12 +31,14 @@ class FreeCellModel{
         this.currentCard = card;
     }
     emptyCurrentCard(){
-        this.currentCard = {code:"", image:"", value:"", suit:""};
+        this.currentCard = {code:"", image:"./assets/back_3.png", value:"", suit:""};
+        this.notifyObservers();
     }
     startGame(cards){
         if(this.gameStart === true){
             return;
         }
+        this.notifyObservers();
         this.gameStart = true;
         console.log("start");
         this.allCards = cards;
@@ -66,6 +71,7 @@ class FreeCellModel{
         if(this.gameStart === false){
             return;
         }
+        this.notifyObservers();
         this.gameStart = false;
         this.observer = [];
         this.currentCard = {code:"", image:"", value:"", suit:""};
@@ -85,41 +91,196 @@ class FreeCellModel{
         this.pile_6 = [];
         this.pile_7 = [];
         this.pile_8 = [];
+        this.previousLocation = -1;
         this.gameStart(this.allCards);
     }
-    addCardtoPile(pile){
-
-    }
-    
-    addCardtoFoundation(foundation){
-
-    }
-    removeCardtoPile(pile){
-
-    }
-    addCardtoCell(index){
-        if(this.cells[index] === 0 && this.currentCard.code !== ""){
-            this.cells[index] = this.currentCard;
+    addCardtoPile(index){
+        this.notifyObservers();
+        if(index === 10){
+            this.pile_1.push(this.currentCard);
+        }
+        if(index === 11){
+            this.pile_2.push(this.currentCard);
+        }
+        if(index === 12){
+            this.pile_3.push(this.currentCard);
+        }
+        if(index === 13){
+            this.pile_4.push(this.currentCard);
+        }
+        if(index === 14){
+            this.pile_5.push(this.currentCard);
+        }
+        if(index === 15){
+            this.pile_6.push(this.currentCard);
+        }
+        if(index === 16){
+            this.pile_7.push(this.currentCard);
+        }
+        if(index === 17){
+            this.pile_8.push(this.currentCard);
         }
     }
-    removeCardtoCell(index){
-        
-    }
-    removeCardtoFoundation(foundation, card){
-
-    }
-    setPreviousLocation(location){
-        this.previousLocation = location;
-    }
-    checkWin(){
-        if(this.Hearts.length === 13 && this.Clubs.length === 13 && this.Diamonds.length === 13 && this.Spades.length === 13){
+    pileLegalCheck(index, card){
+        var pile;
+        switch(index){
+            case 10:
+                pile = this.pile_1;
+                break;
+            case 11:
+                pile = this.pile_2;
+                break;
+            case 12:
+                pile = this.pile_3;
+                break;
+            case 13:
+                pile = this.pile_4;
+                break;
+            case 14:
+                pile = this.pile_5;
+                break;
+            case 15:
+                pile = this.pile_6;
+                break;
+            case 16:
+                pile = this.pile_7;
+                break;
+            case 17:
+                pile = this.pile_8;
+                break;
+        }
+        if(pile.length === 0){
+            return true;
+        }
+        var top = pile[pile.length-1];
+        var top_v = this.strToValue(top.value);
+        var card_v = this.strToValue(card.value);
+        var top_c = this.strToColor(top.suit);
+        var card_c = this.strToColor(card.suit);
+        if(top_c !== card_c && top_v === card_v + 1){
             return true;
         }
         else{
             return false;
         }
     }
+    removeCardtoPile(index){
+        this.notifyObservers();
+        if(index === 10){
+            return this.pile_1.pop();
+        }
+        if(index === 11){
+            return this.pile_2.pop();
+        }
+        if(index === 12){
+            return this.pile_3.pop();
+        }
+        if(index === 13){
+            return this.pile_4.pop();
+        }
+        if(index === 14){
+            return this.pile_5.pop();
+        }
+        if(index === 15){
+            return this.pile_6.pop();
+        }
+        if(index === 16){
+            return this.pile_7.pop();
+        }
+        if(index === 17){
+            return this.pile_8.pop();
+        }
+    }   
+    addCardtoFoundation(index){
+        this.notifyObservers();
+        if(index === 4){
+            this.Hearts.push(this.currentCard);
+        }
+        if(index === 5){
+            this.Clubs.push(this.currentCard);
+        }
+        if(index === 6){
+            this.Diamonds.push(this.currentCard);
+        }
+        if(index === 7){
+            this.Spades.push(this.currentCard);
+        }
+    }
+    addCardtoCell(index){
+        this.notifyObservers();
+        this.cells[index] = this.currentCard;
+        //var card = this.currentCard
+        //this.cells.splice(index, 1, "may");
+        console.log(index);
+        console.log(this.cells);
 
+    }
+    removeCardtoCell(index){
+        this.notifyObservers();
+        var card = this.cells[index];
+        this.cells[index] = {code:"", image:"./assets/back_3.png", value:"", suit:""};
+        return card;
+    }
+    setPreviousLocation(location){
+        this.previousLocation = location;
+    }
+    checkWin(){
+        if(this.Hearts.length === 13 && this.Clubs.length === 13 && this.Diamonds.length === 13 && this.Spades.length === 13){
+            alert("You Win!");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    strToValue(value){
+        switch (value) {
+            case "ACE":
+              return 1;
+            case "2":
+              return 2;
+            case "3":
+              return 3;
+            case "4":
+              return 4;
+            case "5":
+              return 5;
+            case "6":
+              return 6;
+            case "7":
+              return 7;
+            case "8":
+              return 8;
+            case "9":
+              return 9;
+            case "10":
+              return 10;
+            case "JACK":
+              return 11;
+            case "QUEEN":
+              return 12;
+            case "KING":
+              return 13;
+            case "":
+              return 0;
+            default:
+              console.log("Error");
+          }
+    }
+    strToColor(str){
+        switch(str){
+            case "DIAMONDS":
+              return 0; //red
+            case "CLUBS":
+              return 1; //black
+            case "SPADES":
+              return 1; //black
+            case "HEARTS":
+              return 0; //red
+            default:
+              console.log("Error");
+        }
+    }
 
 
 
