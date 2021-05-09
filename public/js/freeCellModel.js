@@ -23,7 +23,6 @@ class FreeCellModel{
         this.pile_7 = [];
         this.pile_8 = [];
         this.previousLocation = -1;
-        this.previousState = null; // Store Game Model Information
     }
     setCurrentCard(card){
         if(card.code !== this.currentCard.code){
@@ -96,7 +95,6 @@ class FreeCellModel{
         this.pile_7 = [];
         this.pile_8 = [];
         this.previousLocation = -1;
-        this.previousState = null;
         this.startGame(this.allCards);
     }
     addCardtoPile(index){
@@ -110,7 +108,7 @@ class FreeCellModel{
             }
             this.pile_1.push(this.currentCard);
         }
-        if(index === 11){
+        if(index === 11){ 
             if(this.pile_2.length === 1){
                 if(this.pile_2[0].code === ""){
                     this.pile_2[0] = this.currentCard;
@@ -315,9 +313,6 @@ class FreeCellModel{
         this.cells[index] = this.currentCard;
         //var card = this.currentCard
         //this.cells.splice(index, 1, "may");
-        console.log(index);
-        console.log(this.cells);
-
     }
     removeCardtoCell(index){
         this.notifyObservers();
@@ -387,6 +382,27 @@ class FreeCellModel{
               console.log("Error");
         }
     }
+    setModel(model){
+        this.Clubs = model.Clubs;
+        this.Diamonds = model.Diamonds;
+        this.Hearts = model.Hearts;
+        this.Spades = model.Spades;
+        this.allCards = model.allCards;
+        this.cells = model.cells;
+        this.currentCard = model.currentCard;
+        this.gameStart = model.gameStart;
+        this.observer = model.observer;
+        this.pile_1 = model.pile_1;
+        this.pile_2 = model.pile_2;
+        this.pile_3 = model.pile_3;
+        this.pile_4 = model.pile_4;
+        this.pile_5 = model.pile_5;
+        this.pile_6 = model.pile_6;
+        this.pile_7 = model.pile_7;
+        this.pile_8 = model.pile_8;
+        this.previousLocation = model.previousLocation;
+    }
+
     addObserver(callback){this.observer = [...this.observer, callback];}
     removeObserver(callback){this.observer = this.observer.filter(e=>{e!==callback});}
     notifyObservers(){
@@ -401,5 +417,3 @@ class FreeCellModel{
         })
     }
 };
-
-var LastGameState;

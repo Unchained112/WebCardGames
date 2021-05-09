@@ -1,8 +1,7 @@
 function FreeCellView(props){
     //var cells = props.model.cells;
-    props.model.checkWin();
-    LastGameState = props.model;
-
+    var isWin = false;
+    isWin = props.model.checkWin();
     var currentCard = props.model.currentCard;
 
     var Heart = ShowTopCard(props.model.Hearts, 1);
@@ -11,6 +10,12 @@ function FreeCellView(props){
     var Spade = ShowTopCard(props.model.Spades, 4);
 
     currentCard.showInfo = function(){
+        if(!props.model.gameStart){
+            return <div class="w3-center w3-text-white"> Press "Start" to play</div>
+        }
+        if(isWin){
+            return <div class="w3-center w3-text-white"> You win !!!</div>
+        }
         if(this.code === ""){
             return <div class="w3-center w3-text-white"> You haven't select any card</div>
         }
@@ -18,6 +23,21 @@ function FreeCellView(props){
             return <div class="w3-center w3-text-white"> You select  <img src={this.image} style="width:100px"></img> <button class="w3-button w3-grey" onClick={r=>{props.cancelSelect()}}> Unselect </button> </div>
         }
     }
+
+    var showUndo = function(){
+        if(LastGameState){
+            if(LastGameState.length >= 1){
+                return <p><button class="w3-button w3-grey" onClick={r=>props.Undo()}> Undo </button></p>
+            }
+            else{
+                return <p></p>
+            }
+        }
+        else{
+            return <p></p>
+        }
+    }
+
     return(
     <div id="freecell" class="w3-container">
         <p> </p>
@@ -37,6 +57,7 @@ function FreeCellView(props){
         <div class="w3-center w3-col l2 m2 s3">
             <p><button class="w3-button w3-grey" onClick={r=>{props.startFreeCell()}}> Start </button></p>
             <p><button class="w3-button w3-grey" onClick={r=>props.restartFreeCell()}> Restart </button></p>
+            {showUndo()}
         </div>
 
         <div class="w3-col l1 m1 s2 w3-text-white w3-center" onclick={r=>props.foundationChosen(Heart, 4)}><img src={Heart.image} style="width:100%"></img>Heart</div>
@@ -264,11 +285,11 @@ function ShowTopCard(cards, index){
             case 1:
                 return {code:"", image:"./assets/Heart.png", value:"", suit:"HEARTS"};
             case 2:
-                return {code:"", image:"./assets/Club.png", value:"", suit:"CLUBS"};
+                return {code:"", image:"./assets/Club1.png", value:"", suit:"CLUBS"};
             case 3:
                 return {code:"", image:"./assets/Diamond.png", value:"", suit:"DIAMONDS"};
             case 4:
-                return {code:"", image:"./assets/Spade.png", value:"", suit:"SPADES"};
+                return {code:"", image:"./assets/Spade1.png", value:"", suit:"SPADES"};
         }
     }
     else{
