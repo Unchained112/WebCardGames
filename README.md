@@ -46,12 +46,12 @@ We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, a
 
 ###  Ziyu Tang
 **Current Stage**
-1. something 1
-2. something 2
+1. 完成了大部分德州的用户界面,完成了一部分event,由于没有写ai的部分,网页依然不可互动
+
 
 **Plan to do**
-1. something 1
-2. something 2
+1. 完成规则介绍界面,完成结算界面
+2. 完成剩下的event
 
 
 
