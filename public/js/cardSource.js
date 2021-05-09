@@ -5,8 +5,13 @@ const CardSource={
             return response.json();
         })
         .then(data =>{
-            // console.log(data);
-            return data;
+            // Fetch error check 
+            if(data.success){
+                return data;
+            }
+            else{
+                throw new Error(data.error);
+            }
         });
     },
     getDeck(){

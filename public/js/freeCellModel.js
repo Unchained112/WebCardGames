@@ -23,6 +23,7 @@ class FreeCellModel{
         this.pile_7 = [];
         this.pile_8 = [];
         this.previousLocation = -1;
+        this.previousState = null; // Store Game Model Information
     }
     setCurrentCard(card){
         if(card.code !== this.currentCard.code){
@@ -74,9 +75,12 @@ class FreeCellModel{
         this.notifyObservers();
         this.gameStart = false;
         this.observer = [];
-        this.currentCard = {code:"", image:"", value:"", suit:""};
+        this.currentCard = {code:"", image:"./assets/back_3.png", value:"", suit:""};
         // Four cells to store cards temporarily
-        this.cells = [0, 0, 0, 0]
+        this.cells = [{code:"", image:"./assets/back_3.png", value:"", suit:""}, 
+                {code:"", image:"./assets/back_3.png", value:"", suit:""}, 
+                {code:"", image:"./assets/back_3.png", value:"", suit:""}, 
+                {code:"", image:"./assets/back_3.png", value:"", suit:""}];
         // Four foundation piles to store the complete suite of cards from Ace to King with the same suit
         this.Hearts = [];
         this.Clubs = []; 
@@ -92,7 +96,8 @@ class FreeCellModel{
         this.pile_7 = [];
         this.pile_8 = [];
         this.previousLocation = -1;
-        this.gameStart(this.allCards);
+        this.previousState = null;
+        this.startGame(this.allCards);
     }
     addCardtoPile(index){
         this.notifyObservers();
@@ -382,33 +387,6 @@ class FreeCellModel{
               console.log("Error");
         }
     }
-
-
-
-    setCurrentDish(id){ 
-        if(this.currentDish){
-            if(this.currentDish.id === id) return;
-        }
-        this.currentDish = {id:id};
-        this.currentDishDetails = this.currentDishError = null;
-        this.notifyObservers();
-        if(this.currentDish){
-           DishSource.getDishDetails(this.currentDish.id)
-            .then(r=>{
-                this.currentDishDetails = r;
-                    console.log(this.currentDishDetails);
-                    this.notifyObservers();
-                if(this.currentDish.id === id){
-                    
-            }})
-            .catch(er=>{
-                if(this.currentDish.id === id){
-                    this.currentDishError = er;
-                    this.notifyObservers();
-            }})
-        }
-        //console.log("the current dish is " + this.currentDish.title);
-    }
     addObserver(callback){this.observer = [...this.observer, callback];}
     removeObserver(callback){this.observer = this.observer.filter(e=>{e!==callback});}
     notifyObservers(){
@@ -423,3 +401,5 @@ class FreeCellModel{
         })
     }
 };
+
+var LastGameState;

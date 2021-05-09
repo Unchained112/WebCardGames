@@ -11,7 +11,18 @@ const FreeCellPresenter = {
 		        this.data = this.error = null;
                 if(this.promise){
 			        const p = this.promise;
-                    this.promise.then(dt=>{if(this.promise===p){this.data = dt[0];console.log(this.data)} }).catch(er=>{if(this.promise===p){}});
+                    this.promise
+                    .then(dt=>{
+                        if(this.promise===p){
+                            this.data = dt[0];
+                            console.log(this.data)
+                        } 
+                    })
+                    .catch(er=>{
+                        if(this.promise===p){
+                            throw new Error(er);
+                        }
+                    });
                 }
             }
         }
@@ -20,17 +31,8 @@ const FreeCellPresenter = {
         return <div>
             {promiseNoData(this.promise, this.data, this.error) || 
             <FreeCellView model={this.model} 
-                cards={this.data} 
-                cardChosen={r=>{
-                    var card = {code:"", image:"./assets/back_3.png", value:"", suit:""};
-                    card.code = r.code;
-                    card.image = r.image;
-                    card.value = r.value;
-                    card.suit = r.suit;
-                    console.log(card); 
-                    this.model.setCurrentCard(card);
-                }}
-                startFreeCell={r=>{this.model.startGame(this.data.cards);console.log(this.model.allCards);}}
+                startFreeCell={r=>{this.model.startGame(this.data.cards);}}
+                restartFreeCell={r=>{this.model.restartGame()}}
                 cellChosen={(r,i)=>{
                     //console.log(r);
                     if(this.model.cells[i].code === "" && this.model.currentCard.code !== ""){
@@ -121,6 +123,7 @@ const FreeCellPresenter = {
                     }
                     this.model.emptyCurrentCard();
                 }}
+                Undo={r=>{this.props.model = LastGameState;}}
             />}
         </div>
         

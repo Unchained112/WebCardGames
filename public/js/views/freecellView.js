@@ -1,6 +1,8 @@
 function FreeCellView(props){
     //var cells = props.model.cells;
     props.model.checkWin();
+    LastGameState = props.model;
+
     var currentCard = props.model.currentCard;
 
     var Heart = ShowTopCard(props.model.Hearts, 1);
@@ -34,7 +36,7 @@ function FreeCellView(props){
 
         <div class="w3-center w3-col l2 m2 s3">
             <p><button class="w3-button w3-grey" onClick={r=>{props.startFreeCell()}}> Start </button></p>
-            <p><button class="w3-button w3-grey"> Restart </button></p>
+            <p><button class="w3-button w3-grey" onClick={r=>props.restartFreeCell()}> Restart </button></p>
         </div>
 
         <div class="w3-col l1 m1 s2 w3-text-white w3-center" onclick={r=>props.foundationChosen(Heart, 4)}><img src={Heart.image} style="width:100%"></img>Heart</div>
