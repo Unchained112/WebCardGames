@@ -11,6 +11,8 @@ const App= (props)=>
     <a onClick={r=>{window.location.hash = "#freecell";}} class="w3-bar-item w3-button">FreeCell</a>
     <a onClick={r=>{window.location.hash = "#breakout";}} class="w3-bar-item w3-button">Breakout</a>
     <a onClick={r=>{window.location.hash = "#blackjack";}} class="w3-bar-item w3-button">Blackjack</a>
+    <a onClick={r=>{window.location.hash = "#texas";}} class="w3-bar-item w3-button">Texas</a>
+    
     {/* <a onClick={r=>{window.location.hash = "#spider";}} class="w3-bar-item w3-button">Spider</a> */}
     </nav>
     <div>
@@ -22,12 +24,14 @@ const App= (props)=>
         </Show>
         <Show hash="#freecell"><FreeCellPresenter model={props.model.freeCellModel}/></Show>
         <Show hash="#blackjack"><BlackjackPresenter model={props.model.blackjackModel}/></Show>
+        <Show hash="#texas"><TexasPresenter model={props.model.TexasModel}/></Show>
+    
     </div>
 
     {/* <Show hash="#arkanoid"><ArkanoikPresenter model={props.model.arkanoid} /></Show> */}
 </div>
 
 function defaultRoute(){
-    if(["#home", "#breakout", "#freecell", "#spider","#24Game","#24gameContent","#blackjack"].find(e=>e===window.location.hash)===undefined) window.location.hash="#home";
+    if(["#home", "#breakout", "#freecell", "#spider","#24Game","#24gameContent","#blackjack", "#texas"].find(e=>e===window.location.hash)===undefined) window.location.hash="#home";
 }
 defaultRoute();

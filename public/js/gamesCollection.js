@@ -15,4 +15,7 @@ class GamesCollection{
     setBlackjack(blackjackModel_){
         this.blackjackModel = blackjackModel_;
     }
+    setTexas(TexasModel_){
+        this.TexasModel = TexasModel_;
+    }
 }

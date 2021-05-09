@@ -1,0 +1,130 @@
+.community-card-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+
+    top: calc(50% - 85px);
+    left: calc(50% - 125px);
+    
+    display: flex;
+
+    width: 250px;
+    height: 75px;
+
+}
+
+.pot-container {
+	position: absolute;
+	top: 50%;
+	left: calc(50% - 22.5px);
+	color: white;
+}
+
+
+.player-entity--wrapper {
+	position: absolute;
+	/* background-color: rgba(0,0,0,0.35); */
+	border-top-left-radius: 200px;
+	border-bottom-left-radius: 200px;
+}
+
+.player-entity--container {
+	display: flex;
+	height: auto;
+	width: auto;
+}
+
+.player-avatar--container {
+	position: relative;
+	height: 100px;
+	width: 100px;
+	border-radius: 100px;
+	padding: 6px 6px 6px 6px
+}
+
+.player-info--name {
+	display: flex;
+	justify-content: center;
+	border-radius: 25px;
+	position: absolute;
+	bottom: -12px;
+	padding: 4px 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
+	color: whitesmoke;
+	background-color: rgba(0,0,0,0.86);
+	font-size: 12px;
+}
+
+.player-avatar--image {
+	border-radius: 500px;
+	border: 1px solid whitesmoke;
+	background-color: rgba(176, 14, 14, 0.22);
+	transition: border 0.1s ease-out;
+}
+
+.activePlayer {
+	border: 2px solid #00ff25;
+}
+
+.player-info--wrapper {
+	width: 100px;
+	color: white;
+}
+
+.player-info--stash--container,
+.player-info--bet--container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	margin-top: 10px;
+	text-shadow: 2px 2px 18px rgba(0,0,0,0.95);
+}
+
+
+.player-info--stash--image,
+.player-info--bet--image {
+	height: 25px;
+	width: 25px;
+}
+
+.p0, .p1, .p2, .p3, .p4 {
+ 	position: absolute;
+
+ 	display: flex;
+ 	align-items: center;
+ 	flex-direction: column;
+
+	/* 
+ 	width: 175px;
+ 	height: 200px;
+	
+	 border-radius: 200px;
+	 */
+ }
+
+ .p0 {
+ 	bottom: 15%; /* 41px/962px */ /* ADD 2PX TO ALL VETICAL CALCULATIONS - MOVED PLAYERBOARD UP FOR CARD SPACE  (WAS 4.262%)*/
+	left: 50%;
+	transform: translateX(-50%) ;
+	 /* left: 43.75%; /* 50% - 6.25% (87.5px/1400px) */ 
+ }
+ .p1 {
+ 	bottom: 15%;
+ 	left: 24.107143%; /* 50% - 25.892857% (362.5px/1400px) */
+ }
+ .p2 {
+ 	bottom: 35.1518%; /* 165px / 962px */
+ 	left: 6%; /* 50% - 44% (616px/1400px) */ 
+ }
+
+ .p4 {
+ 	bottom: 15%;
+ 	right: 24.107143%;
+ }
+ .p3 {
+ 	bottom: 35.1518%;
+ 	right: 6%;
+ }
