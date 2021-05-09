@@ -20,7 +20,12 @@ const Card4Presenter={
                             this.data = dt[1];
                             //console.log(this.data);
                         }})
-                        .catch(er=>{if(this.promise===p){}});
+                        .catch(er=>{
+                            if(this.promise===p){
+                                console.log(er);
+                                this.promise = Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
+                            }
+                        });
                     //console.log(this.data);
                 }
             }

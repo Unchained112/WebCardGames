@@ -20,7 +20,9 @@ const FreeCellPresenter = {
                     })
                     .catch(er=>{
                         if(this.promise===p){
-                            throw new Error(er);
+                            console.log(er);
+                            this.promise = Promise.all([CardSource.drawCards(DECK_ID_BREAKOUT_2, 52), CardSource.reShuffle(DECK_ID_BREAKOUT_2)]);
+                            //throw new Error(er);
                         }
                     });
                 }
