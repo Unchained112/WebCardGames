@@ -6,4 +6,6 @@ const DECK_ID_24GAME_1= "qf4rvii61dzo";
 const DECK_ID_24GAME_2= "29z5onkzsqiy";
 const DECK_ID_TEXAS_1= "3p40paa87x90";
 const DECK_ID_TEXAS_2= "3p40paa87x90";
+const DECK_ID_BLACKJACK="l19kmbzinudk";
+
 var LastGameState; //Store information about last state in Freecell 
