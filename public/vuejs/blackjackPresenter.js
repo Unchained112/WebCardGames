@@ -13,9 +13,10 @@ const BlackjackPresenter = {
                 if(this.promise){
 			        const p = this.promise;
                     this.promise.then(dt=>{if(this.promise===p)
-                        {console.log(dt);
+                        {//console.log(dt);
                             this.data = dt[1].cards;
-                            console.log(this.data)} })
+                            //console.log(this.data)
+                        } })
                         .catch(er=>{
                             if(this.promise===p){
                                 console.log(er);

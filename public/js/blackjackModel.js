@@ -25,8 +25,8 @@ class BlackjackModel{
         x=this.cardpool.pop();
         this.player.push(x);
         this.CountPlayerSum();
-        console.log(this.playersum);
-        this.CheckWin();
+        //console.log(this.playersum);
+        this.CheckWin_Hit();
     }
 
     Stand(){
@@ -36,7 +36,7 @@ class BlackjackModel{
             this.host.push(x);
         }
         this.CountHostSum();
-        this.CheckWin();
+        this.CheckWin_Stand();
     }
 
     CountPlayerSum(){
@@ -152,10 +152,15 @@ class BlackjackModel{
             }
     }
 
-    CheckWin(){
+    CheckWin_Hit(){
         if(this.playersum>21){
             alert("You Lose!");//hit 超过了21，判负
         }
+        if(this.hostsum>21){
+            alert("You Win!");//stand host超过了21，判胜
+        }
+    }
+    CheckWin_Stand(){
         if(this.hostsum>21){
             alert("You Win!");//stand host超过了21，判胜
         }

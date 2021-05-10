@@ -10,7 +10,7 @@ function BlackjackView(props){
            
             <div className="w3-container w3-center w3-animate-right">
             {
-                player.map(
+                host.map(
                     function(e){
                         var url=e.image;
                         return (<img src={url}/>)
@@ -28,7 +28,7 @@ function BlackjackView(props){
 
             <div className="w3-container w3-center w3-animate-right">
             {
-                host.map(
+                player.map(
                     function(e){
                         var url=e.image;
                         return (<img src={url}/>)
