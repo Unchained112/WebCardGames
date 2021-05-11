@@ -1,7 +1,8 @@
 function BlackjackView(props){
-    const result=props.nextcardsResult[1].cards;
-    const result2=props.nextcardsResult[2].cards;
-    console.log(props.nextcardsResult);
+    const player=props.model.player;
+    const host=props.model.host;
+    console.log(player);
+    console.log(host);
     return(
         <div id="blackjack" >
             <div id="blackjack" class="w3-container">
@@ -9,7 +10,7 @@ function BlackjackView(props){
            
             <div className="w3-container w3-center w3-animate-right">
             {
-                result.map(
+                host.map(
                     function(e){
                         var url=e.image;
                         return (<img src={url}/>)
@@ -19,6 +20,7 @@ function BlackjackView(props){
             </div>
 
             <div class="w3-container">
+                <button class="w3-button w3-green w3-round-xlarge" onClick={props.start}>Start </button> 
                 <button class="w3-button w3-green w3-round-xlarge" onClick={props.hit}>Hit </button> 
                 <button class="w3-button w3-green w3-round-xlarge" onClick={props.stand}>Stand</button>
                 <button class="w3-button w3-green w3-round-xlarge" onClick={props.clear}>Play Again</button>
@@ -26,13 +28,14 @@ function BlackjackView(props){
 
             <div className="w3-container w3-center w3-animate-right">
             {
-                result2.map(
+                player.map(
                     function(e){
                         var url=e.image;
                         return (<img src={url}/>)
                     }
                 )
             }
+            {/* <img src={props.newresult.cards.image} /> */}
             </div>
 
             </div>        

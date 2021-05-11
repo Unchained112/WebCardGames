@@ -50,6 +50,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-highway.css">
 
+<!-- Texas Hold'em Poker -->
+<link rel="stylesheet" href="texasstyle.css">
+<script src="js/texasModel.js"></script>
+<script src="js/views/texasViews.js" type="text/jsx"></script>
+<script src="vuejs/texasPresenter.js" type="text/jsx"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
 
 <script>
   // Babel generates calls to React.createElement by default, so we redefine that:
@@ -95,6 +103,9 @@
 
     const blackjack = new BlackjackModel();
     myModel.setBlackjack(blackjack);
+
+    const texas = new TexasModel();
+    myModel.setTexas(texas);
 
     const TopLevelModel={
         data(){return {model:myModel}},

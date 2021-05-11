@@ -2,11 +2,21 @@ const CardSource={
     apiCall(params){
         return fetch(BASE_URL+params, {"method": "GET"})
         .then(response=>{
-            return response.json();
+            if(response.status === 200){
+                return response.json();
+            }else{
+                // console.log(response);
+                throw new Error("API Error");
+            }
         })
         .then(data =>{
-            // console.log(data);
-            return data;
+            // Fetch error check 
+            if(data.success){
+                return data;
+            }
+            else{
+                throw new Error(data.error);
+            }
         });
     },
     getDeck(){
