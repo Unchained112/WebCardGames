@@ -1,6 +1,6 @@
 const App= (props)=>
 <div>
-    <div class="w3-green">
+    <div class="w3-casino-green">
     <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button "/>
     </div>
     <nav class="w3-text-blue-grey w3-light-gray w3-sidebar w3-bar-block w3-card w3-animate-left w3-center" style="display:none" id="mySidebar">
@@ -12,14 +12,14 @@ const App= (props)=>
     <a onClick={r=>{window.location.hash = "#blackjack";}} class="w3-bar-item w3-button">Blackjack</a>
     <a onClick={r=>{window.location.hash = "#texas";}} class="w3-bar-item w3-button">Texas</a>
     <a onClick={r=>{window.location.hash = "#breakout";}} class="w3-bar-item w3-button">Breakout</a>
-    
+
     {/* <a onClick={r=>{window.location.hash = "#spider";}} class="w3-bar-item w3-button">Spider</a> */}
     </nav>
     <div>
         <Show hash="#home"><HomePresenter/></Show>
-        <Show hash="#24Game"><StartPresenter/></Show>
+        <Show hash="#24Game"><Game24startPresenter/></Show>
         <Show hash="#24gameContent">
-            <Card4Presenter model={props.model.game24Model}/>
+            <Game24cardPresenter model={props.model.game24Model}/>
         </Show>
         <Show hash="#freecell"><FreeCellPresenter model={props.model.freeCellModel}/></Show>
         <Show hash="#blackjack"><BlackjackPresenter model={props.model.blackjackModel}/></Show>

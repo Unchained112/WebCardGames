@@ -1,4 +1,4 @@
-function TimerPresenter(props){
+function Game24timerPresenter(props){
     return(
         <div>
 

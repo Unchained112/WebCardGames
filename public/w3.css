@@ -233,6 +233,65 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-border-dark-grey,.w3-hover-border-dark-grey:hover,.w3-border-dark-gray,.w3-hover-border-dark-gray:hover{border-color:#616161!important}
 .w3-border-pale-red,.w3-hover-border-pale-red:hover{border-color:#ffe7e7!important}.w3-border-pale-green,.w3-hover-border-pale-green:hover{border-color:#e7ffe7!important}
 .w3-border-pale-yellow,.w3-hover-border-pale-yellow:hover{border-color:#ffffcc!important}.w3-border-pale-blue,.w3-hover-border-pale-blue:hover{border-color:#e7ffff!important}
+.w3-casino-green,.w3-hover-indigo:hover{color:#fff!important;background-color: #026702 !important}
+.homepagetextbox{
+    background-color: #d53040;
+    background-size: 50%;
+    opacity: 99%;
+
+}
+.homepageheader{
+    color: white;
+    background: repeating-linear-gradient(
+            75deg,
+            #f3eee8,
+            #f3eee8 100px,
+            #2e2e2e 0,
+            #2e2e2e 200px
+    );
+}
+.homepagetitle{
+    font-size: 100px;
+    text-align: center;
+    color: #fcedd8;
+    font-family: 'Niconne', cursive;
+    font-weight: 1000;
+    text-shadow: 2px 2px 0px #eb452b,
+    4px 4px 0px #efa032,
+    6px 6px 0px #46b59b,
+    8px 8px 0px #017e7f,
+    10px 10px 0px #052939,
+    12px 12px 0px #c11a2b,
+    14px 14px 0px #c11a2b,
+    16px 16px 0px #c11a2b,
+    18px 18px 0px #c11a2b;
+}
+.div-inline{
+    display:inline;
+}
+.upperleft{
+    position:absolute;
+    top:80px;
+    left:50px;
+
+}
+.game24leftcolumn{
+    float: left;
+    width: 25%;
+}
+.game24middlecolumn{
+    float: left;
+    width: 50%;
+}
+.game24rightcolumn{
+    float: left;
+    width: 25%;
+}
+.game24footer{
+    width: 100%;
+    position: absolute;
+    bottom: 20px
+}
 .game24start{
     /* The image used */
     background-image: url("./assets/table_pattern.jpg");
@@ -243,6 +302,154 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     background-repeat: no-repeat;
     background-size: cover;
 }
+.game24currentcard{
+    transition: transform 250ms
+}
+.game24currentcard:hover{
+    transform: translateY(-10px);
+}
+.game24currentcards{
+    position: absolute;
+    bottom: 5px;
+}
+
+.game24calculatorButton{
+    position:relative;
+    display:inline-block;
+    margin:10px 5px;
+}
+.game24calculatorButton a{
+    color:white;
+    font-family:Helvetica, sans-serif;
+    font-weight:bold;
+    font-size:18px;
+    text-align: center;
+    text-decoration:none;
+    background-color: #413e3e;
+    display:block;
+    position:relative;
+    padding:10px 20px;
+
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    text-shadow: 0px 1px 0px #000000;
+    filter: dropshadow(color=#000, offx=0px, offy=1px);
+
+    -webkit-box-shadow:inset 0 1px 0 #ffffff, 0 10px 0 #3a3838;
+    -moz-box-shadow:inset 0 1px 0 #ffffff, 0 10px 0 #3a3838;
+    box-shadow:inset 0 1px 0 #ffffff, 0 10px 0 #3a3838;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+
+}
+.game24calculatorButton a:active{
+    top:10px;
+    background-color: #413e3e;
+
+    -webkit-box-shadow:inset 0 1px 0 #ffffff, inset 0 -3px 0 #3a3838;
+    -moz-box-shadow:inset 0 1px 0 #ffffff, inset 0 -3px 0 #3a3838;
+    box-shadow:inset 0 1px 0 #ffffff, inset 0 -3px 0 #3a3838;
+}
+.game24calculatorButton:after{
+    content:"";
+    height:100%;
+    width:100%;
+    padding:4px;
+    position: absolute;
+    bottom:-15px;
+    left:-4px;
+    z-index:-1;
+    background-color:#2B1800;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.game24deck{
+    margin:15px;
+    width:270px;
+    height:380px;
+    position:relative;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    border-radius:10px;
+}
+.game24previouscard{
+    width:80%;
+    height:80%;
+    /*flip animation*/
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: all .5s linear;
+    transition: all .5s linear;
+    border-radius:10px;
+}
+.game24face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background-color:whitesmoke;
+    border-radius:10px;
+}
+.game24back {
+    overflow:hidden;
+    z-index:-1;
+    display: block;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    box-sizing: border-box;
+}
+.game24back:before{
+     content: "";
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     z-index: -1;
+     background-image: url("./assets/back_2_empty.png");
+     background-size: cover;
+     -webkit-transform: rotateY(180deg);
+     -moz-transform: rotateY(180deg);
+     -ms-transform: rotateY(180deg);
+     -o-transform: rotateY(180deg);
+     transform: rotateY(180deg);
+ }
+
+.game24front{
+    background-image:url("./assets/back_2.png");
+    background-size: cover;
+    z-index:1;
+}
+
+.game24hovercard:hover{
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+.game24previouscards{
+    padding-top: 30px;
+}
+@media screen and (max-width: 850px) {
+    .game24middlecolumn,.game24leftcolumn, .game24rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+    .game24footer{
+        width: 100%;
+        padding: 0;
+        position: static;
+    }
+}
+
 #freecell{
     /* The image used */
     background-image: url("./assets/background_6.jpg");
@@ -264,14 +471,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     background-size: cover;
 }
 #homepage{
-    /* The image used */
-    background-image: url("./assets/table_pattern.jpg");
-    /* Full height */
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto;
+    background-color: #f6f4f4;
 }
 #breakout{
     /* The image used */
