@@ -8,6 +8,7 @@ class BlackjackModel{
 
     }
     StartGame(cards){
+        console.log(this.playersum);
         var x;
         this.cardpool=cards;
         x=this.cardpool.pop();
@@ -18,6 +19,8 @@ class BlackjackModel{
         this.host.push(x);
         x=this.cardpool.pop();
         this.host.push(x);
+        this.CountPlayerSum();
+        console.log(this.playersum);
     }
 
     Hit(){
@@ -25,21 +28,24 @@ class BlackjackModel{
         x=this.cardpool.pop();
         this.player.push(x);
         this.CountPlayerSum();
-        //console.log(this.playersum);
-        this.CheckWin_Hit();
+        console.log(this.playersum);
+        //this.CheckWin_Hit();
     }
 
     Stand(){
-        if(this.hostsum<this.playersum){
+        while(this.hostsum<this.playersum && this.hostsum<21){
+            console.log(this.hostsum);
             var x;
             x=this.cardpool.pop();
             this.host.push(x);
+            this.CountHostSum();
         }
-        this.CountHostSum();
-        this.CheckWin_Stand();
+        
+        //this.CheckWin_Stand();
     }
 
     CountPlayerSum(){
+        this.playersum=0;
         var player = this.player;
         var i;
         var j;
@@ -58,38 +64,51 @@ class BlackjackModel{
                 }              
             }
         }
-//将ace放在array最后方便最后判断ace作为1或者作为10
+//将ace放在array最后方便最后判断ace作为1或者作为11
         for(i=0;i<player.length;i++){
             switch (player[i].value){  
                 case "1":
                     this.playersum+=1;
+                    break;
                 case "2":
                     this.playersum+=2;
+                    break;
                 case "3":
                     this.playersum+=3;
+                    break;
                 case "4":
                     this.playersum+=4;
+                    break;
                 case "5":
                     this.playersum+=5;
+                    break;
                 case "6":
                     this.playersum+=6;
+                    break;
                 case "7":
                     this.playersum+=7;
+                    break;
                 case "8":
                     this.playersum+=8;
+                    break;
                 case "9":
                     this.playersum+=9;
+                    break;
                 case "10":
-                    this.playersum+=10;   
+                    this.playersum+=10;
+                    break;   
                 case "JACK":
                     this.playersum+=10;
+                    break;
                 case "QUEEN":
                     this.playersum+=10;
+                    break;
                 case "KING":
                     this.playersum+=10;
+                    break;
                 case "ACE":
                     if(this.playersum<=11){
-                        this.playersum+=10;
+                        this.playersum+=11;
                     }else{
                         this.playersum+=1;
                     }
@@ -98,6 +117,7 @@ class BlackjackModel{
     }
 
     CountHostSum(){
+        this.hostsum=0;
         var host = this.host;
         var i;
         var j;
@@ -113,38 +133,38 @@ class BlackjackModel{
                 }              
             }
         }
-//将ace放在array最后方便最后判断ace作为1或者作为10
+//将ace放在array最后方便最后判断ace作为1或者作为11
         for(i=0;i<host.length;i++){
             switch (host[i].value){  
                 case "1":
-                    this.hostsum+=1;
+                    this.hostsum+=1;break;
                 case "2":
-                    this.hostsum+=2;
+                    this.hostsum+=2;break;
                 case "3":
-                    this.hostsum+=3;
+                    this.hostsum+=3;break;
                 case "4":
-                    this.hostsum+=4;
+                    this.hostsum+=4;break;
                 case "5":
-                    this.hostsum+=5;
+                    this.hostsum+=5;break;
                 case "6":
-                    this.hostsum+=6;
+                    this.hostsum+=6;break;
                 case "7":
-                    this.hostsum+=7;
+                    this.hostsum+=7;break;
                 case "8":
-                    this.hostsum+=8;
+                    this.hostsum+=8;break;
                 case "9":
-                    this.hostsum+=9;
+                    this.hostsum+=9;break;
                 case "10":
-                    this.hostsum+=10;   
+                    this.hostsum+=10;break;   
                 case "JACK":
-                    this.hostsum+=10;
+                    this.hostsum+=10;break;
                 case "QUEEN":
-                    this.hostsum+=10;
+                    this.hostsum+=10;break;
                 case "KING":
-                    this.hostsum+=10;
+                    this.hostsum+=10;break;
                 case "ACE":
                     if(this.hostsum<=11){
-                        this.hostsum+=10;
+                        this.hostsum+=11;
                     }else{
                         this.hostsum+=1;
                     }
@@ -160,6 +180,7 @@ class BlackjackModel{
             alert("You Win!");//stand host超过了21，判胜
         }
     }
+
     CheckWin_Stand(){
         if(this.hostsum>21){
             alert("You Win!");//stand host超过了21，判胜
