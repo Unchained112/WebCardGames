@@ -1,32 +1,52 @@
 const Game24cardPresenter={
     props:["model"],
-    data(){return {promise:null, data:null, error:null,examdata:null}},
+    data(){return {promise:null, data:null, error:null, examdata:null,solution:null}},
     created(){
-        this.promise =Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4),Game24examSource.getSolution([1,1,1,1])]);
+        this.promise =Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
+        this.solution = Game24examSource.getSolution([1,1,1,1])
     },
     watch:{
         'promise': {   // note: not this.promise!
             immediate:true,
             handler(){
-                this.examdata = this.data = this.error = null;
+                this.data = this.error = null;
                 if(this.promise){
                     const p = this.promise;
                     this.promise
                         .then(dt=>{if(this.promise===p) {
                             this.data = dt[1];
-                            this.examdata = dt[2];
                         }})
-                        .catch(er=>{if(this.promise===p){}});
+                        .catch(er=>{
+                            if(this.promise===p){
+                                console.log(er);
+                                this.promise =Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
+                            }});
+                }
+            }
+        },
+        'solution':{
+            immediate: true,
+            handler() {
+                this.examdata = this.error=null;
+                if (this.solution){
+                    const q=this.solution;
+                    this.solution
+                        .then(dt=>{if(this.solution===q){
+                            this.examdata = dt;
+                            console.log(this.examdata)
+                        }})
+                        .catch(er=>{
+                            if(this.solution===q){console.log(er);}}
+                        )
                 }
             }
         }
     },
     render(){
         return(
-
             <div className="game24start">
                 <div className="game24leftcolumn">
-                    {promiseNoData(this.promise, this.examdata, this.error) ||
+                    {promiseNoData(this.solution, this.examdata, this.error) ||
                     <Game24PreviousView previousCards={this.model.previouscard}
                                         previousSolution={this.examdata}
                     />}
@@ -47,14 +67,15 @@ const Game24cardPresenter={
                                          if(this.model.computeresult()){// Valid calculator syntax
                                              this.model.previouscard=this.data
                                              const examarr=this.model.previousarr()
-                                             this.promise=Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4),Game24examSource.getSolution(examarr)]);
+                                             this.promise=Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
+                                             this.solution=Game24examSource.getSolution(examarr)
                                          }
                                      }}
                                      noSolution={()=>{this.model.nosolution();
                                          this.model.previouscard=this.data
                                          const examarr=this.model.previousarr()
-                                         this.promise=Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4),Game24examSource.getSolution(examarr)]);
-
+                                         this.promise=Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
+                                         this.solution=Game24examSource.getSolution(examarr)
                                      }}
                     />
                 </div>
