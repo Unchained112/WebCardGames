@@ -5,11 +5,11 @@ const Game24examSource= {
                 return response.json();
             })
             .then(data => {
-                // console.log(data);
+                console.log(data);
                 return data;
             });
     },
-    getSolution(a,b,c,d) {
+    getSolution([a,b,c,d]) {
         return Game24examSource.apiCall("?a="+a+"&b="+b+"&c="+c+"&d="+d);
     }
 }

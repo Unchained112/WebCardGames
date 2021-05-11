@@ -1,27 +1,83 @@
 class game24Model{
     constructor(simpleformula="Enter Your Solution:)",result=" ") {
-        this.observer=[]
-        this.simpleformula=simpleformula
-        this.formulastack=[]
-        this.usedCard=[]
-        this.result=result
-        this.complexformula=""
-        this.cardFlag=false
-        this.lefttime=""
-        this.settime=120000
-        this.thisround=1
-        this.score=0
+        this.observer = []
+        this.simpleformula = simpleformula
+        this.formulastack = []
+        this.usedCard = []
+        this.result = result
+
+        this.complexformula = ""
+        this.cardFlag = false
+        this.lefttime = ""
+        this.settime = 120000
+        this.thisround = 1
+        this.score = 0
+        this.carddefault = this.initprevious()
+        this.previouscard = this.initprevious()
+        this.temppreviouscard = this.initprevious()
+        this.previoussolution=""
+    }
+
+    settempprevious(){
+        this.temppreviouscard=this.previouscard
+    }
+
+    initprevious(){
+        var old=new Object()
+        old.cards=[{code:"1", image: "./assets/back_2.png"}, {code:"1",image: "./assets/back_2.png"}, {code:"1",image: "./assets/back_2.png"}, {code:"1",image: "./assets/back_2.png"}]
+        return old
+    }
+
+    previousarr(){
+        if(this.thisround===1){
+            return [1,1,1,1]
+        }
+
+        let examnum=[]
+        for (let i=0;i<4;i++){
+            switch(this.previouscard.cards[i].code[0]){
+                case "A":
+                    examnum[i]="1";
+                    break;
+                case "0":
+                    examnum[i]="10";
+                    break;
+                case "J":
+                    examnum[i]="11";
+                    break;
+                case "Q":
+                    examnum[i]="12";
+                    break;
+                case "K":
+                    examnum[i]="13";
+                    break;
+                default:
+                    examnum[i]=this.previouscard.cards[i].code[0];
+            }
+
+        }
+        console.log(examnum)
+        return examnum
+    }
+
+    solvableresult(e){
+        console.log(e)
+        if(e.cnt==0){
+            return "No solution for previous round"
+        }else{
+            return e.result[0]
+        }
     }
 
     addCardtoFormula(x){
         //console.log("used Card",this.usedCard)
         if(this.cardFlag===true){
             if(this.usedCard[this.usedCard.length-1]!==x){
-               this.delete()
+                this.delete()
             }
         }
         if(this.simpleformula==="Enter Your Solution:)"){this.simpleformula=""}
-        var card
+        let card
         switch (x[0]) {
             case "A":
                 card="1";
@@ -60,7 +116,6 @@ class game24Model{
     ac(){
         this.usedCard=[]
         this.simpleformula="Enter Your Solution:)"
-        this.complexformula=""
         this.result=" "
         this.formulastack=[]
         this.cardFlag=false
@@ -68,8 +123,7 @@ class game24Model{
 
     delete(){
         if(this.formulastack.length!==0){
-            var temp1
-            var temp2
+            let temp1
             temp1=this.formulastack.pop()
             switch (temp1){
                 case "+":
@@ -78,40 +132,50 @@ class game24Model{
                 case "/":
                 case "(":
                 case ")":
-                    this.cardFlag=true;
                     break;
                 default:
-                    temp2=this.usedCard.pop();
-                    this.cardFlag=false;
+                    this.usedCard.pop();
             }
             this.simpleformula=this.formulastack.join("")
             if(this.simpleformula===""){
                 this.simpleformula="Enter Your Solution:)"
+            }else{
+                switch (this.formulastack[this.formulastack.length-1]){
+                    case "+":
+                    case "-":
+                    case "*":
+                    case "/":
+                    case "(":
+                    case ")":
+                        this.cardFlag=false;
+                        break;
+                    default:
+                        this.cardFlag=true;
+                }
             }
         }
     }
 
     computeresult(){
-        for(var i=0;i<this.formulastack.length;i++){
-            switch (this.formulastack[i]) {
-                /*case "+":
-                    this.complexformula=this.complexformula+"%2B";
-                    break;
-                case "/":
-                    this.complexformula=this.complexformula+"%2F";
-                    break;*/
-                default:
-                    this.complexformula=this.complexformula+this.formulastack[i]
-            }
-        }
+
         try{
-            this.result=eval(this.complexformula)
-        }catch (err){
-            this.result="Syntax Error"
-        }finally {
+            this.result=eval(this.simpleformula)
+            if(this.usedCard.length!==4){
+                throw -1
+            }
             console.log(this.result)
             this.thisround=this.thisround+1
             this.ac()
+            return true
+        }catch (err){
+            if(err===-1){
+                alert("Please use all the cards")
+                this.ac()
+            }else{
+                alert("Syntax Error");
+                this.ac()
+            }
+            return false
         }
 
     }
@@ -139,6 +203,5 @@ class game24Model{
     calculatescore(){
 
     }
-
 
 }
