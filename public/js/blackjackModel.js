@@ -5,10 +5,11 @@ class BlackjackModel{
         this.player=[];
         this.playersum=0;
         this.hostsum=0;
+        this.num=0;
 
     }
     StartGame(cards){
-        console.log(this.playersum);
+    if(this.num===0){
         var x;
         this.cardpool=cards;
         x=this.cardpool.pop();
@@ -20,7 +21,11 @@ class BlackjackModel{
         x=this.cardpool.pop();
         this.host.push(x);
         this.CountPlayerSum();
-        console.log(this.playersum);
+        this.num=1;
+        }else{
+            alert("You need to press 'Play Again' button first to restart");
+        }
+        
     }
 
     Hit(){
@@ -198,5 +203,6 @@ class BlackjackModel{
         this.player=[];
         this.playersum=0;
         this.hostsum=0;
+        this.num=0;
     }
 }

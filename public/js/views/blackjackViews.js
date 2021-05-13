@@ -6,10 +6,10 @@ function BlackjackView(props){
 
     var checkwin = function(){
         if(props.model.playersum>21){
-            return <div class="w3-center w3-text-white"> You Lose! Press "Play Again"</div>
+            return <div className="blackjacky"> You Lose! Press "Play Again"</div>
         }
         if(props.model.playersum===21){
-            return <div class="w3-center w3-text-white"> You Win!!!!</div>
+            return <div className="blackjacky"> You Win!!!!</div>
         }
         else{
             return <p></p>
@@ -43,18 +43,45 @@ function BlackjackView(props){
             }
             </div>
             
+            
+
+            <div className="w3-container w3-center">
+            <div>
+                <div className="div-inline" onClick={props.start}>
+                    <div className="blackjack">
+                        <a>Start</a>
+                    </div>
+                </div>
+                <div className="div-inline" onClick={props.hit}>
+                    <div className="blackjack">
+                        <a>Hit</a>
+                    </div>
+                </div>
+                <div className="div-inline" onClick={props.stand}>
+                    <div className="blackjack">
+                        <a>Stand</a>
+                    </div>
+                </div>
+                <div className="div-inline" onClick={props.clear}>
+                    <div className="blackjack">
+                        <a>Play Again</a>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            {/* <div class="w3-container">
+                <button class="w3-button w3-green w3-round-xlarge" onClick={props.start}>Start </button> 
+                <button class="w3-button w3-green w3-round-xlarge" onClick={props.hit}>Hit </button> 
+                <button class="w3-button w3-green w3-round-xlarge" onClick={props.stand}>Stand</button>
+                <button class="w3-button w3-green w3-round-xlarge" onClick={props.clear}>Play Again</button>
+            </div> */}
+            
             <p> </p>
             <p> </p>
             {checkwin()}{checkwin_host()}
             <p> </p>
             <p> </p>
-
-            <div class="w3-container">
-                <button class="w3-button w3-green w3-round-xlarge" onClick={props.start}>Start </button> 
-                <button class="w3-button w3-green w3-round-xlarge" onClick={props.hit}>Hit </button> 
-                <button class="w3-button w3-green w3-round-xlarge" onClick={props.stand}>Stand</button>
-                <button class="w3-button w3-green w3-round-xlarge" onClick={props.clear}>Play Again</button>
-            </div>
 
             <div className="w3-container w3-center w3-animate-right">
             {
