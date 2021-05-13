@@ -313,46 +313,6 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     bottom: 5px;
 }
 
-.blackjacky {
-    text-align: center;
-    background-color: #ec3030; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    
-    text-decoration: none;
-    display: inline-block;
-    font-size: 32px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 2px;
-}
-
-.blackjack {
-    position:relative;
-    display:inline-block;
-    margin:10px 5px;
-    padding: 15px 25px;
-    font-size: 20px;
-    cursor: pointer;
-    text-align: center;   
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #28c42d;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #2e2e2e;
-  }
-  
-  .blackjack:hover {background-color: #3e8e41}
-  
-  .blackjack:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
-  
 .game24calculatorButton{
     position:relative;
     display:inline-block;
@@ -490,6 +450,46 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     }
 }
 
+.blackjacky {
+    text-align: center;
+    background-color: #dd2c2caf; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    margin: 0 auto;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.blackjack {
+    position:relative;
+    display:inline-block;
+    margin:10px 5px;
+    padding: 15px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;   
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #21ac26cc;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #0e2e11;
+  }
+  
+  .blackjack:hover {background-color: #2e642f}
+  
+  .blackjack:active {
+    background-color: #2e642f;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+  
+
 #freecell{
     /* The image used */
     background-image: url("./assets/background_6.jpg");
@@ -502,13 +502,13 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 }
 #blackjack{
     /* The image used */
-    background-image: url("./assets/blackjack.jpg");
+    background-image: url("./assets/blackjack1.jpg");
     /* Full height */
-    height: 125%;
+    height: 110%;
     /* Center and scale the image nicely */
     background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-repeat: repeat;
+    background-size: auto;
 }
 #homepage{
     background-color: #f6f4f4;

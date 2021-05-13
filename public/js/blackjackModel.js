@@ -38,7 +38,7 @@ class BlackjackModel{
     }
 
     Stand(){
-        while(this.hostsum<this.playersum && this.hostsum<21){
+        while(this.hostsum<this.playersum && this.hostsum<18){
             console.log(this.hostsum);
             var x;
             x=this.cardpool.pop();
