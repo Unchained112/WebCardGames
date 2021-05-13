@@ -15,7 +15,25 @@ class game24Model{
         this.carddefault = this.initprevious()
         this.previouscard = this.initprevious()
         this.temppreviouscard = this.initprevious()
-        this.previoussolution=""
+        this.previoususersolution="No Solution"
+        this.correctsum=0
+        this.previouscorrect=false
+    }
+
+    addcorrectsum(){
+        this.correctsum+=1
+    }
+    verifyresult(apisolutioncnt){
+        if(apisolutioncnt==0){
+            if(this.previoususersolution==="No Solution"){
+                return "./assets/correct.png"
+            }
+        }else{
+            if(this.result==24){
+                return "./assets/correct.png"
+            }
+        }
+        return "./assets/wrong.png"
     }
 
     settempprevious(){
@@ -104,6 +122,7 @@ class game24Model{
             this.usedCard=[...this.usedCard,x]
         }else{
             console.log("Illegal Action: Card Already Used")
+            alert("Card Already Used!")
         }
     }
 
@@ -165,6 +184,7 @@ class game24Model{
             }
             console.log(this.result)
             this.thisround=this.thisround+1
+            this.previoususersolution=this.simpleformula+"="+this.result
             this.ac()
             return true
         }catch (err){
@@ -183,6 +203,7 @@ class game24Model{
     nosolution(){
         console.log("No Solution")
         this.thisround=this.thisround+1
+        this.previoususersolution="No Solution"
         this.ac()
     }
 

@@ -275,6 +275,21 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     left:50px;
 
 }
+.game24lastround{
+    font-size: 50px;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Niconne', cursive;
+    font-weight: 1000;
+    text-shadow: 2px 2px 0px #3f51b5;
+}
+.game24gameover{
+    font-size: 80px;
+    text-align: center;
+    color: #fcedd8;
+    font-family: 'Niconne', cursive;
+    font-weight: 1000;
+}
 .game24leftcolumn{
     float: left;
     width: 25%;
@@ -289,9 +304,10 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 }
 .game24footer{
     width: 100%;
-    position: absolute;
-    bottom: 20px
+    display: flex;
+    flex-direction: column;
 }
+
 .game24start{
     /* The image used */
     background-image: url("./assets/table_pattern.jpg");
@@ -300,7 +316,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
 }
 .game24currentcard{
     transition: transform 250ms
@@ -312,7 +328,21 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     position: absolute;
     bottom: 5px;
 }
+.game24calculatorScreen{
+    background-color: #728974;
+    opacity: 1;
+    background-image: radial-gradient( ellipse farthest-corner at 7px 7px , #949b99, #949b99 50%, #728974 50%);
+    background-size: 7px 7px;
 
+    border: solid 0.3em;
+    width: auto;
+    padding: 0.1em;
+    border-color: #393939 #515151;
+
+    font-family: "Courier New", sans-serif;
+    font-weight:900;
+
+}
 .game24calculatorButton{
     position:relative;
     display:inline-block;
@@ -325,7 +355,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     font-size:18px;
     text-align: center;
     text-decoration:none;
-    background-color: #413e3e;
+    background-color: #3c69b0;
     display:block;
     position:relative;
     padding:10px 20px;
@@ -334,9 +364,9 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     text-shadow: 0px 1px 0px #000000;
     filter: dropshadow(color=#000, offx=0px, offy=1px);
 
-    -webkit-box-shadow:inset 0 1px 0 #ffffff, 0 10px 0 #3a3838;
-    -moz-box-shadow:inset 0 1px 0 #ffffff, 0 10px 0 #3a3838;
-    box-shadow:inset 0 1px 0 #ffffff, 0 10px 0 #3a3838;
+    -webkit-box-shadow:inset 0 1px 0 #ffffff, 0 10px 0 #223f98;
+    -moz-box-shadow:inset 0 1px 0 #ffffff, 0 10px 0 #223f98;
+    box-shadow:inset 0 1px 0 #ffffff, 0 10px 0 #223f98;
 
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -353,11 +383,11 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 }
 .game24calculatorButton a:active{
     top:10px;
-    background-color: #413e3e;
+    background-color: #3c69b0;
 
-    -webkit-box-shadow:inset 0 1px 0 #ffffff, inset 0 -3px 0 #3a3838;
-    -moz-box-shadow:inset 0 1px 0 #ffffff, inset 0 -3px 0 #3a3838;
-    box-shadow:inset 0 1px 0 #ffffff, inset 0 -3px 0 #3a3838;
+    -webkit-box-shadow:inset 0 1px 0 #ffffff, inset 0 -3px 0 #223f98;
+    -moz-box-shadow:inset 0 1px 0 #ffffff, inset 0 -3px 0 #223f98;
+    box-shadow:inset 0 1px 0 #ffffff, inset 0 -3px 0 #223f98;
 }
 .game24calculatorButton:after{
     content:"";

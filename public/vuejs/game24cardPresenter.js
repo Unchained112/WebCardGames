@@ -33,7 +33,7 @@ const Game24cardPresenter={
                     this.solution
                         .then(dt=>{if(this.solution===q){
                             this.examdata = dt;
-                            console.log(this.examdata)
+                            //console.log(this.examdata)
                         }})
                         .catch(er=>{
                             if(this.solution===q){console.log(er);}}
@@ -48,7 +48,16 @@ const Game24cardPresenter={
                 <div className="game24leftcolumn">
                     {promiseNoData(this.solution, this.examdata, this.error) ||
                     <Game24PreviousView previousCards={this.model.previouscard}
-                                        previousSolution={this.examdata}
+                                        previousSolution={()=>{
+                                            if(this.examdata.cnt===0){
+                                                return "Not Solvable"
+                                            }else{
+                                                return this.examdata.result[0]
+                                            }
+                                        }}
+                                        previousCorrect={e=>this.model.verifyresult(this.examdata.cnt) }
+                                        //addCorrect={()=>this.model.addcorrectsum()}
+                                        previousUserSolution={this.model.previoususersolution}
                     />}
                 </div>
                 <div className="game24middlecolumn">
@@ -59,7 +68,7 @@ const Game24cardPresenter={
                             return this.model.thisround
                         }
                     }}/>
-                    <CalculatorScreenView formula={this.model.simpleformula}/>
+                    <CalculatorScreenView formula={this.model.simpleformula} score={this.model.correctsum} gameover={this.model.thisround===4}/>
                     <BasicActionView clear={e=>this.model.ac()}
                                      del={e=>this.model.delete()}
                                      addOperator={e=>this.model.addOperatortoFormula(e)}
@@ -77,6 +86,7 @@ const Game24cardPresenter={
                                          this.promise=Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
                                          this.solution=Game24examSource.getSolution(examarr)
                                      }}
+                                     gameover={this.model.thisround===4}
                     />
                 </div>
                 {promiseNoData(this.promise, this.data, this.error) ||
