@@ -1,4 +1,16 @@
 function BasicActionView(props){
+    if(props.gameover){
+        return (
+            <div className="w3-container w3-center">
+                <div className="div-inline" onClick={e=>location.reload()}>
+                    <div className="game24calculatorButton">
+                        <a>Restart!</a>
+                    </div>
+                </div>
+            </div>
+
+        )
+    }
     return(
         <div className="w3-container w3-center">
             <div>
@@ -61,9 +73,19 @@ function BasicActionView(props){
 }
 
 function CalculatorScreenView(props){
+    if(props.gameover){ return (
+        <div className="w3-center">
+            <h1 class="game24gameover w3-animate-top">
+                Game Over
+            </h1>
+            <h2 className={"w3-text-white"}>
+                Score: {props.score}/10
+            </h2>
+        </div>
+    )}
     return(
         <div className="w3-container w3-center" >
-            <h1  class="w3-text-orange" style="text-shadow:1px 1px 0 #444">
+            <h1  class="game24calculatorScreen">
                 {props.formula}
             </h1>
 

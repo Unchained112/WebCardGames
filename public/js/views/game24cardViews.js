@@ -4,7 +4,7 @@ function Game4CardResultView(props){
     const result=props.game4nextcardsResult().cards;
     return(
         <footer className="game24footer">
-            <div className="w3-container w3-center w3-animate-right">
+            <div className="w3-container w3-center w3-padding-32 w3-animate-right">
             {
                 result.map(
                     function(e){
