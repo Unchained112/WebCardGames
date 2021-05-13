@@ -1,0 +1,49 @@
+.blackjacky {
+    text-align: center;
+    background-color: #dd2c2caf; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    margin: 0 auto;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.blackjack {
+    position:relative;
+    display:inline-block;
+    margin:10px 5px;
+    padding: 15px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;   
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #21ac26cc;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #0e2e11;
+}
+
+.blackjack:hover {background-color: #2e642f}
+
+.blackjack:active {
+  background-color: #2e642f;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#blackjack{
+    /* The image used */
+    background-image: url("./assets/blackjack1.jpg");
+    /* Full height */
+    height: 110%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: repeat;
+    background-size: auto;
+}
