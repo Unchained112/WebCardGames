@@ -38,7 +38,7 @@ const BlackjackPresenter = {
                             hit={()=>{this.model.Hit()}}
                             stand={()=>{this.model.Stand()}}
                             clear={()=>{                               
-                                this.promise = Promise.all([CardSource.reShuffle(DECK_ID_BLACKJACK),CardSource.drawCards(DECK_ID_BLACKJACK,24)]);
+                                this.promise =Promise.all([CardSource.reShuffle(DECK_ID_BLACKJACK),CardSource.drawCards(DECK_ID_BLACKJACK,24)]);
                                 this.model.RestartGame(this.data);
                             }}
             />}

@@ -4,22 +4,22 @@ function BasicActionView(props){
             <div>
                 <div className="div-inline" onClick={props.clear}>
                     <div className="game24calculatorButton">
-                        <a>Start</a>
+                        <a>Clear</a>
                     </div>
                 </div>
                 <div className="div-inline" onClick={props.del}>
                     <div className="game24calculatorButton">
-                        <a>Hit</a>
+                        <a>Delete</a>
                     </div>
                 </div>
                 <div className="div-inline" onClick={props.OK}>
                     <div className="game24calculatorButton">
-                        <a>Stand</a>
+                        <a>OK</a>
                     </div>
                 </div>
                 <div className="div-inline" onClick={props.noSolution}>
                     <div className="game24calculatorButton">
-                        <a>Play Again</a>
+                        <a>No Solution</a>
                     </div>
                 </div>
             </div>
