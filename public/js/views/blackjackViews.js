@@ -16,10 +16,16 @@ function BlackjackView(props){
         }
     }
     var checkwin_host = function(){
+        if(props.model.hostsum===props.model.playersum && props.model.hitnum===1){
+            return <div className="blackjacky"> This is a "push" and no one wins </div>
+        }
         if(props.model.hostsum>21){
             return <div className="blackjacky"> You Win!!!! </div>
         }
-        if(props.model.hostsum>props.model.playersum && props.model.hostsum<=21){
+        if(props.model.hostsum<props.model.playersum && props.model.playersum<=21 && props.model.hitnum===1){
+            return <div className="blackjacky"> You Win!!!! </div>
+        }
+        if(props.model.hostsum>props.model.playersum && props.model.hostsum<=21 && props.model.hitnum===1){
             return <div className="blackjacky"> You Lose! Press "Play Again" to start new round</div>
         }
         else{
@@ -86,8 +92,8 @@ function BlackjackView(props){
             <div class="w3-container w3-center">
             {checkwin()}{checkwin_host()}
             </div>
-            <p> </p>
 
+            <p> </p>
 
             <div className="w3-container w3-center w3-animate-right">
             {
@@ -100,7 +106,6 @@ function BlackjackView(props){
                     }
                 )
             }
-            {/* <img src={props.newresult.cards.image} /> */}
             </div>
 
             </div>        

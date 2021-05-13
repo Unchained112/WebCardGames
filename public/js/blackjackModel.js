@@ -5,47 +5,51 @@ class BlackjackModel{
         this.player=[];
         this.playersum=0;
         this.hostsum=0;
-        this.num=0;
+        this.startnum=0;
+        this.hitnum=0;
 
     }
     StartGame(cards){
-    if(this.num===0){
-        var x;
-        this.cardpool=cards;
-        x=this.cardpool.pop();
-        this.player.push(x);
-        x=this.cardpool.pop();
-        this.player.push(x);
-        x=this.cardpool.pop();
-        this.host.push(x);
-        x=this.cardpool.pop();
-        this.host.push(x);
-        this.CountPlayerSum();
-        this.num=1;
+        if(this.startnum===0){
+            var x;
+            this.cardpool=cards;
+            x=this.cardpool.pop();
+            this.player.push(x);
+            x=this.cardpool.pop();
+            this.player.push(x);
+            x=this.cardpool.pop();
+            this.host.push(x);
+            x=this.cardpool.pop();
+            this.host.push(x);
+            this.CountPlayerSum();
+            this.CountHostSum();
+            this.startnum=1;
         }else{
             alert("You need to press 'Play Again' button first to restart");
         }
-        
     }
 
     Hit(){
-        var x;
-        x=this.cardpool.pop();
-        this.player.push(x);
-        this.CountPlayerSum();
-        console.log(this.playersum);
-        //this.CheckWin_Hit();
+        if(this.startnum===1){
+            var x;
+            x=this.cardpool.pop();
+            this.player.push(x);
+            this.CountPlayerSum();
+            //console.log(this.playersum);
+        }else{
+            alert("Please press 'Start' first");
+        }
     }
 
     Stand(){
-        while(this.hostsum<this.playersum && this.hostsum<18){
+        while(this.hostsum<this.playersum && this.hostsum<17){
             console.log(this.hostsum);
             var x;
             x=this.cardpool.pop();
             this.host.push(x);
             this.CountHostSum();
         }
-        
+        this.hitnum=1;
         //this.CheckWin_Stand();
     }
 
@@ -203,6 +207,7 @@ class BlackjackModel{
         this.player=[];
         this.playersum=0;
         this.hostsum=0;
-        this.num=0;
+        this.startnum=0;
+        this.hitnum=0;
     }
 }
