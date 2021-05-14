@@ -1,43 +1,101 @@
 class game24Model{
-    constructor(simpleformula="Enter Your Solution:)",result=" ") {
+    constructor(simpleformula="Enter Your Solution:)") {
         this.observer = []
         this.simpleformula = simpleformula
         this.formulastack = []
         this.usedCard = []
-        this.result = result
+        this.result = 0
+
+
 
         this.complexformula = ""
         this.cardFlag = false
-        this.lefttime = ""
-        this.settime = 120000
         this.thisround = 1
-        this.score = 0
         this.carddefault = this.initprevious()
         this.previouscard = this.initprevious()
-        this.temppreviouscard = this.initprevious()
+        this.examarr=[]
         this.previoususersolution="No Solution"
+
+        //for report
+        this.cnt=[]
         this.correctsum=0
-        this.previouscorrect=false
+        this.cardhistory=[]
+        this.resultrecord=[]
+        this.solutionhistory=[]
+        this.usersolutionhistory=[]
+
+        this.reportarr=[]
     }
 
-    addcorrectsum(){
-        this.correctsum+=1
+    createreportarr(){
+        for(let i=0;i<10;i++){
+            this.reportarr=[...this.reportarr,
+                [i+1,this.cardhistory[i]
+                    ,this.solutionhistory[i],
+                    this.resultrecord[i],
+                    this.usersolutionhistory[i]
+                ]]
+        }
     }
-    verifyresult(apisolutioncnt){
-        if(apisolutioncnt==0){
-            if(this.previoususersolution==="No Solution"){
-                return "./assets/correct.png"
-            }
-        }else{
-            if(this.result==24){
-                return "./assets/correct.png"
+
+    illegaloperator(data){
+        for(let i=0;i<data.cnt;i++){
+            if(data.result[i].indexOf("^")===-1){
+                return i
             }
         }
-        return "./assets/wrong.png"
+        return -1
     }
 
-    settempprevious(){
-        this.temppreviouscard=this.previouscard
+
+    addcnt(cnt,sol){
+        //console.log(cnt)
+        this.cnt=[...this.cnt,cnt]
+        this.cardhistory=[...this.cardhistory,this.previouscard.cards]
+        this.solutionhistory=[...this.solutionhistory,sol]
+        this.usersolutionhistory=[...this.usersolutionhistory,this.previoususersolution]
+        /*let index=this.illegaloperator(examdata)
+        if(this.examdata.cnt===0){
+            this.solutionhistory=[...this.solutionhistory,"Not Solvable"]
+        }else if(index===-1){
+            this.solutionhistory=[...this.solutionhistory,"Not Solvable"]
+        }
+        else{
+            this.solutionhistory=[...this.solutionhistory,examdata.result[index]]
+        }*/
+    }
+
+    calculatescore(){
+        console.log("calculating final score")
+        this.cnt=this.cnt.slice(1)
+        this.cardhistory=this.cardhistory.slice(1)
+        this.solutionhistory=this.solutionhistory.slice(1)
+        for(let i=0;i<10;i++){
+            if(this.cnt[i]===0){
+                if(this.resultrecord[i]==="No Solution"){
+                    this.correctsum+=1
+                }
+            }else{
+                if(this.resultrecord[i]===24){
+                    this.correctsum+=1
+                }
+            }
+        }
+    }
+
+    verifyresult(cnt){
+        if(this.result===24){
+            return "./assets/correct.png"
+        }else if(cnt===0){
+            if(this.previoususersolution==="No Solution"){
+                return "./assets/correct.png"
+            }else{
+                return "./assets/wrong.png"
+            }
+        }
+        else{
+            return "./assets/wrong.png"
+        }
     }
 
     initprevious(){
@@ -48,7 +106,7 @@ class game24Model{
 
     previousarr(){
         if(this.thisround===1){
-            return [1,1,1,1]
+            this.examarr= [1,1,1,1]
         }
 
         let examnum=[]
@@ -74,8 +132,8 @@ class game24Model{
             }
 
         }
-        console.log(examnum)
-        return examnum
+        //console.log(examnum)
+        this.examarr= examnum
     }
 
     solvableresult(e){
@@ -135,7 +193,6 @@ class game24Model{
     ac(){
         this.usedCard=[]
         this.simpleformula="Enter Your Solution:)"
-        this.result=" "
         this.formulastack=[]
         this.cardFlag=false
     }
@@ -182,9 +239,10 @@ class game24Model{
             if(this.usedCard.length!==4){
                 throw -1
             }
-            console.log(this.result)
+            console.log("User compute "+this.result)
             this.thisround=this.thisround+1
             this.previoususersolution=this.simpleformula+"="+this.result
+            this.resultrecord=[...this.resultrecord,this.result]
             this.ac()
             return true
         }catch (err){
@@ -201,9 +259,10 @@ class game24Model{
     }
 
     nosolution(){
-        console.log("No Solution")
+        console.log("User choose No Solution")
         this.thisround=this.thisround+1
         this.previoususersolution="No Solution"
+        this.resultrecord=[...this.resultrecord,this.previoususersolution]
         this.ac()
     }
 
@@ -219,10 +278,6 @@ class game24Model{
         this.lefttime= leftm + ":" + lefts
         console.log(this.lefttime)
         return this.lefttime
-    }
-
-    calculatescore(){
-
     }
 
 }

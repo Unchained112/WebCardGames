@@ -7,7 +7,7 @@ function StartView(props){
                 </div>
 
                 <div class=" w3-content w3-text-white w3-animate-opacity" style="max-width:500px">
-                    <p>The 24 game is a simple math game played with poker cards.The player draws four cards from a shuffled deck of cards and finds a way to manipulate the four
+                    <p>The 24 game is a simple math game played with poker cards. It has been played in Shanghai since the 1960s. The player draws four cards from a shuffled deck of cards and finds a way to manipulate the four
                         values with elementary arithmetic operations (,+,-,*,/,) to come up with 24. </p>
                     <button className="w3-button w3-green" onClick={e => {
                         window.location.hash = "#24gameContent"

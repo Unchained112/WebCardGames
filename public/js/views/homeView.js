@@ -34,6 +34,7 @@ function HomeView(){
                             <li>Leonhard, Woody (2009). <a href="https://books.google.se/books?id=BjhFgc4DdjIC&pg=PA293&redir_esc=y#v=onepage&q&f=false">Windows 7 All-in-One for Dummies.</a> John Wiley & Sons. p. 293. ISBN 9780470487631.</li>
                             <li>24 game. 4 numbers. <a href="https://www.4nums.com/24_game/">{"https://www.4nums.com/24_game/"}</a> </li>
                             <li>Tick And Cross Signs Green Checkmark Ok And Red X Icons Isolated On White Background Simple Marks Graphic Design Symbols Yes And No Button For Vote Decision Web Vector Illustration<a href='https://pngtree.com/so/yes-clipart'>yes clipart png from pngtree.com</a> </li>
+                            <li>24 game, Wikipedia.<a href="https://en.wikipedia.org/wiki/24_Game">https://en.wikipedia.org/wiki/24_Game</a></li>
                         </ol>
                     </footer>
                 </div>

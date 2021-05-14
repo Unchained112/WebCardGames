@@ -11,7 +11,6 @@ function Game24PreviousView(props){
                         </div>
                     </div>
                     <div className="game24back game24face">
-
                         <div className="game24previouscards w3-center">
                             {
                                 previous.map(
@@ -23,9 +22,9 @@ function Game24PreviousView(props){
                             }
                         </div>
                         <div className="w3-center">
-                            <h4> Sample solution: </h4>
+                            <b> Sample solution: </b>
                             <h4> {props.previousSolution()} </h4>
-                            <h4> Your Solution: </h4>
+                            <b> Your Solution: </b>
                             <h4> {props.previousUserSolution}</h4>
                             <img src={props.previousCorrect()} style="width:20px"/>
                         </div>
@@ -34,3 +33,7 @@ function Game24PreviousView(props){
             </div>
     )
 }
+function flip() {
+    $('.card').toggleClass('flipped');
+}
+
