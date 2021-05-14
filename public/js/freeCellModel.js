@@ -326,6 +326,22 @@ class FreeCellModel{
     checkWin(){
         if(this.Hearts.length === 13 && this.Clubs.length === 13 && this.Diamonds.length === 13 && this.Spades.length === 13){
             alert("You Win!");
+            var newPromise = Promise.all([CardSource.drawCards(DECK_ID_BREAKOUT_2, 52), CardSource.reShuffle(DECK_ID_BREAKOUT_2)]);
+            const p = newPromise;
+            newPromise
+            .then(dt=>{
+                if(newPromise===p){
+                    this.allCards = dt[0].cards;
+                    console.log(this.allCards);
+                    this.notifyObservers();
+                }
+            })
+            .catch(err=>{
+                if(newPromise===p){
+                    console.log(err);
+                    newPromise = Promise.all([CardSource.drawCards(DECK_ID_BREAKOUT_2, 52), CardSource.reShuffle(DECK_ID_BREAKOUT_2)]);
+                }
+            });
             return true;
         }
         else{

@@ -6,7 +6,7 @@ function BlackjackView(props){
 
     var checkwin = function(){
         if(props.model.playersum>21){
-            return <div className="blackjacky"> You Lose! Press "Play Again"</div>
+            return <div className="blackjacky"> You Lose! Press "Play Again" to start new round</div>
         }
         if(props.model.playersum===21){
             return <div className="blackjacky"> You Win!!!!</div>
@@ -16,11 +16,17 @@ function BlackjackView(props){
         }
     }
     var checkwin_host = function(){
-        if(props.model.hostsum>21){
-            return <div class="w3-center w3-text-white"> You Win!!!!</div>
+        if(props.model.hostsum===props.model.playersum && props.model.hitnum===1){
+            return <div className="blackjacky"> This is a "push" and no one wins </div>
         }
-        if(props.model.hostsum>props.model.playersum && props.model.hostsum<=21){
-            return <div class="w3-center w3-text-white"> You Lose! Press "Play Again"</div>
+        if(props.model.hostsum>21){
+            return <div className="blackjacky"> You Win!!!! </div>
+        }
+        if(props.model.hostsum<props.model.playersum && props.model.playersum<=21 && props.model.hitnum===1){
+            return <div className="blackjacky"> You Win!!!! </div>
+        }
+        if(props.model.hostsum>props.model.playersum && props.model.hostsum<=21 && props.model.hitnum===1){
+            return <div className="blackjacky"> You Lose! Press "Play Again" to start new round</div>
         }
         else{
             return <p></p>
@@ -30,20 +36,23 @@ function BlackjackView(props){
     return(
         <div id="blackjack" >
             <div id="blackjack" class="w3-container">
-                <h1 class="w3-center w3-text-white" style="font-family: Georgia"><img src="./assets/freecell2.png" style="width:100"></img>  Blackjack</h1>
+                <h1 class="w3-center w3-text-white" style="font-family: Georgia"><img src="./assets/blackjack.png" style="width:400 "></img> </h1>
            
             <div className="w3-container w3-center w3-animate-right">
             {
                 host.map(
                     function(e){
                         var url=e.image;
-                        return (<img src={url}/>)
+                        return (<img src={url}
+                            style="width:200px"
+                        />)
                     }
                 )
             }
             </div>
-            
-            
+
+            <p> </p>
+            <p> </p>
 
             <div className="w3-container w3-center">
             <div>
@@ -79,8 +88,11 @@ function BlackjackView(props){
             
             <p> </p>
             <p> </p>
+
+            <div class="w3-container w3-center">
             {checkwin()}{checkwin_host()}
-            <p> </p>
+            </div>
+
             <p> </p>
 
             <div className="w3-container w3-center w3-animate-right">
@@ -88,11 +100,12 @@ function BlackjackView(props){
                 player.map(
                     function(e){
                         var url=e.image;
-                        return (<img src={url}/>)
+                        return (<img src={url}
+                            style="width:200px"
+                            />)
                     }
                 )
             }
-            {/* <img src={props.newresult.cards.image} /> */}
             </div>
 
             </div>        

@@ -160,14 +160,14 @@ const FreeCellPresenter = {
                     if(LastGameState.length >= 1){
                         if(fromUndo){
                             var temp = LastGameState.pop();
-                            console.log(LastGameState);
+                            //console.log(LastGameState);
                             this.model.setModel(temp);
                             fromUndo = true;
                         }
                         else{
                             LastGameState.pop();
                             var temp = LastGameState.pop();
-                            console.log(LastGameState);
+                            //console.log(LastGameState);
                             this.model.setModel(temp);
                             fromUndo = true;
                         }
