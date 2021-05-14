@@ -26,7 +26,6 @@ function Game24PreviousView(props){
                             <h4> {props.previousSolution()} </h4>
                             <b> Your Solution: </b>
                             <h4> {props.previousUserSolution}</h4>
-                            <img src={props.previousCorrect()} style="width:20px"/>
                         </div>
                     </div>
                 </div>

@@ -59,7 +59,6 @@ const Game24cardPresenter={
                                                 return this.examdata.result[index]
                                             }
                                         }}
-                                        previousCorrect={()=>this.model.verifyresult(this.examdata.cnt)}
                                         //addCorrect={()=>this.model.addcorrectsum()}
                                         previousUserSolution={this.model.previoususersolution}
                     />}

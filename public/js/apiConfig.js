@@ -9,3 +9,4 @@ const DECK_ID_TEXAS_2= "3p40paa87x90";
 const DECK_ID_BLACKJACK="l19kmbzinudk";
 
 var LastGameState; //Store information about last state in Freecell 
+var Last24State;

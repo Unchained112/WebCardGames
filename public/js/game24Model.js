@@ -83,21 +83,6 @@ class game24Model{
         }
     }
 
-    verifyresult(cnt){
-        if(this.result===24){
-            return "./assets/correct.png"
-        }else if(cnt===0){
-            if(this.previoususersolution==="No Solution"){
-                return "./assets/correct.png"
-            }else{
-                return "./assets/wrong.png"
-            }
-        }
-        else{
-            return "./assets/wrong.png"
-        }
-    }
-
     initprevious(){
         var old=new Object()
         old.cards=[{code:"1", image: "./assets/back_2.png"}, {code:"1",image: "./assets/back_2.png"}, {code:"1",image: "./assets/back_2.png"}, {code:"1",image: "./assets/back_2.png"}]
@@ -279,5 +264,6 @@ class game24Model{
         console.log(this.lefttime)
         return this.lefttime
     }
+
 
 }
