@@ -17,10 +17,11 @@ We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, a
 2. Build the breakout game with poker cards (version 1)
     - Score system in the breakout model
     - Well-designed layout 
+3. Build the FreeCell game
 
 **Plan to do**
-1. Fill the content and add more components on the homepage 
-2. Build the Free Cell and Spider game on new pages
+1. Persistence using firebase
+2. Register Page
 
 
 ### Yating Liu
