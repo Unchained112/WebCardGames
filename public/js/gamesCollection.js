@@ -1,7 +1,10 @@
 // This class is for containing all game models
 class GamesCollection{
     constructor(){
+        this.observer = [];
         this.userID = 0;
+        this.userEmail = 0;
+        this.signText = "Sign In";
     }
     setBreakout(breakoutModel_){
         this.BreakoutModel = breakoutModel_;
@@ -23,9 +26,15 @@ class GamesCollection{
         this.TexasModel = TexasModel_;
         this.notifyObservers();
     }
-
+    showSignText(){
+        if(this.userID !== 0){
+            this.signText = "Sign Out";
+        }
+        return this.signText;
+    }
     setModel(model){
-
+        var loadModel = JSON.parse(model);
+        this.freeCellModel.setModel(loadModel.freeCellModel);
     }
 
 
