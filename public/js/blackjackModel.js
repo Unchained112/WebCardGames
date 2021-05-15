@@ -19,8 +19,8 @@ class BlackjackModel{
             this.player.push(x);
             x=this.cardpool.pop();
             this.host.push(x);
-            x=this.cardpool.pop();
-            this.host.push(x);
+            //x=this.cardpool.pop();
+            //this.host.push(x);
             this.CountPlayerSum();
             this.CountHostSum();
             this.startnum=1;
@@ -35,6 +35,7 @@ class BlackjackModel{
             x=this.cardpool.pop();
             this.player.push(x);
             this.CountPlayerSum();
+            this.hitnum=2;
             //console.log(this.playersum);
         }else{
             alert("Please press 'Start' first");
@@ -42,14 +43,18 @@ class BlackjackModel{
     }
 
     Stand(){
-        while(this.hostsum<this.playersum && this.hostsum<17){
-            console.log(this.hostsum);
-            var x;
-            x=this.cardpool.pop();
-            this.host.push(x);
-            this.CountHostSum();
+        if(this.startnum===1){
+            while(this.hostsum<this.playersum && this.hostsum<17){
+                console.log(this.hostsum);
+                var x;
+                x=this.cardpool.pop();
+                this.host.push(x);
+                this.CountHostSum();
+            }
+            this.hitnum=1;
+        }else{
+            alert("Please press 'Start' first");
         }
-        this.hitnum=1;
         //this.CheckWin_Stand();
     }
 

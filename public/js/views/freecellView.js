@@ -73,7 +73,8 @@ function FreeCellView(props){
         {currentCard.showInfo()}
 
         <p> </p>
-        <p> </p>
+        <p> </p>   
+        
         
         <div class="w3-row-padding w3-center">
 
@@ -274,6 +275,27 @@ function FreeCellView(props){
         </div>
 
         </div>
+        <p> </p>
+        <p> </p>   
+     
+
+        <div class="w3-center w3-text-white">
+            <h2> Introduction to Freecell </h2>
+        </div>
+        <div class=" w3-content w3-text-white" style="max-width:1000px">
+        <p>Freecell is a well-known computer poker game, Microsoft included FreeCell with every release of the Windows operating system. 
+            One standard 52-card deck is used. Cards are dealt face-up into eight cascades, four of which comprise seven cards each and four of which comprise six cards each. 
+            There are four available units and four recycling units, available units can temporarily hold cards when moving cards.
+            Drag the cards from the bottom of each column and move them as follows:</p>
+        <p></p>
+        <p>From column to available unit. Only one card can be placed in each available unit at a time.</p>
+        <p>From column to column (or from available unit to column). In the column, the cards must be placed in descending order, with alternating red and black suits.</p>
+        <p>From the column to the recycling unit. Each stack of cards must consist of the same suit and start with A.</p>
+        <p>Only the bottom card can be moved in each column, and the pressed card cannot be moved directly. All the cards in the transfer unit on the upper left can be moved.</p>
+        <p></p>
+        <p>To win this game, player need create four recycling units, each with 13 cards in the same suit. Each unit must be arranged in order from small (A) to large (K).</p> 
+        </div>
+     
 
     </div>
     )
