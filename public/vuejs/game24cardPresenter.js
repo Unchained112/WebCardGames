@@ -119,6 +119,11 @@ const Game24cardPresenter={
                                      createreport={()=>this.model.createreportarr()}
                                      report={this.model.reportarr}
                                      gameover={this.model.thisround===11}
+                                     reStart={()=>{
+                                         this.model.restart()
+                                         this.promise=Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
+                                         this.solution = Game24examSource.getSolution([1,1,1,1])
+                                     }}
 
                     />
                 </div>

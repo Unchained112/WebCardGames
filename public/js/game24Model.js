@@ -265,5 +265,32 @@ class game24Model{
         return this.lefttime
     }
 
+    restart(){
+        this.observer = []
+        this.simpleformula = "Enter Your Solution:)"
+        this.formulastack = []
+        this.usedCard = []
+        this.result = 0
+
+
+
+        this.complexformula = ""
+        this.cardFlag = false
+        this.thisround = 1
+        this.carddefault = this.initprevious()
+        this.previouscard = this.initprevious()
+        this.examarr=[]
+        this.previoususersolution="No Solution"
+
+        //for report
+        this.cnt=[]
+        this.correctsum=0
+        this.cardhistory=[]
+        this.resultrecord=[]
+        this.solutionhistory=[]
+        this.usersolutionhistory=[]
+
+        this.reportarr=[]
+    }
 
 }

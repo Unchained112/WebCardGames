@@ -11,7 +11,7 @@ function BasicActionView(props){
                         <a>See My Score</a>
                     </div>
                 </div>
-                <div className="div-inline" onClick={e=>location.reload()}>
+                <div className="div-inline" onClick={()=>props.reStart()}>
                     <div className="game24calculatorButton">
                         <a>Restart!</a>
                     </div>
@@ -24,7 +24,7 @@ function BasicActionView(props){
                         <h2 className="w3-center">
                             You have given correct answer(s) in {props.score} round(s).
                         </h2>
-                        <button className="w3-button w3-green" onClick={e=>location.reload()}>
+                        <button className="w3-button w3-green" onClick={()=>{props.reStart();document.getElementById('game24score').style.display='none'}}>
                             Restart!
                         </button>
                         <div>
