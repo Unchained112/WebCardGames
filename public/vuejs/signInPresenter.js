@@ -12,7 +12,7 @@ function SignInPresenter(props){
                 alert("Error: " + er.message);
             });
         }}
-        GoSignUp={r=>{window.location.hash = "#signUp";}}
+        GoSignUp={r=>{console.log("si"); window.location.hash = "#signUp";}}
         goHome={r=>{window.location.hash = "#home";}}
     />
 }

@@ -27,14 +27,19 @@ const App= (props)=>
         <Show hash="#texas"><TexasPresenter model={props.model.TexasModel}/></Show>
         <Show hash="#breakout"><BreakoutPresenter model={props.model.BreakoutModel}/></Show>
         <Show hash="#signIn"><SignInPresenter model={props.model}/></Show>
-        <Show hash="#signUp"><SignInPresenter model={props.model}/></Show>
+        <Show hash="#signUp"><SignUpPresenter model={props.model}/></Show>
     </div>
 </div>
 
 function GoSign(model){
     if(model.userID === 0){
         console.log("Sign In");
-        window.location.hash = "#signIn";
+        if(window.location.hash === "#signIn"){
+            return;
+        }
+        else{
+            window.location.hash = "#signIn";
+        }
     }
     else{
         UserAuthen.SignOut();
