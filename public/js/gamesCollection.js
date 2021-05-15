@@ -3,7 +3,7 @@ class GamesCollection{
     constructor(){
         this.observer = [];
         this.userID = 0;
-        this.userEmail = 0;
+        //this.userEmail = 0;
         this.signText = "Sign In";
     }
     setBreakout(breakoutModel_){
