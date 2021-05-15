@@ -1,8 +1,10 @@
 function SignUpPresenter(props){
+    console.log("SU");
     var email;
     var password;
     var passwordA;
-    return <SignUpView onEmail={r=>{email = r;}}
+    return <SignUpView 
+        onEmail={r=>{email = r;}}
         onPassword={r=>{password = r;}}
         onPasswordAgain={r=>{passwordA = r;}}
         signUp={r=>{
