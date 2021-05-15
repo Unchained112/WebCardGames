@@ -25,12 +25,12 @@ const App= (props)=>
         <Show hash="#blackjack"><BlackjackPresenter model={props.model.blackjackModel}/></Show>
         <Show hash="#texas"><TexasPresenter model={props.model.TexasModel}/></Show>
         <Show hash="#breakout"><BreakoutPresenter model={props.model.BreakoutModel}/></Show>
+        <Show hash="#signIn"><SignInPresenter model={props.model}/></Show>
+        <Show hash="#signUp"><SignInPresenter model={props.model}/></Show>
     </div>
-
-    {/* <Show hash="#arkanoid"><ArkanoikPresenter model={props.model.arkanoid} /></Show> */}
 </div>
 
 function defaultRoute(){
-    if(["#home", "#breakout", "#freecell", "#spider","#24Game","#24gameContent","#blackjack", "#texas"].find(e=>e===window.location.hash)===undefined) window.location.hash="#home";
+    if(["#home", "#breakout", "#freecell", "#spider","#24Game","#24gameContent","#blackjack", "#texas", "#signIn", "#signUp"].find(e=>e===window.location.hash)===undefined) window.location.hash="#home";
 }
 defaultRoute();

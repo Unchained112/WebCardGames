@@ -16,8 +16,8 @@
     position:relative;
     display:inline-block;
     margin:10px 5px;
-    padding: 15px 25px;
-    font-size: 18px;
+    padding: 12px 22px;
+    font-size: 15px;
     cursor: pointer;
     text-align: center;   
     text-decoration: none;
@@ -41,7 +41,7 @@
     /* The image used */
     background-image: url("./assets/blackjack1.jpg");
     /* Full height */
-    height: 110%;
+    height: 130%;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: repeat;
