@@ -1,8 +1,9 @@
 const TexasPresenter = {
+    
     props:["model"],
     data(){ return {promise:null, data:null, error:null};},
 	created(){ 
-        this.promise =Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,2)]);
+        this.promise =Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,15)]);
     },          
     
 	watch:{
@@ -23,8 +24,14 @@ const TexasPresenter = {
         return <div>
             {promiseNoData(this.promise, this.data, this.error) ||
             <TexasView 
-                nextcardsResult={this.data} 
+                model = {this.model}
+                
+                
+                call = {e => this.model.call()}
+                users =  {this.model.users}
+                totalCards={this.data} 
                 cardChosen={code=>{console.log("The user chose card",code); }}/>}
+            
         </div>
         
     }
