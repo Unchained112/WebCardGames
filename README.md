@@ -64,12 +64,11 @@ We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, a
 
 ### Yifei Wang
 **Current Stage**
-1. Implement basic functions of Blackjack in C++
+1. Build the blackjack game with poker cards
+    - Well-designed layout
+    - Introduction to this game
 2. Create a fundamental level Ai robot in the game
 
-**Plan to do**
-1. Build the Blackjack game in MVP
-2. Try to implement multiple decks for AI
 
 ###  Ziyu Tang
 **Current Stage**

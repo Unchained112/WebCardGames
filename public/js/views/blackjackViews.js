@@ -122,7 +122,7 @@ function BlackjackView(props){
                 <p>(1). 2, 3, 4, 5, 6, 7, 8, 9: Calculate the score according to the actual size of the card.</p>
                 <p>(2). 10. Jack, Queen, King: All scores are calculated based on 10 points.</p>
                 <p>(3). Ace: There are 2 scoring methods of Ace, 11 point and 1 point.
-                    If Ace is calculated as 11 points, the total value of the cards in the hand is greater than 21 points; Ace is calculated as 1 point.</p>
+                    If Ace is calculated as 11 points, the total value of the cards in the hand is greater than 21 points, then Ace is calculated as 1 point.</p>
 
                 <p>Hit: The player chooses whether to take a card based on the face value of his card. If you choose to hit, the system would randomly send a bright card.</p>
                 <p>Stand: The player think their own card face value is big enough and do not need one more card.</p> 
