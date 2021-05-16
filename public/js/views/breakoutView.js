@@ -2,7 +2,7 @@ function BreakoutView(props){
     console.log(props.breakout_data);
     writeData(props.breakout_data);
     return (
-		<div class="w3-row-padding" id="breakout">
+		<div class="w3-row-padding w3-text-white" id="breakout">
 		<h2 class="w3-center"> </h2>
 
 		<div class="w3-col" style="width:50px"><p>  </p></div>

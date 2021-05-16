@@ -295,6 +295,16 @@ function FreeCellView(props){
         <p></p>
         <p>To win this game, player need create four recycling units, each with 13 cards in the same suit. Each unit must be arranged in order from small (A) to large (K).</p> 
         </div>
+
+        <p> </p>
+
+        <div class="w3-center w3-text-white">
+            <h2> Brief History of FreeCell </h2>
+        </div>
+        <div class=" w3-content w3-text-white" style="max-width:1000px">
+        <p>FreeCell is one of the most popular card games you can find on most computers. It was first introduced in 1978 by Paul Alfille, who programmed the first computerized version of it as a medical student on a PLATO computer at the University of Illinois.</p>
+        <p>It was popularized in 1991 when it came preinstalled with every version of Windows. Just like any other card game, there is a unique set of rules that a player must follow to win the game. The game is played with one deck of cards, and even though there is an infinite number of possible deals, don't expect to be able to learn all of them. Mathematically speaking, there are 1.75 times 10 to the power of 64 possible games.</p>
+        </div>
      
 
     </div>

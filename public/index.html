@@ -52,7 +52,9 @@
 <link rel="stylesheet" href="texasstyle.css">
 <script src="js/texasModel.js"></script>
 <script src="js/views/texasViews.js" type="text/jsx"></script>
+<script src="js/views/texasResultViews.js" type="text/jsx"></script>
 <script src="vuejs/texasPresenter.js" type="text/jsx"></script>
+<script src="vuejs/texasResultPresenter.js" type="text/jsx"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
@@ -76,12 +78,15 @@
 <script src="./js/firebase/firebaseConfig.js"></script>
 <!-- Add Firebase products that you want to use -->
 <script src="/__/firebase/8.4.1/firebase-auth.js"></script>
+<script src="/__/firebase/8.4.1/firebase-database.js"></script>
+<script src="./js/firebase/userAuthen.js"></script>
+<script src="./js/firebase/firebaseModel.js"></script>
 
 <!-- Sign In & Sign Up -->
-<script src="./js/views/signInView.js"></script>
-<script src="./js/views/signUpView.js"></script>
-<script src="./vuejs/signInPresenter.js"></script>
-<script src="./vuejs/signUpPresenter.js"></script>
+<script src="./js/views/signInView.js" type="text/jsx"></script>
+<script src="./js/views/signUpView.js" type="text/jsx"></script>
+<script src="./vuejs/signInPresenter.js" type="text/jsx"></script>
+<script src="./vuejs/signUpPresenter.js" type="text/jsx"></script>
 
 <!-- Reference Presenter (DinnerModel) -->
 <!-- <script type="text/jsx">
@@ -113,8 +118,8 @@
     myModel.setTexas(texas);
 
     const TopLevelModel={
-        data(){return {model:myModel}},
-        render(){return<App model={this.model}/>}
+        data(){ return {model:myModel};},
+        render(){ return <App model={this.model}/>;}
     }
 
     Vue.render(<TopLevelModel/>,document.getElementById("app"))

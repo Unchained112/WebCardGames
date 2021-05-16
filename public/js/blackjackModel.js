@@ -121,7 +121,7 @@ class BlackjackModel{
                     this.playersum+=10;
                     break;
                 case "ACE":
-                    if(this.playersum<=11){
+                    if(this.playersum<11){
                         this.playersum+=11;
                     }else{
                         this.playersum+=1;
@@ -177,7 +177,7 @@ class BlackjackModel{
                 case "KING":
                     this.hostsum+=10;break;
                 case "ACE":
-                    if(this.hostsum<=11){
+                    if(this.hostsum<11){
                         this.hostsum+=11;
                     }else{
                         this.hostsum+=1;
