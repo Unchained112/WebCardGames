@@ -35,6 +35,8 @@ function HomeView(){
                             <li>24 game. 4 numbers. <a href="https://www.4nums.com/24_game/">{"https://www.4nums.com/24_game/"}</a> </li>
                             <li>Tick And Cross Signs Green Checkmark Ok And Red X Icons Isolated On White Background Simple Marks Graphic Design Symbols Yes And No Button For Vote Decision Web Vector Illustration<a href='https://pngtree.com/so/yes-clipart'>yes clipart png from pngtree.com</a> </li>
                             <li>24 game, Wikipedia.<a href="https://en.wikipedia.org/wiki/24_Game">https://en.wikipedia.org/wiki/24_Game</a></li>
+                            <li>History of FreeCell<a href="https://solitaired.com/freecell#historyoffreecellsolitaire">https://solitaired.com/freecell#historyoffreecellsolitaire</a></li>
+                            <li>freecell.net: Interview with Paul Alfille<a href="https://www.freecell.net/f/c/alfille.html">https://www.freecell.net/f/c/alfille.html</a></li>
                         </ol>
                     </footer>
                 </div>
