@@ -76,6 +76,7 @@
 <script src="./js/firebase/firebaseConfig.js"></script>
 <!-- Add Firebase products that you want to use -->
 <script src="/__/firebase/8.4.1/firebase-auth.js"></script>
+<script src="/__/firebase/8.4.1/firebase-database.js"></script>
 <script src="./js/firebase/userAuthen.js"></script>
 <script src="./js/firebase/firebaseModel.js"></script>
 
@@ -115,8 +116,9 @@
     myModel.setTexas(texas);
 
     const TopLevelModel={
-        data(){return {model:myModel}},
-        render(){return<App model={this.model}/>}
+        data(){ return {model:myModel};},
+        created(){ persistModel(this.model);},
+        render(){ return <App model={this.model}/>;}
     }
 
     Vue.render(<TopLevelModel/>,document.getElementById("app"))

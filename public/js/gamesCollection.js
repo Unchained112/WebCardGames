@@ -3,7 +3,7 @@ class GamesCollection{
     constructor(){
         this.observer = [];
         this.userID = 0;
-        //this.userEmail = 0;
+        this.userEmail = 0;
         this.signText = "Sign In";
     }
     setBreakout(breakoutModel_){
@@ -30,10 +30,19 @@ class GamesCollection{
         if(this.userID !== 0){
             this.signText = "Sign Out";
         }
+        else{
+            this.signText = "Sign In";
+        }
         return this.signText;
     }
     setModel(model){
         var loadModel = JSON.parse(model);
+        this.observer = loadModel.observers;
+        this.userID = loadModel.userID;
+        this.userEmail = loadModel.userEmail;
+        this.signText = loadModel.signText;
+        
+        this.freeCellModel = new FreeCellModel();
         this.freeCellModel.setModel(loadModel.freeCellModel);
     }
 

@@ -33,7 +33,7 @@ const App= (props)=>
 
 function GoSign(model){
     if(model.userID === 0){
-        console.log("Sign In");
+        //console.log("Sign In");
         if(window.location.hash === "#signIn"){
             return;
         }
@@ -44,6 +44,8 @@ function GoSign(model){
     else{
         UserAuthen.SignOut();
         model.userID = 0;
+        model.userEmail = 0;
+        props.model.showSignText();
     }
 }
 

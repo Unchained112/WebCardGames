@@ -7,6 +7,11 @@ function SignInPresenter(props){
             UserAuthen.SignIn(email, password)
             .then(u=>{
                 //user
+                console.log(u);
+                props.model.userID = u.user.uid;
+                props.model.userEmail = u.user.email;
+                //persistModel(props.model);
+                window.location.hash = "#home";
             })
             .catch(er=>{
                 alert("Error: " + er.message);
