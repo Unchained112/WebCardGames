@@ -7,10 +7,11 @@ function SignInPresenter(props){
             UserAuthen.SignIn(email, password)
             .then(u=>{
                 //user
-                console.log(u);
                 props.model.userID = u.user.uid;
                 props.model.userEmail = u.user.email;
-                //persistModel(props.model);
+                console.log(props.model.userID);
+                persistModel(props.model);
+                LastGameState = []; //Reload the global value that stores the FreeCell GameStates
                 window.location.hash = "#home";
             })
             .catch(er=>{

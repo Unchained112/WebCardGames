@@ -45,7 +45,7 @@ function GoSign(model){
         UserAuthen.SignOut();
         model.userID = 0;
         model.userEmail = 0;
-        props.model.showSignText();
+        //model.showSignText();
     }
 }
 

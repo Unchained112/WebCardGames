@@ -117,7 +117,6 @@
 
     const TopLevelModel={
         data(){ return {model:myModel};},
-        created(){ persistModel(this.model);},
         render(){ return <App model={this.model}/>;}
     }
 

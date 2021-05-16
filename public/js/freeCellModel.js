@@ -73,7 +73,6 @@ class FreeCellModel{
         }
         this.notifyObservers();
         this.gameStart = false;
-        this.observer = [];
         this.currentCard = {code:"", image:"./assets/back_3.png", value:"", suit:""};
         // Four cells to store cards temporarily
         this.cells = [{code:"", image:"./assets/back_3.png", value:"", suit:""}, 
@@ -407,7 +406,6 @@ class FreeCellModel{
         this.cells = model.cells;
         this.currentCard = model.currentCard;
         this.gameStart = model.gameStart;
-        this.observer = model.observer;
         this.pile_1 = model.pile_1;
         this.pile_2 = model.pile_2;
         this.pile_3 = model.pile_3;
