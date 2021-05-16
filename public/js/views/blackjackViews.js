@@ -6,29 +6,37 @@ function BlackjackView(props){
 
     var checkwin = function(){
         if(props.model.playersum>21){
+            props.model.updateCardPool();
             return <div className="blackjacky"> You Lose! Press "Play Again" to start new round</div>
         }
         if(props.model.playersum===21 && props.model.hitnum===0){
+            props.model.updateCardPool();
             return <div className="blackjacky"> Blackjack!!!!</div>
         }
         if(props.model.playersum===21 && props.model.hitnum===2){
+            props.model.updateCardPool();
             return <div className="blackjacky"> You win!!!!</div>
         }
         else{
             return <p></p>
         }
+        //props.model.updateCar()
     }
     var checkwin_host = function(){
         if(props.model.hostsum===props.model.playersum && props.model.hitnum===1){
+            props.model.updateCardPool();
             return <div className="blackjacky"> This is a "push" and no one wins </div>
         }
         if(props.model.hostsum>21){
+            props.model.updateCardPool();
             return <div className="blackjacky"> You Win!!!! </div>
         }
         if(props.model.hostsum<props.model.playersum && props.model.playersum<=21 && props.model.hitnum===1){
+            props.model.updateCardPool();
             return <div className="blackjacky"> You Win!!!! </div>
         }
         if(props.model.hostsum>props.model.playersum && props.model.hostsum<=21 && props.model.hitnum===1){
+            props.model.updateCardPool();
             return <div className="blackjacky"> You Lose! Press "Play Again" to start new round</div>
         }
         else{
@@ -63,22 +71,22 @@ function BlackjackView(props){
 
             <div className="w3-container w3-center">
             <div>
-                <div className="div-inline" onClick={props.start}>
+                <div className="div-inline" onClick={()=>{props.start();}}>
                     <div className="blackjack">
                         <a>Start</a>
                     </div>
                 </div>
-                <div className="div-inline" onClick={props.hit}>
+                <div className="div-inline" onClick={()=>{props.hit();}}>
                     <div className="blackjack">
                         <a>Hit</a>
                     </div>
                 </div>
-                <div className="div-inline" onClick={props.stand}>
+                <div className="div-inline" onClick={()=>{props.stand();}}>
                     <div className="blackjack">
                         <a>Stand</a>
                     </div>
                 </div>
-                <div className="div-inline" onClick={props.clear}>
+                <div className="div-inline" onClick={()=>{props.clear();}}>
                     <div className="blackjack">
                         <a>Play Again</a>
                     </div>
@@ -115,7 +123,8 @@ function BlackjackView(props){
             <p></p>
             <p></p> 
             <div class=" w3-content w3-text-white" style="max-width:1000px">    
-                <p>Blackjack is a well-known poker game in casino. The player’s goal is to make the sum of the points of the cards in his hand not exceed 21 points and be as large as possible.
+                <p>BlackJack is not only one of the most popular card games of chance in the world today, the game can also look back on a long history and origins. The uncomplicated card game has been played for almost 300 years.
+                    The player’s goal is to make the sum of the points of the cards in his hand not exceed 21 points and be as large as possible.
                     The player will get two cards when the game starts and the banker will only get one card.
                 </p>
                 <p>Card face value:</p>
@@ -127,7 +136,12 @@ function BlackjackView(props){
                 <p>Hit: The player chooses whether to take a card based on the face value of his card. If you choose to hit, the system would randomly send a bright card.</p>
                 <p>Stand: The player think their own card face value is big enough and do not need one more card.</p> 
                 <p>If the sum value of banker's cards is greater than/equal to 17 points, he can not hit.</p> 
-                <p>If the player bursts, the player loses immediately, if the banker bursts and the player becomes the winner. After both the player and the banker are suspended, the player cards are compared with the banker cards.</p> 
+                <p>If the player bursts, the player loses immediately, if the banker bursts and the player becomes the winner. After both the player and the banker are suspended, the player cards are compared with the banker cards.</p>
+                <p>Blackjack Hall of Fame:</p>
+                <p>In 2002, professional gamblers around the world were invited to nominate great blackjack players for admission into the Blackjack Hall of Fame. Seven members were inducted in 2002, with new people inducted every year after. 
+                    The Hall of Fame is at the Barona Casino in San Diego. Members include Edward O. Thorp, author of the 1960s book Beat the Dealer which proved that the game could be beaten with a combination of basic strategy and card counting; 
+                    Ken Uston, who popularized the concept of team play; Arnold Snyder, author and editor of the Blackjack Forum trade journal; Stanford Wong, author and popularizer of the "Wonging" technique of only playing at a positive count, and several others.</p>
+
             </div>        
             </div>
             

@@ -81,10 +81,11 @@ We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, a
 ### Yifei Wang
 **Current Stage**
 1. Build the blackjack game with poker cards
-    - Well-designed layout
+    - Basic functions and corresponding effects
     - Introduction to this game
-2. Create a fundamental level Ai robot in the game
-
+2. Create a fundamental level Ai robot
+    - Play the role of banker in the game.
+    - Capable of judging the current stage of player and make decision on next step.
 
 ###  Ziyu Tang
 **Current Stage**
