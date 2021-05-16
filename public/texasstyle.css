@@ -200,6 +200,17 @@
 	font-size: 13px;
 }
 
+.showdown-player--besthand--container {
+	margin-left: 12px;
+}
+
+.showdown-player--besthand--cards {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: auto;
+	height: auto;
+}
 /* .showdown-container--community-cards {
 	display: flex;
 	height: 52px;

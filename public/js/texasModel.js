@@ -13,27 +13,22 @@ class TexasModel{
                     name: "Player 1",
                     avatarURL: "./assets/boy.svg",
                     cards: [],
-                    showDownHand: {
-                        hand: [],
-                        descendingSortHand: [], 
-                    },
                     chips: 20000,
-                    roundStartChips: 20000,
-                    roundEndChips: 20000,
-                    currentRoundChipsInvested: 0,
                     bet: 0,
-                    betReconciled: false,
                     folded: false,
                     allIn: false,
                     canRaise: true,
                     stackInvestment: 0,
-                    robot: false
+                    robot: false,
+                    bestHand:{
+                        bestCards: [],
+                        bestPoint: 0,
+                    }
                 }],
             activePlayer : null,    
             activePlayerIndex :null,
             dealerIndex: null,
             blindIndex: null,
-            
             communityCards : [],
             shownCommunityCards : [],
             shownNum : 3,
@@ -66,21 +61,19 @@ class TexasModel{
 				name: `${user.name.first.charAt(0).toUpperCase()}${user.name.first.slice(1)} ${user.name.last.charAt(0).toUpperCase()}${user.name.last.slice(1)}`,
 				avatarURL: user.picture.large,
 				cards: [],
-				chips: randomizedChips,  
-				roundStartChips: randomizedChips,
-				roundEndChips: randomizedChips,
-				currentRoundChipsInvested: 0,
-				showDownHand: {
-					hand: [],
-					descendingSortHand: [],
-				},
+				chips: randomizedChips, 
+                 
 				bet: 0,
-				betReconciled: false,
 				folded: false,
 				allIn: false,
 				robot: true,
 				canRaise: true,
 				stackInvestment: 0,
+                bestHand:{
+                    bestCards: [],
+                    bestPoint: 0,
+                },
+                aggressive: this.getNumberInNormalDistribution(),
 			})
 		})
 		.forEach(user => this.state.players.push(user));
@@ -125,6 +118,20 @@ class TexasModel{
         return uuid;
     }
     
+    getNumberInNormalDistribution(){
+        return 0.5+(this.randomNormalDistribution()*0.5);
+    }
+    
+    randomNormalDistribution(){
+        var u=0.0, v=0.0, w=0.0, c=0.0;
+        do{
+            u=Math.random()*2-1.0;
+            v=Math.random()*2-1.0;
+            w=u*u+v*v;
+        }while(w==0.0||w>=1.0)
+        c=Math.sqrt((-2*Math.log(w))/w);
+        return u*c;
+    }
     
  
     blind()
@@ -163,14 +170,14 @@ class TexasModel{
     startBet()
     {
         console.log('Start Bet')
-        this.state.counter = 4;
+        this.state.counter = 4; //counter reset at every round
         if ((this.state.players[this.state.blindIndex].bet != 0) 
             && (this.state.pause == false))
         {
             this.state.phase = 'Bet Loop';
             return  ;
         }
-        
+        this.showDownCheck();
         this.state.activePlayerIndex = this.state.blindIndex;
         const index = this.state.activePlayerIndex
         this.state.activePlayer = this.state.players[index];
@@ -181,7 +188,7 @@ class TexasModel{
             return  ;
         }
         else{
-            
+            var aggFactor = this.activePlayer.aggressive*this.activePlayer.bestHand.bestPoint
             if (Math.random() < 0.3){
                 raiseBet = Math.floor(state.minBet * (Math.random() + 1 ) * 0.01 );
                 console.log(state.activePlayer.name, 'raise', raiseBet);
@@ -343,18 +350,49 @@ class TexasModel{
     }
 
     isFourofakind(cards){
-        if ((cards[4].value > cards[4].value) &&
-            (cards[0].value == cards[1].value == cards[2].value == cards[3].value))
+        for (var i = 0; i < 2; i++){
+            if (cards[i].value == cards[i+1].value == cards[i+2].value == cards[i+3].value)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    isFullHouse(cards){
+        if ((cards[0].value == cards[1].value == cards[2].value)&&
+        cards[3].value == cards[4].value)
         {
             return true;
         }
-        if ((cards[0].value < cards[1].value) &&
-        (cards[1].value == cards[2].value == cards[3].value == cards[4].value))
+        if  ((cards[0].value == cards[1].value) &&
+        (cards[2].value == cards[3].value == cards[4].value))
         {
             return true;
         }
         return false;
     }
+
+    isThreeofakind(cards){
+        for (var i = 0; i < 3; i++){
+            if (cards[i].value == cards[i+1].value == cards[i+2].value)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    isPairs(cards){
+        var pairs = [];
+        for (var i = 0; i < 4; i++){
+            if (cards[i].value == cards[i + 1].value){
+                pairs.push(i+1);
+            }
+        }
+        return pairs;
+    }
+
     sortCards(cards){
         for (var i = 0; i < 5; i++)
         {
@@ -378,23 +416,112 @@ class TexasModel{
         cards.sort(function(a,b) {
             return a.value - b.value;
         });
-        console.log(cards);
     }
 
     cardCheck(cards)
     {
         this.sortCards(cards);
-        if (this.isRoyalFlush(cards))
-        {
+        if (this.isRoyalFlush(cards)){
             return 1000;
         }
-        if (this.isFlush(cards) && this.isStraight(cards))
-        {
+        if (this.isFlush(cards) && this.isStraight(cards)){
             return 900 + cards[4].value;
         }
         if (this.isFourofakind(cards)){
             return 800 + cards[2].value;
         }
+        if (this.isFullHouse(cards)){
+            return 700 + cards[2].value;
+        }
+        if (this.isFlush(cards)){
+            return 600 + cards[4].value;
+        }
+        if (this.isStraight(cards)){
+            return 500 + cards[4].value;
+        }
+        if (this.isThreeofakind(cards)){
+            return 400 + cards[2].value;
+        }
+        var pairs = this.isPairs(cards);
+        
+        if (pairs.length == 2){
+            return 300 + cards[pairs[1]].value
+        }
+        if (pairs.length == 1){
+            return 200 + cards[pairs[0]].value
+        }
+        return 100 + cards[4].value;
+    }
+
+    getFlagArrs(m, n = 1) {
+        if (n < 1 || m < n)  return []
+      
+        // 先生成一个长度为 m 字符串，开头为 n 个 1， 例如“11100”
+        let str = '1'.repeat(n) + '0'.repeat(m-n)
+        let pos
+        // 1
+        const resultArrs = [Array.from(str, x => Number(x))]
+        const keyStr = '10'
+      
+        while(str.indexOf(keyStr) > -1) {
+          pos = str.indexOf(keyStr)
+          // 2
+          str = str.replace(keyStr, '01')
+          // 3
+          str = Array.from(str.slice(0, pos))
+            .sort((a, b) => b-a)
+            .join('') + str.slice(pos)
+          // 4
+          resultArrs.push(Array.from(str, x => Number(x)))
+        }
+        return resultArrs
+    }
+    
+    arrayCombine(targetArr = [], count = 1) {
+        if (!Array.isArray(targetArr)) return []
+      
+        const resultArrs = []
+        // 所有组合的 01 排列
+        const flagArrs = this.getFlagArrs(targetArr.length, count)
+        while (flagArrs.length) {
+          const flagArr = flagArrs.shift()
+          resultArrs.push(targetArr.filter((_, idx) => flagArr[idx]))
+        }
+        return resultArrs
+    }
+
+    showDownCheck(){
+        var totalCards = this.state.players[0].cards.concat(this.state.shownCommunityCards)
+        console.log('total cards are',totalCards)
+        var availableCards = this.arrayCombine(totalCards,5);
+        
+        var evaluation = []
+        for (var j = 0; j < availableCards.length; j++){
+            var bestHand = {bestCards:[],bestPoint:0}    
+            var point = this.cardCheck(availableCards[j])
+            bestHand.bestPoint = point;
+            bestHand.bestCards = availableCards[j];
+            evaluation.push(bestHand);
+        }
+        console.log(evaluation)
+
+
+        for (var i = 0; i< 5; i++){
+            var totalCards = this.state.players[i].cards.concat(this.state.communityCards)
+            var availableCards = this.arrayCombine(totalCards,5);
+            
+            var temmpBestHand = {bestCards:[],bestPoint:0}
+            for (var j = 0; j < availableCards.length; j++){
+                
+                var point = this.cardCheck(availableCards[j])
+                if (point > temmpBestHand.bestPoint){
+                    temmpBestHand.bestPoint = point;
+                    temmpBestHand.bestCards = availableCards[j];
+                } 
+            }
+            this.state.players[i].bestHand.bestCards = temmpBestHand.bestCards;
+            this.state.players[i].bestHand.bestPoint = temmpBestHand.bestPoint;
+        } 
         
     }
 
