@@ -27,11 +27,11 @@ function TexasView(props){
         <div id="texas" >
             <div id="texas" class="w3-container">
                 
-            
+                
                 <div class="w3-container">
                     <button class="w3-button w3-green w3-round-xlarge " 
                         style = {{position: 'absolute', top: 'calc(45% - 95px)', left: 'calc(50% - 350px)', width: 100}} 
-                        onClick={props.check}>Limp </button> 
+                        onClick={e => props.model.limp()}>Limp </button> 
 
                     <button id = 'raise' class="w3-button w3-green w3-round-xlarge" 
                         style = {{position: 'absolute', top: 'calc(45% - 95px)', left: 'calc(50% - 225px)', width: 100}}
@@ -45,12 +45,19 @@ function TexasView(props){
                     <button class="w3-button w3-green w3-round-xlarge" 
                     style = {{position: 'absolute', top: 'calc(45% - 95px)', left: 'calc(50% + 250px)', width: 100}}
                     onClick={props.fold}>Fold</button>
+                    <button class="w3-button w3-green w3-round-xlarge" 
+                    style = {{position: 'absolute', top: 'calc(45% - 95px)', left: 'calc(50% + 350px)', width: 100}}
+                    onClick={e => {
+                        window.location.hash = "#texasresult"}}>Result</button>
+
+
                 </div>
                 
             
                 <div className='community-card-container'>
                 {
-                    props.model.state.communityCards
+                    
+                    props.model.state.shownCommunityCards
                     .map(
                         function(e){
                             var url=e.image;

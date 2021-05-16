@@ -150,3 +150,58 @@
  	bottom: 35.1518%;
  	right: 6%;
  }
+
+
+ .showdown-container--wrapper {
+	display: flex;
+   	flex-direction: column;
+	align-items: center;
+	position: absolute;
+	overflow: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	background-color: rgba(0,0,0,0.85);
+	color: white;
+	height: auto;
+	min-height: 100%;
+	width: 100%;
+	z-index: 100;
+}
+
+.showdown-container--title {
+	font-size: 28px;
+	margin: 0 6px;
+}
+
+.showdown-container--community-card-label {
+	margin: 12px 0;
+}
+
+.showdown-container--messages {
+	text-align: left;
+}
+
+.showdown--nextRound--button {
+	background-color: #6C0C02;
+	border: 1px solid white;
+	color: salmon;
+	padding: 6px;
+	line-height: 1;
+}
+.showdown--nextRound--button:hover {
+	cursor: pointer;
+}
+
+.showdown--handrank {
+	width: 115px;
+	text-align: center;
+	color: #FDBA0A;
+	font-size: 13px;
+}
+
+/* .showdown-container--community-cards {
+	display: flex;
+	height: 52px;
+	margin-bottom: 1rem;
+ } */

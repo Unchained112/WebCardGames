@@ -33,18 +33,20 @@ class TexasModel{
             activePlayerIndex :null,
             dealerIndex: null,
             blindIndex: null,
-            deck : null,
+            
             communityCards : [],
+            shownCommunityCards : [],
+            shownNum : 3,
             pot : 0,
             highBet : null,
             betInputValue : null,
             sidePots : [],
-            minBet : 20,
+            minBet : 0,
             phase : null,
             pause : false,
             userBet : 0,
             blindBet : 0,
-            
+            counter: 4,
 
             round : 1,
         }
@@ -90,12 +92,15 @@ class TexasModel{
             
             this.state.dealerIndex = (this.state.dealerIndex + 1) % 5;
         }
+        this.state.blindIndex = (this.state.dealerIndex + 1) % 5;
         
         
         
         
 
-
+        this.state.shownCommunityCards = [{image: './assets/back_texas.png'},
+                                            {image: './assets/back_texas.png'},
+                                            {image: './assets/back_texas.png'},]
         this.state.communityCards = totalCards.slice(0,5);
         for (var i = 0; i < 5; i++){
             this.state.players[i].cards = totalCards.slice(i+5,i+7);
@@ -122,45 +127,144 @@ class TexasModel{
     
     
  
-    blindLoop()
+    blind()
     {
-        this.state.blindIndex = (this.state.dealerIndex + 1) % 5;
-        this.state.blindBet = Math.floor(this.state.players[this.state.blindIndex].chips * (Math.random() +1 ) * 0.1);
-        this.state.activePlayerIndex = (this.state.blindIndex + 1) % 5;
-        this.state.activePlayer = this.state.players[this.state.activePlayerIndex];
+        console.log('Blind start')
+        // 
+        if ((this.state.players[this.state.blindIndex].bet != 0) 
+            && (this.state.pause == false))
+        {
+            this.state.phase = 'Preflop';
+            return  ;
+        }
         
-        this.state.phase = 'Preflop';
+        this.state.activePlayerIndex = this.state.blindIndex;
+        const index = this.state.activePlayerIndex
+        this.state.activePlayer = this.state.players[index];
+        if (index == 0)
+        {
+            this.state.pause = true;
+            console.log('Pause');
+            return  ;
+        }
+        else{
+            
+            this.state.blindBet = Math.floor(this.state.activePlayer.chips * (Math.random() + 1 ) * 0.1);
+            this.raiseBet(this.state.blindBet);            
+            this.nextActivePlayer();
+            this.state.phase = 'Preflop';
+            
+            
+        }
+        
+        console.log('Blind finished')
     }
 
-    preflop(){ 
-        this.state.phase = 'Preflop'
+    startBet()
+    {
+        console.log('Start Bet')
+        this.state.counter = 4;
+        if ((this.state.players[this.state.blindIndex].bet != 0) 
+            && (this.state.pause == false))
+        {
+            this.state.phase = 'Bet Loop';
+            return  ;
+        }
+        
+        this.state.activePlayerIndex = this.state.blindIndex;
+        const index = this.state.activePlayerIndex
+        this.state.activePlayer = this.state.players[index];
+        if (index == 0)
+        {
+            this.state.pause = true;
+            console.log('Pause');
+            return  ;
+        }
+        else{
+            
+            if (Math.random() < 0.3){
+                raiseBet = Math.floor(state.minBet * (Math.random() + 1 ) * 0.01 );
+                console.log(state.activePlayer.name, 'raise', raiseBet);
+            }
+            else{
+                raiseBet = 0;
+                console.log(state.activePlayer.name, 'call')
+            }
+
+            const diff = state.minBet + raiseBet - state.activePlayer.bet;
+    
+            state.activePlayer.bet = state.minBet + raiseBet;
+            state.activePlayer.chips -= diff;
+            state.pot += diff;
+            state.minBet += raiseBet;
+            
+            this.state.phase = 'Bet Loop';
+            
+            
+        }
+        
+        console.log('Start Bet finished')
+    }
+
+
+    PFTR(){ 
         var state = this.state;
         setTimeout(function(state){
-            const index = state.activePlayerIndex
+            if (state.phase != 'preFlop')
+            {
+                state.shownCommunityCards = state.communityCards.slice(0,state.shownNum);
+            }
+            const index = state.activePlayerIndex;
+            const nextIndex = (state.activePlayerIndex + 1) % 5;
+            var raiseBet = 0;
             if ( index == 0){
                 state.pause = true;
                 console.log('Pause');
                 return ;
             }
-            console.log('Now, the active is' , index);
-            if (state.activePlayerIndex != state.blindIndex){
-                
-                state.players[index].bet += state.minBet;
-                state.players[index].chips -= state.minBet;
-                state.pot += state.minBet;
-                console.log(state.activePlayerIndex, 'make bets' , state.players[state.activePlayerIndex].bet);
-            }
             else{
-                var bigBlindBet = Math.floor(state.players[state.blindIndex].chips * (Math.random() +1 ) * 0.1);
-                state.players[index].bet += bigBlindBet;
-                state.players[index].chips -= bigBlindBet;
-                state.pot += bigBlindBet;
+                console.log('Now, the active is' , index);
+                if (Math.random() < 0.3){
+                    raiseBet = Math.floor(state.minBet * (Math.random() + 1 ) * 0.01 );
+                    console.log(state.activePlayer.name, 'raise', raiseBet);
+                }
+                else{
+                    raiseBet = 0;
+                    console.log(state.activePlayer.name, 'call')
+                }
+    
+                const diff = state.minBet + raiseBet - state.activePlayer.bet;
+        
+                state.activePlayer.bet = state.minBet + raiseBet;
+                state.activePlayer.chips -= diff;
+                state.pot += diff;
+                state.minBet += raiseBet;
+                state.counter --;
+                if ((state.activePlayer.bet == state.players[nextIndex].bet 
+                        && (state.activePlayer.bet != 0)) 
+                        && (state.pause == false)
+                        && (state.counter <= 0)){
+                    console.log('enter flop', state.activePlayer.bet, state.players[nextIndex].bet);
+                    state.phase = 'Start Bet';                
+                    state.shownNum += 1;
+                }
+                state.activePlayerIndex = nextIndex;
+                state.activePlayer = state.players[nextIndex];
             }
-            state.activePlayerIndex = (state.activePlayerIndex + 1) % 5;
-            state.activePlayer = state.players[state.activePlayerIndex];
+            
+
+            
+           
+            
+            
             
         },2000,state);
     }
+
+
+    
+
+   
 
     setUserBet(userBet){
         console.log("user bet is", userBet)
@@ -170,38 +274,40 @@ class TexasModel{
 
     limp(){
         this.state.pause = false;
-        const raisedBet = this.state.minBet - this.state.players[0].bet
-        
-        this.state.players[0].bet += raisedBet;
-        this.state.players[0].chips -= raisedBet;
-        this.state.pot += raisedBet;
-        
+        this.raiseBet(0);
+        this.state.counter --;
+        this.nextActivePlayer();
     }
     
     raise(){
         this.state.pause = false;
         this.raiseBet(this.state.userBet);
+        this.state.counter --;
         this.nextActivePlayer();
         document.getElementById('userBet').value = '';
     }
     
     raiseBet(bet)
     {
-        const index = this.state.activePlayerIndex
-        this.state.players[index].bet += bet;
-        this.state.players[index].chips -= bet;
-        this.state.pot += bet;
+        const diff = this.state.minBet + bet - this.state.activePlayer.bet
+        
+        this.state.activePlayer.bet = this.state.minBet + bet;
+        this.state.activePlayer.chips -= diff;
+        this.state.pot += diff;
         this.state.minBet += bet;
     }
 
-
-    nextActivePlayer(){
-        this.state.activePlayerIndex = (this.state.activePlayerIndex + 1) % 5;
-        this.state.activePlayer = this.state.players[this.state.activePlayerIndex];
+    betCheck()
+    {
+        
+        return nextBet == currentBet;
     }
 
-
-    
+    nextActivePlayer(){
+        const nextIndex = (this.state.activePlayerIndex + 1) % 5;
+        this.state.activePlayerIndex = nextIndex
+        this.state.activePlayer = this.state.players[nextIndex];
+    }
 
     isActive(playerIndex){
         return playerIndex == this.state.activePlayerIndex;
@@ -211,19 +317,109 @@ class TexasModel{
         this.state.initialized = true;
     }
 
+    isRoyalFlush(cards){
+        if (this.isFlush(cards) && this.isStraight(cards) && cards[4].value == 14)
+        {
+            return true;       
+        }
+        return false;
+    }
+
+    isFlush(cards){
+        for (var i = 0; i < 4; i++){
+            if (cards[i].suit != cards[i +1 ].suit){
+                return false;
+            }
+        }
+        return true;
+    }
+    isStraight(cards){
+        for (var i = 0; i < 4; i++){
+            if (cards[i].value - cards[i +1 ].value!= -1){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    isFourofakind(cards){
+        if ((cards[4].value > cards[4].value) &&
+            (cards[0].value == cards[1].value == cards[2].value == cards[3].value))
+        {
+            return true;
+        }
+        if ((cards[0].value < cards[1].value) &&
+        (cards[1].value == cards[2].value == cards[3].value == cards[4].value))
+        {
+            return true;
+        }
+        return false;
+    }
+    sortCards(cards){
+        for (var i = 0; i < 5; i++)
+        {
+            switch(cards[i].value){
+                case "ACE":
+                    cards[i].value=14;
+                    break;
+                case "JACK":
+                    cards[i].value=11;
+                    break;
+                case "QUEEN":
+                    cards[i].value=12;
+                    break;
+                case "KING":
+                    cards[i].value=13;
+                    break;
+                default:
+                    cards[i].value= parseInt(cards[i].value);
+            }
+        }
+        cards.sort(function(a,b) {
+            return a.value - b.value;
+        });
+        console.log(cards);
+    }
+
+    cardCheck(cards)
+    {
+        this.sortCards(cards);
+        if (this.isRoyalFlush(cards))
+        {
+            return 1000;
+        }
+        if (this.isFlush(cards) && this.isStraight(cards))
+        {
+            return 900 + cards[4].value;
+        }
+        if (this.isFourofakind(cards)){
+            return 800 + cards[2].value;
+        }
+        
+    }
+
     loop(){
-        console.log('now is',this.state.phase)
+        
         if (this.state.pause)
         {
             this.waitForInput();
         }
         else{
-            switch (this.state.phase){
-                case 'Blind': this.blindLoop();
-                case 'Preflop' : this.preflop();
+            if (this.state.phase == 'Blind')
+            {
+                console.log('Now is Blind bet')
+                this.blind();
+            }
+            else if (this.state.phase == 'Start Bet')
+            {
+                console.log('Now is start bet')
+                this.startBet();
+            }
+            else {
+                console.log('Now is bet loop', this.state.shownNum -2)
+                this.PFTR();
             }
         }
-        
         
     }
     
