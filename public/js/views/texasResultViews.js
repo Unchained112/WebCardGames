@@ -75,8 +75,12 @@ function TexasResultView(props){
                                 </div>
                                 
                             </div>
+                            <div>
+                                <h5>{players[arrayIndex].bestType}
+                                </h5>
+                                </div>
                             <div class={`showdownPlayer--earnings ${(players[arrayIndex].win) ? ('positive') :  ('negative')}`}>
-			                    {`${(players[arrayIndex].win) ? ('+') : ('-')}${(players[arrayIndex].win)? (Math.floor(props.model.state.pot / props.model.state.winner.length)) : (players[arrayIndex].bet)}`}
+			                    {`${(players[arrayIndex].win) ? ('+') : ('-')}${(players[arrayIndex].win)? (props.model.state.pot / props.model.state.winner.length) : (players[arrayIndex].bet)}`}
 		                    </div> 
 
                              

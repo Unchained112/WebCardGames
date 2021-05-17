@@ -94,7 +94,7 @@ class TexasModel{
                                             {image: './assets/back_texas.png'},
                                             {image: './assets/back_texas.png'},]
         this.state.communityCards = totalCards.slice(0,5);
-        this.shownNum = 0;
+        this.state.shownNum = 0;
         for (var i = 0; i < 5; i++){
             this.state.players[i].cards = totalCards.slice(i+5,i+7);
         }
@@ -186,7 +186,10 @@ class TexasModel{
             this.state.activePlayerIndex = tempIndex;
             console.log('The new start should be', tempIndex)
         }
-        this.state.activePlayerIndex = this.state.blindIndex;
+        else{
+            this.state.activePlayerIndex = this.state.blindIndex;
+        }
+        
         var index = this.state.activePlayerIndex;
         this.state.activePlayer = this.state.players[index];
         const nextTempIndex = (index + 1) % this.state.alive.length;
@@ -195,8 +198,23 @@ class TexasModel{
         {
             if (this.state.players[0].betted){
                 this.state.players[0].betted = false;
-                this.state.phase = 'PFTR';
+                
                 this.nextActivePlayer();
+                if (this.state.shownNum == 3)
+                {
+                    this.state.phase = 'Flop';
+                }
+                else if (this.state.shownNum == 4)
+                {
+                    this.state.phase = 'Turn';
+                }
+                else if(this.state.shownNum == 5)
+                {
+                    this.state.phase = 'River';
+                }
+                if (this.state.shownNum >= 6 || this.state.alive.length <= 1){
+                    this.state.phase = 'Show Down'
+                } 
                 return  ;
             }
             else{
@@ -268,7 +286,11 @@ class TexasModel{
             
             var raiseBet = 0;
             if ( index == 0){
+                if (state.shownNum >= 6 || state.alive.length <= 1){
+                    state.phase = 'Show Down'
+                }
                 state.pause = true;
+                 
                 console.log('Pause');
                 return ;
             }
@@ -341,6 +363,7 @@ class TexasModel{
                     state.phase = 'Start Bet';
                     if (state.shownNum >= 6 || state.alive.length <= 1){
                         state.phase = 'Show Down'
+                        return;
                     }   
                     
                 }
@@ -363,36 +386,35 @@ class TexasModel{
         for (var i = 0; i< 5; i++)
         {
             var point = this.state.players[i].bestHand.bestPoint;
-            var type = this.state.players[i].bestType;
-            if ( point = 1000){
-                type = 'Royal Flush'
+            if ( point == 1000){
+                this.state.players[i].bestType = 'Royal Flush'
             }
             else if ( point > 900){
-                type = 'Straight Flush'
+                this.state.players[i].bestType = 'Straight Flush'
             }
             else if ( point > 800){
-                type = 'Four of a kind'
+                this.state.players[i].bestType = 'Four of a kind'
             }
             else if ( point > 700){
-                type = 'Full house'
+                this.state.players[i].bestType = 'Full house'
             }
             else if ( point > 600){
-                type = 'Flush'
+                this.state.players[i].bestType = 'Flush'
             }
             else if ( point > 500){
-                type = 'Straight'
+                this.state.players[i].bestType = 'Straight'
             }
             else if ( point > 400){
-                type = 'Three of a kind'
+                this.state.players[i].bestType = 'Three of a kind'
             }
             else if ( point > 300){
-                type = 'Two pairs'
+                this.state.players[i].bestType = 'Two pairs'
             }
             else if ( point > 200){
-                type = 'One pair'
+                this.state.players[i].bestType = 'One pair'
             }
             else if ( point > 100){
-                type = 'High card'
+                this.state.players[i].bestType = 'High card'
             }
         }
         var endPlayer = []
@@ -410,7 +432,7 @@ class TexasModel{
             });
             this.state.winner.push(endPlayer[0]);
             endPlayer[0].win = true;
-            for (var i = 0; i < endPlayer.length - 1; i++)
+            for (var i = 1; i < endPlayer.length ; i++)
             {
                 if (endPlayer[i].bestHand.bestPoint 
                     == endPlayer[0].bestHand.bestPoint)
@@ -455,6 +477,7 @@ class TexasModel{
             this.state.counter --;
             this.nextActivePlayer();
             document.getElementById('userBet').value = '';
+            this.state.userBet = 0;
         }
         
     }
@@ -470,7 +493,7 @@ class TexasModel{
             const oldIndex = this.state.alive.indexOf(0)
 
 
-            this.state.alive.splice(this.state.alive.indexOf(0),1);
+            this.state.alive.splice(oldIndex,1);
             const nextTempIndex =  (oldIndex == this.state.alive.length? 0 : oldIndex);
             const nextIndex = this.state.alive[nextTempIndex]
             this.state.activePlayerIndex = nextIndex;
