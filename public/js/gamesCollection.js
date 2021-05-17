@@ -31,29 +31,17 @@ class GamesCollection{
         }
         return this.signText;
     }
-    // setModel(model){
-    //     var loadModel = JSON.parse(model);
-    //     this.observer = loadModel.observers;
-    //     this.userID = loadModel.userID;
-    //     this.userEmail = loadModel.userEmail;
-    //     this.signText = loadModel.signText;
-        
-    //     this.freeCellModel = new FreeCellModel();
-    //     this.freeCellModel.setModel(loadModel.freeCellModel);
+    // addObserver(callback){this.observer = [...this.observer, callback];}
+    // removeObserver(callback){this.observer = this.observer.filter(e=>{e!==callback});}
+    // notifyObservers(){
+    //     this.observer.forEach(e=>{
+    //         setTimeout(function () {
+    //             try {
+    //                 e.call();
+    //             } catch (er) {
+    //                 console.error(er);
+    //             }
+    //           }, 1000)
+    //     })
     // }
-
-
-    addObserver(callback){this.observer = [...this.observer, callback];}
-    removeObserver(callback){this.observer = this.observer.filter(e=>{e!==callback});}
-    notifyObservers(){
-        this.observer.forEach(e=>{
-            setTimeout(function () {
-                try {
-                    e.call();
-                } catch (er) {
-                    console.error(er);
-                }
-              }, 1000)
-        })
-    }
 }

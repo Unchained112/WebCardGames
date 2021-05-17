@@ -40,7 +40,6 @@ We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, a
 
 **Notice:** 
 
-- **Texas is still under construction, please check other pages for now**
 1. To host the website locally, run "python -m http.server" in the "public" folder. Under local host condition, firebase is not usable due to the security rules of the realtime database.
 2. For the persistence of our website, we only store the data for users who have signed in with their account. Currently, the website can only persist FreeCell game data. Of course, all content on this website is accessible without login.
 3. Besides, for games like blackjack and 24Game, it is not necessary to store their in-game data since the round is very short, we will only store the data such as scores.
