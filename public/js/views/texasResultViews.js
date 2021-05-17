@@ -9,9 +9,6 @@ function TexasResultView(props){
         <h5 className="showdown-container--title">
           Round Complete!
         </h5>
-        <div className="showdown-container--messages">
-          take chips
-        </div>
         <h5 className="showdown-container--community-card-label">
           Community Cards
         </h5>
@@ -56,10 +53,10 @@ function TexasResultView(props){
                             </div>
 
                             <div className='showdown-player--besthand--container'>
-                                <h5 class="showdown-player--besthand--heading" style={{alignItems: 'center'}}>
+                                <h5 class="showdown-player--besthand--heading">
                                     Best Hand
                                 </h5>
-                                <div className='showdown-player--besthand--cards' style={{alignItems: 'center'}}>
+                                <div className='showdown-player--besthand--cards'>
                                     <img src={players[arrayIndex].bestHand.bestCards[0].image}
                                         style = {{'width': 50}}/>
                                     <img src={players[arrayIndex].bestHand.bestCards[1].image}
@@ -74,6 +71,9 @@ function TexasResultView(props){
                                 </div>
                                 
                             </div>
+                            <div class={`showdownPlayer--earnings ${(players[arrayIndex].win) ? ('positive') :  ('negative')}`}>
+			                    {`${(players[arrayIndex].win) ? ('+') : ('-')}${(players[arrayIndex].win)? (props.model.state.pot / props.model.state.winner.length) : (players[arrayIndex].bet)}`}
+		                    </div>  
                         </div>
                     
                     

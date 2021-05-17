@@ -43,6 +43,38 @@
 	padding: 6px 6px 6px 6px
 }
 
+
+
+.folded {
+	animation-delay: 0.5s;
+	animation: fade-in-out 0.5s;
+	animation-duration: 0.5s;
+	animation-fill-mode: both;
+}
+
+@keyframes fade-in-out {
+	0% {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-100%)
+	}
+}
+
+.showdownPlayer--earnings {
+	text-align: center;
+}
+
+.showdownPlayer--earnings.positive {
+	color: #4EB04E;
+}
+
+.showdownPlayer--earnings.negative {
+	color: #97241B;
+}
+
 .player-info--name {
 	display: flex;
 	justify-content: center;

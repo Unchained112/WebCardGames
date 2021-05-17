@@ -61,7 +61,7 @@ function TexasView(props){
                     .map(
                         function(e){
                             var url=e.image;
-                            return (<img src={url}/>)
+                            return (<img className = 'w3-animate-left' src={url}/>)
                         }
                     )
                 }
@@ -82,18 +82,24 @@ function TexasView(props){
                                         {/* <p class="w3-center w3-animate-bottom" 
                                                     style= {{'display': ((props.model.state.activePlayerIndex == arrayIndex)? 'block': 'none')}}>Raise!
                                                 </p> */}
-                                        <div className='playing-card'>
-                                            <img src={players[arrayIndex].cards[0].image}
-                                                style = {{'width': 50}}
+                                        <div>
+                                            {/* <img src={players[arrayIndex].cards[0].image}
+                                                style = {{'width': 40,'display': (players[arrayIndex].folded? 'none': 'block')}}
                                                 />
                                             <img src={players[arrayIndex].cards[1].image}
+                                                style = {{'width': 40,'display': (players[arrayIndex].folded? 'none': 'block')}}
+                                                />          */}
+                                            <img className = {`${(players[arrayIndex].folded ? 'folded' : 'w3-animate-bottom ')}`} src={players[arrayIndex].cards[0].image}
                                                 style = {{'width': 50}}
-                                                />         
+                                                />
+                                            <img className = {`${(players[arrayIndex].folded ? 'folded' : 'w3-animate-bottom ')}`} src={players[arrayIndex].cards[1].image}
+                                                style = {{'width': 50}}
+                                                />  
                                         </div>
                 
                                         <div className="player-entity--container">
                                             
-                                            <div className="player-avatar--container">
+                                            <div className="player-avatar--container w3-animate-opacity">
                                                 <img 
                                                     className={`player-avatar--image${((props.model.state.activePlayerIndex == arrayIndex)  ? ' activePlayer' : '')}`} 
                                                     src={players[arrayIndex].avatarURL} 
