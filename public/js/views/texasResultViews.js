@@ -9,6 +9,10 @@ function TexasResultView(props){
         <h5 className="showdown-container--title">
           Round Complete!
         </h5>
+        <button class="w3-button w3-green w3-round-xlarge " 
+        onClick = {e => {window.location.hash = "#texas"; props.model.setInitialized(false)}}>
+            Player Again
+        </button>
         <h5 className="showdown-container--community-card-label">
           Community Cards
         </h5>
@@ -72,8 +76,10 @@ function TexasResultView(props){
                                 
                             </div>
                             <div class={`showdownPlayer--earnings ${(players[arrayIndex].win) ? ('positive') :  ('negative')}`}>
-			                    {`${(players[arrayIndex].win) ? ('+') : ('-')}${(players[arrayIndex].win)? (props.model.state.pot / props.model.state.winner.length) : (players[arrayIndex].bet)}`}
-		                    </div>  
+			                    {`${(players[arrayIndex].win) ? ('+') : ('-')}${(players[arrayIndex].win)? (Math.floor(props.model.state.pot / props.model.state.winner.length)) : (players[arrayIndex].bet)}`}
+		                    </div> 
+
+                             
                         </div>
                     
                     
@@ -84,6 +90,7 @@ function TexasResultView(props){
                 )
             }
         </div>
+
       </div>
 
 

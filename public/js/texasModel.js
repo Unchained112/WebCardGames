@@ -3,43 +3,22 @@ class TexasModel{
         this.state = {
             initialized : false,
         
-            
-            players : [{
-                    id: this.uuid(),
-                    name: "You",
-                    avatarURL: "./assets/boy.svg",
-                    cards: [],
-                    chips: 20000,
-                    roundStartChips: 20000,
-                    bet: 0,
-                    betted: false,
-                    folded: false,
-                    win: false,
-                    bestHand:{
-                        bestCards: [],
-                        bestPoint: 100,
-                    },
-                    bestType: null,
-                }],
+            players : [],
             activePlayer : null,    
             activePlayerIndex :null,
             alive: [],
-            aliveNum: null,
             dealerIndex: null,
             blindIndex: null,
             communityCards : [],
             shownCommunityCards : [],
-            shownNum : 3,
+            shownNum : 0,
             pot : 0,
-            highBet : null,
-            betInputValue : null,
-            sidePots : [],
             minBet : 0,
             phase : null,
             pause : false,
             userBet : 0,
             blindBet : 0,
-            counter: 4,
+            counter: null,
             winner: [],
 
         }
@@ -50,17 +29,32 @@ class TexasModel{
     // Player.js part
     async generateTable(totalCards){
         const response = await axios.get(`https://randomuser.me/api/?results=4&nat=us,gb,fr`);
-        
+        this.state.players = [{
+            id: this.uuid(),
+            name: "You",
+            avatarURL: "./assets/boy.svg",
+            cards: [],
+            chips: 20000,
+            roundStartChips: 20000,
+            bet: 0,
+            betted: false,
+            folded: false,
+            win: false,
+            bestHand:{
+                bestCards: [],
+                bestPoint: 100,
+            },
+            bestType: null,
+        }];
 	    response.data.results
 		.map(user => {
-			const randomizedChips = Math.floor(Math.random() * (20000 - 18000)) + 18000;
 			return ({
 				id: this.uuid(),
 				name: `${user.name.first.charAt(0).toUpperCase()}${user.name.first.slice(1)} ${user.name.last.charAt(0).toUpperCase()}${user.name.last.slice(1)}`,
 				avatarURL: user.picture.large,
 				cards: [],
-				chips: randomizedChips, 
-                roundStartChips: randomizedChips,
+				chips: 20000, 
+                roundStartChips: 20000,
 				bet: 0,
 				folded: false,
 				win: false,
@@ -73,14 +67,26 @@ class TexasModel{
 			})
 		})
 		.forEach(user => this.state.players.push(user));
+        this.state.activePlayer =  null;    
+        this.state.activePlayerIndex = null;
 
+
+
+
+        this.state.pot = 0;
+        this.state.minBet = 0;
+        this.state.phase = null;
+        this.state.pause = false;
+        this.state.userBet = 0;
+        this.state.blindBet = 0;
+        this.state.counter= null;
+        this.state.winner= [];
 
         this.state.dealerIndex = Math.floor(Math.random() * 5);
 
         this.state.blindIndex = (this.state.dealerIndex + 1) % 5;
         
         this.state.alive = [0, 1, 2, 3, 4];
-        this.state.aliveNum = this.state.alive.length;
         
         
 
@@ -88,6 +94,7 @@ class TexasModel{
                                             {image: './assets/back_texas.png'},
                                             {image: './assets/back_texas.png'},]
         this.state.communityCards = totalCards.slice(0,5);
+        this.shownNum = 0;
         for (var i = 0; i < 5; i++){
             this.state.players[i].cards = totalCards.slice(i+5,i+7);
         }
@@ -135,7 +142,7 @@ class TexasModel{
         if ((this.state.players[0].bet != 0) 
             && (this.state.pause == false))
         {
-            this.state.phase = 'Preflop';
+            this.state.phase = 'Pre-flop';
             return  ;
         }
         
@@ -150,10 +157,10 @@ class TexasModel{
         }
         else{
             
-            this.state.blindBet = Math.floor(this.state.activePlayer.chips * (Math.random() + 1 ) * 0.1);
+            this.state.blindBet = Math.floor(this.state.activePlayer.chips * (Math.random() * 0.05 + 0.05 ));
             this.raiseBet(this.state.blindBet);      
             this.nextActivePlayer();
-            this.state.phase = 'Preflop';
+            this.state.phase = 'Pre-flop';
             
             
         }
@@ -166,7 +173,7 @@ class TexasModel{
     startBet()
     {
         console.log('Start Bet')
-        this.state.counter = 4; //counter reset at every round
+        this.state.counter = this.state.alive.length; //counter reset at every round
         
         this.showDownCheck();
         if (this.state.players[this.state.blindIndex].folded)
@@ -182,12 +189,12 @@ class TexasModel{
         this.state.activePlayerIndex = this.state.blindIndex;
         var index = this.state.activePlayerIndex;
         this.state.activePlayer = this.state.players[index];
-        const nextTempIndex = (index + 1) % this.state.aliveNum;
+        const nextTempIndex = (index + 1) % this.state.alive.length;
         const nextIndex = this.state.alive[nextTempIndex]
         if (index == 0)
         {
-            if (this.players[0].betted){
-                this.players[0].betted = false;
+            if (this.state.players[0].betted){
+                this.state.players[0].betted = false;
                 this.state.phase = 'PFTR';
                 this.nextActivePlayer();
                 return  ;
@@ -209,16 +216,14 @@ class TexasModel{
             var raiseBet = 0;
             if (random > this.state.activePlayer.bet){
                 raiseBet = Math.floor(this.state.minBet * (Math.random() + 1 ) * 0.01 );
-                if (raiseBet + this.state.activePlayer.bet > this.state.activePlayer.chips)
-                {
-                    raiseBet = 0;
-                }
+                
                 console.log(this.state.activePlayer.name, 'raise', raiseBet);
             }
             else{
                 raiseBet = 0;
                 console.log(this.state.activePlayer.name, 'call')
             }
+            
 
             const diff = this.state.minBet + raiseBet - this.state.activePlayer.bet;
     
@@ -226,8 +231,22 @@ class TexasModel{
             this.state.activePlayer.chips -= diff;
             this.state.pot += diff;
             this.state.minBet += raiseBet;
+
+
             this.nextActivePlayer();
-            this.state.phase = 'PFTR';
+            if (this.state.shownNum == 3)
+            {
+                this.state.phase = 'Flop';
+            }
+            else if (this.state.shownNum == 4)
+            {
+                this.state.phase = 'Turn';
+            }
+            else if(this.state.shownNum == 5)
+            {
+                this.state.phase = 'River';
+            }
+            
             
             
         }
@@ -239,7 +258,7 @@ class TexasModel{
     PFTR(){ 
         var state = this.state;
         setTimeout(function(state){
-            if (state.phase == 'PFTR')
+            if (state.phase == 'Flop' || state.phase == 'Turn' || state.phase == 'River')
             {
                 state.shownCommunityCards = state.communityCards.slice(0,state.shownNum);
             }
@@ -253,21 +272,24 @@ class TexasModel{
                 console.log('Pause');
                 return ;
             }
+            
             else{
+                
+                
                 var aggFactor = state.activePlayer.aggressive;
                 var pointFactor = state.activePlayer.bestHand.bestPoint * 0.001;
                 var raiseFactor = (aggFactor + pointFactor) / 2
                 var expectedBet = raiseFactor * state.activePlayer.roundStartChips;
                 console.log(state.activePlayer.name,'expectedBet is', expectedBet)
+                
                 //  Fold
-                if (state.activePlayer.bet > expectedBet && Math.random()  > aggFactor)
+                if (state.minBet > expectedBet && Math.random()  > aggFactor )
                 {
                     const oldIndex = state.alive.indexOf(index)
                     state.activePlayer.folded = true;
                     console.log(state.activePlayer.name, 'choose to fold')
                     state.alive.splice(state.alive.indexOf(index),1);
-                    state.aliveNum = state.alive.length
-                    const nextTempIndex =  (oldIndex == state.aliveNum? 0 : oldIndex);
+                    const nextTempIndex =  (oldIndex == state.alive.length? 0 : oldIndex);
                     const nextIndex = state.alive[nextTempIndex]
                     state.activePlayerIndex = nextIndex;
                     state.activePlayer = state.players[nextIndex];
@@ -279,11 +301,9 @@ class TexasModel{
                 var raiseBet = 0;
                 //  Raise
                 if (random > state.activePlayer.bet){
-                    raiseBet = Math.floor(state.minBet * (Math.random() + 1 ) * 0.01 );
-                    if (raiseBet + state.activePlayer.bet > state.activePlayer.chips)
-                    {
-                        raiseBet = 0;
-                    }
+                    raiseBet = Math.floor(state.minBet * (Math.random() + 1 ) * 0.1 );
+                    
+                    
                     console.log(state.activePlayer.name, 'raise', raiseBet);
                 }
                 //  Call/Check
@@ -291,6 +311,7 @@ class TexasModel{
                     raiseBet = 0;
                     console.log(state.activePlayer.name, 'call')
                 }
+                
     
                 const diff = state.minBet + raiseBet - state.activePlayer.bet;
         
@@ -299,8 +320,10 @@ class TexasModel{
                 state.pot += diff;
                 state.minBet += raiseBet;
                 state.counter --;
+            
+                
 
-                const nextTempIndex = (state.alive.indexOf(index) + 1) % state.aliveNum;
+                const nextTempIndex = (state.alive.indexOf(index) + 1) % state.alive.length;
                 console.log(state.alive,nextTempIndex)
                 const nextIndex = state.alive[nextTempIndex]
                 console.log('next is', nextIndex)
@@ -308,14 +331,22 @@ class TexasModel{
                         && (state.activePlayer.bet != 0)) 
                         && (state.pause == false)
                         && (state.counter <= 0)){
-                    state.phase = 'Start Bet';                
-                    state.shownNum += 1;
+                    if (state.phase == 'Pre-flop'){
+                        state.shownNum = 3
+                    }   
+                    else{
+                        state.shownNum += 1;
+                    } 
+                    
+                    state.phase = 'Start Bet';
+                    if (state.shownNum >= 6 || state.alive.length <= 1){
+                        state.phase = 'Show Down'
+                    }   
+                    
                 }
                 state.activePlayerIndex = nextIndex;
                 state.activePlayer = state.players[nextIndex];
-                if (state.shownNum >= 6 || state.aliveNum <= 1){
-                    state.phase = 'Show Down'
-                }
+                
             }
             
 
@@ -324,7 +355,7 @@ class TexasModel{
             
             
             
-        },2000,state);
+        },1500,state);
     }
 
     showDown()
@@ -399,7 +430,12 @@ class TexasModel{
     setUserBet(userBet){
         console.log("user bet is", userBet)
         this.state.userBet = parseInt(userBet);
-        
+        if ( this.state.userBet < 0){
+            alert('Raise bet cannot be negative~')
+        }
+        if (this.state.minBet + this.state.userBet > this.state.players[0].roundStartChips){
+            alert('You do not have enough chips~')
+        }
     }
 
     limp(){
@@ -411,14 +447,37 @@ class TexasModel{
     }
     
     raise(){
-        this.state.players[0].betted = true;
-        this.state.pause = false;
-        this.raiseBet(this.state.userBet);
-        this.state.counter --;
-        this.nextActivePlayer();
-        document.getElementById('userBet').value = '';
+        if (this.state.userBet >= 0 && this.state.minBet + this.state.userBet <= this.state.players[0].roundStartChips)
+        {
+            this.state.players[0].betted = true;
+            this.state.pause = false;
+            this.raiseBet(this.state.userBet);
+            this.state.counter --;
+            this.nextActivePlayer();
+            document.getElementById('userBet').value = '';
+        }
+        
     }
     
+
+    fold()
+    {
+        if (this.state.players[0].folded == false && this.state.alive.length > 1)
+        {
+            this.state.players[0].folded = true;
+            this.state.pause = false;
+            this.state.counter --;
+            const oldIndex = this.state.alive.indexOf(0)
+
+
+            this.state.alive.splice(this.state.alive.indexOf(0),1);
+            const nextTempIndex =  (oldIndex == this.state.alive.length? 0 : oldIndex);
+            const nextIndex = this.state.alive[nextTempIndex]
+            this.state.activePlayerIndex = nextIndex;
+            this.state.activePlayer = this.state.players[nextIndex];
+            
+        }
+    }
     raiseBet(bet)
     {
         const diff = this.state.minBet + bet - this.state.activePlayer.bet
@@ -437,7 +496,7 @@ class TexasModel{
 
     nextActivePlayer(){
         var index = this.state.alive.indexOf(this.state.activePlayerIndex)
-        const nextIndex = (index + 1) % this.state.aliveNum;
+        const nextIndex = (index + 1) % this.state.alive.length;
         const nextActiveIndex = this.state.alive[nextIndex]
         this.state.activePlayerIndex = nextActiveIndex
         this.state.activePlayer = this.state.players[nextActiveIndex];
@@ -447,8 +506,8 @@ class TexasModel{
         return playerIndex == this.state.activePlayerIndex;
     }
 
-    setInitialized(){
-        this.state.initialized = true;
+    setInitialized(val){
+        this.state.initialized = val;
     }
 
     isRoyalFlush(cards){
