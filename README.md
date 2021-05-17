@@ -89,12 +89,11 @@ We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, a
 
 ###  Ziyu Tang
 **Current Stage**
-1. Completed most of the user interface in Texas, and completed part of the event. Since there is no part of ai, the web page is still not interactive
-
+1. Complete the basic functions of Texas hold'em poker game. Including an introduction, the main body of the game and a result page.
 
 **Plan to do**
-1. Complete the rule introduction interface and complete the settlement interface
-2. Complete the remaining event
+1. Complete the all-in function. All-in funtion involves the 'side pot' and some complex element.
+2. Improve the principle of action of bots.
 
 ---
 ## User Evaluation
