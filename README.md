@@ -117,3 +117,24 @@ As he went through different pages and tried different games, he noted some prob
 Besides, every time he clicked on the play again button, the page would be refreshed, which is strange (This is fixed now). Then on the Breakout page, the text color is not consistent. Sometimes it became black, making it hard to read (This is fixed, now all text on that page is white). Finally, it is not intuitive to click the "Close" button to close the navigation bar (We are working on it). He expected it to disappear once it jumps to another page or clicks anywhere on the web page apart from the navigation bar.
 
 In the end, he said that the overall experience is satisfying as there are a lot of games to play, and there are some stories about the games. 
+
+**Case Study 2**
+
+ - Interviewer: Yating Liu
+ - Interviewee: Mr. Wang
+
+The user evaluation is conducted face-to-face. I gave Mr. Wang the link of our website and let him wonder on our website by himself. 
+
+When Mr. Wang entered our website, he instantly knew from our website title that our website was about some poker games, while he could not find the games intuitively. After a trial on clicking the top-left corner, he found the game list. He thought the closure of the navigation bar should be more smooth. For example, when he had selected a game, the bar should be closed automatically.
+
+He first tried 24 game. He had never played the game before, but he quickly learned how to play it after reading the instruction. The card on the top left corner was confusing at the beginning. He tried a few rounds and jumped to the next game, so he did't see the report part.
+
+He had played freecell before, so he was quite confident about the game. He thought he should drag the card to some place at the beginning, but when he noticed the instruction "You haven't selected any card", he realized he should click the card instead of dragging them.
+
+He then tried breakout. The screen of his computer was small, so he could not see the whole breakout window, unless he manually zoom out the website in the browser. He found the game was interesting.
+
+He didn't know how to play blackjack, but he started the game directly without reading the introduction. He then losed the game quickly and lose his interest. 
+
+He was interested to see the texas, but he could not play it.
+
+In the end, he remarked the website as interesting and usable. 
