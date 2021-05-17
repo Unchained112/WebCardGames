@@ -12,17 +12,20 @@ const BlackjackPresenter = {
 		        this.data = this.error = null;
                 if(this.promise){
 			        const p = this.promise;
-                    this.promise.then(dt=>{if(this.promise===p)
-                        {//console.log(dt);
+                    this.promise
+                    .then(dt=>{
+                        if(this.promise===p){
+                            //console.log(dt);
                             this.data = dt[1].cards;
                             //console.log(this.data)
-                        } })
-                        .catch(er=>{
-                            if(this.promise===p){
-                                console.log(er);
-                                this.promise = Promise.all([CardSource.reShuffle(DECK_ID_BLACKJACK),CardSource.drawCards(DECK_ID_BLACKJACK,24)]);
-                            }
-                        });
+                        } 
+                    })
+                    .catch(er=>{
+                        if(this.promise===p){
+                            console.log(er);
+                            this.promise = Promise.all([CardSource.reShuffle(DECK_ID_BLACKJACK),CardSource.drawCards(DECK_ID_BLACKJACK,24)]);
+                         }
+                    });
                 }
                 console.log(this.promise);
             }
@@ -38,8 +41,8 @@ const BlackjackPresenter = {
                             hit={()=>{this.model.Hit()}}
                             stand={()=>{this.model.Stand()}}
                             clear={()=>{                               
-                                this.promise = Promise.all([CardSource.reShuffle(DECK_ID_BLACKJACK),CardSource.drawCards(DECK_ID_BLACKJACK,24)]);
-                                this.model.RestartGame(this.data);
+                                //this.promise = Promise.all([CardSource.reShuffle(DECK_ID_BLACKJACK),CardSource.drawCards(DECK_ID_BLACKJACK,24)]);
+                                this.model.RestartGame();
                             }}
             />}
         </div>

@@ -206,8 +206,29 @@ class BlackjackModel{
         }
     }
 
-    RestartGame(cards){
-        this.cardpool=cards;
+    updateCardPool(){
+        var newPromise = Promise.all([CardSource.reShuffle(DECK_ID_BLACKJACK),CardSource.drawCards(DECK_ID_BLACKJACK,24)]);
+        const p = newPromise;
+        newPromise
+        .then(dt=>{
+            if(newPromise===p){
+                //console.log(dt);
+                this.cardpool = dt[1].cards;
+                //console.log(this.data)
+            } 
+        })
+        .catch(er=>{
+            if(newPromise===p){
+                console.log(er);
+                newPromise = Promise.all([CardSource.reShuffle(DECK_ID_BLACKJACK),CardSource.drawCards(DECK_ID_BLACKJACK,24)]);
+                }
+            });
+        //this.cardpool = data[];
+
+    }
+
+    RestartGame(){
+        //this.cardpool=cards;
         this.host=[];
         this.player=[];
         this.playersum=0;

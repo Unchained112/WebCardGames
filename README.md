@@ -15,7 +15,7 @@ Web poker games collection: https://web-card-games.web.app
 
 ## Project Introduction
 Our project aims to provides players with several small games related to poker cards online. Players can learn and play different games on our website. Besides, we also hope to offer some interesting story about the game together with the game introduction.
-We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, and draw cards [Deck of Cards API](https://stackoverflow.com/questions/6957443/how-to-display-div-after-click-the-button-in-javascript). In this project, we use Vue as the base of our MVP model.
+We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, and draw cards [Deck of Cards API](https://stackoverflow.com/questions/6957443/how-to-display-div-after-click-the-button-in-javascript). In 24 game, we use an additional api([24 Point Poker Game Calculator](https://helloacm.com/24/)) to provide sample solutions for users. In this project, we use Vue as the base of our MVP model. We mainly use w3.css to decorate our website, but some other effects that are not included in w3.css are manually written, such as the homepage title background, buttons and flippable card in 24 game, etc.
 
 ---
 ## Project Structure 
@@ -24,6 +24,7 @@ We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, a
     - apiConfig: store const values used for drawing data from the API
     - app.js: show the navigation bar and display different presenters
     - cardSource.js: fetch data from APIs
+    - game24examSource.js: fetch data from APIs for 24 game
     - variable.js: store and pass the project variables to different files under one namespace. (To avoid the usage of global variable)
     - xxxModel.js: store different game models
     - views (folder):
@@ -65,23 +66,26 @@ We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, a
 
 ### Yating Liu
 **Current Stage**
-1. Implement a calculator to calculate the user input formula.
-2. Implement a view of 4 cards assigned to the user and a view of user input formula.
-
-**Plan to do**
-1. Implement a change of 4 cards when user finished a round
-2. Implement a timer
-3. Implement a restart function
-4. Implement a solution function
-5. Implement a score function
+1. Build 24 game
+    - Implement a start page that give a brief introduction about the background and the rules of 24 game. An example is added to help the user understand how to play the game.
+    - Implement a 24 game page with 4 views, 2 presenters, 2 api sources and 1 model. The 24 game page mainly has the following components:
+        - A card that can flip when user hover over it, showing the solution that users give and the corresponding sample solution.
+        - A calculator with a digital screen look, basic operators and functions that users might need. 
+        - A row of cards that is drawed instantly after the user finish the last round.
+        - A report that records all the cards, the user's solution, the sample solutions and the total score when the user finished all ten rounds.
+3. Design overall style of the home page, navigation bar and 24 game with w3.css and muanually written css.
+    - The home page title and its background in a russian roulette style.
+    - The navigation bar and the pictures on it.
+    - The digital screen, hoverable and flippable cards and the button animation.
 
 ### Yifei Wang
 **Current Stage**
 1. Build the blackjack game with poker cards
-    - Well-designed layout
+    - Basic functions and corresponding effects
     - Introduction to this game
-2. Create a fundamental level Ai robot in the game
-
+2. Create a fundamental level Ai robot
+    - Play the role of banker in the game.
+    - Capable of judging the current stage of player and make decision on next step.
 
 ###  Ziyu Tang
 **Current Stage**
