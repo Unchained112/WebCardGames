@@ -43,14 +43,14 @@ function HomeView(){
             </div>
 
             <div id="homepage" class="w3-container w3-row" style="padding:64px">
-                <div class="w3-quarter w3-container" style="min-width: 250px; max-width: 300px">
-                    <img src="./assets/2006_WSOP_Main_Event_Table.jpg" style="width:100%"></img>
+                <div class="w3-third w3-container w3-center">
+                    <img src="./assets/2006_WSOP_Main_Event_Table.jpg" style="min-width: 250px; max-width: 300px"></img>
                     <br></br>
                     <p class="w3-center">2006 World Series of Poker <br></br>
                         main event table</p>
                 </div>
 
-                <div class="w3-rest w3-container">
+                <div class="w3-twothird w3-container">
                     <h2>Poker Game Collection</h2>
                     <p>Our project aims to provide players with several small games related to poker cards online. Players can learn and play different games on our website. Besides, we also hope to offer some interesting stories about the game together with the game introduction. We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, and draw cards Deck of Cards API. In 24 Game, an additional 24 Point Poker Game Calculator API is used to get sample solutions. You are welcome to visit our project's <a href="https://github.com/Unchained112/WebCardGames">GitHub repository</a>. </p>
 

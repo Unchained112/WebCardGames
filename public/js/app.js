@@ -1,8 +1,8 @@
 const App= (props)=>
 <div>
     <div class="w3-casino-green">
-    <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button "/>
-    <a class="w3-right w3-text-white w3-button" style="margin-top: 1" onclick={r=>{GoSign(props.model);}}>{props.model.showSignText()}</a>
+    <i onclick="w3_open()" class="fa fa-bars w3-large w3-button " style="font-size:5vw">  Menu</i>
+    <i class="w3-right fa w3-large w3-button " style="font-size:5vw" onclick={r=>{GoSign(props.model);}}>{props.model.showSignText()}</i>
     </div>
     <nav class="w3-text-blue-grey w3-light-gray w3-sidebar w3-bar-block w3-card w3-animate-left w3-center" style="display:none" id="mySidebar">
     <button class="w3-bar-item w3-button " onclick="w3_close()">Close <i class="fa fa-remove"></i></button>
