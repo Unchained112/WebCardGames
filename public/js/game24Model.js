@@ -54,19 +54,10 @@ class game24Model{
         this.cardhistory=[...this.cardhistory,this.previouscard.cards]
         this.solutionhistory=[...this.solutionhistory,sol]
         this.usersolutionhistory=[...this.usersolutionhistory,this.previoususersolution]
-        /*let index=this.illegaloperator(examdata)
-        if(this.examdata.cnt===0){
-            this.solutionhistory=[...this.solutionhistory,"Not Solvable"]
-        }else if(index===-1){
-            this.solutionhistory=[...this.solutionhistory,"Not Solvable"]
-        }
-        else{
-            this.solutionhistory=[...this.solutionhistory,examdata.result[index]]
-        }*/
     }
 
     calculatescore(){
-        console.log("calculating final score")
+        //console.log("calculating final score")
         this.cnt=this.cnt.slice(1)
         this.cardhistory=this.cardhistory.slice(1)
         this.solutionhistory=this.solutionhistory.slice(1)
@@ -122,7 +113,7 @@ class game24Model{
     }
 
     solvableresult(e){
-        console.log(e)
+        //console.log(e)
         if(e.cnt==0){
             return "No solution for previous round"
         }else{
@@ -164,7 +155,7 @@ class game24Model{
             this.cardFlag=true
             this.usedCard=[...this.usedCard,x]
         }else{
-            console.log("Illegal Action: Card Already Used")
+            //console.log("Illegal Action: Card Already Used")
             alert("Card Already Used!")
         }
     }
@@ -224,7 +215,7 @@ class game24Model{
             if(this.usedCard.length!==4){
                 throw -1
             }
-            console.log("User compute "+this.result)
+            //console.log("User compute "+this.result)
             this.thisround=this.thisround+1
             this.previoususersolution=this.simpleformula+"="+this.result
             this.resultrecord=[...this.resultrecord,this.result]
@@ -244,7 +235,7 @@ class game24Model{
     }
 
     nosolution(){
-        console.log("User choose No Solution")
+        //console.log("User choose No Solution")
         this.thisround=this.thisround+1
         this.previoususersolution="No Solution"
         this.resultrecord=[...this.resultrecord,this.previoususersolution]
@@ -259,9 +250,9 @@ class game24Model{
         var lefttime=endtime.getTime()-nowtime.getTime()
         var leftm = Math.floor(lefttime/(1000*60)%60)
         var lefts = Math.floor(lefttime/1000%60)
-        console.log(leftm + ":" + lefts)
+        //console.log(leftm + ":" + lefts)
         this.lefttime= leftm + ":" + lefts
-        console.log(this.lefttime)
+        //console.log(this.lefttime)
         return this.lefttime
     }
 

@@ -2,8 +2,8 @@ function BasicActionView(props){
 
     if(props.gameover){
         let result=props.report
-        console.log("Report")
-        console.log(result)
+        //console.log("Report")
+        //console.log(result)
         return (
             <div className="w3-container w3-center">
                 <div className="div-inline" onClick={()=>{props.recordppsampleSolutionCnt();props.calculatescore();props.createreport();document.getElementById('game24score').style.display='block'}}>
@@ -78,7 +78,7 @@ function BasicActionView(props){
                         props.OK();props.recordppsampleSolutionCnt();props.findsampleSolution();
                     }
                     catch (err){
-                        console.log("OK Error")
+                        //console.log("OK Error")
                     }}}>
                     <div className="game24calculatorButton" >
                         <a>OK</a>

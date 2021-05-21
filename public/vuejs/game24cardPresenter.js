@@ -18,7 +18,6 @@ const Game24cardPresenter={
                         }})
                         .catch(er=>{
                             if(this.promise===p){
-                                console.log(er);
                                 this.promise =Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
                             }});
                 }
@@ -33,11 +32,7 @@ const Game24cardPresenter={
                     this.solution
                         .then(dt=>{if(this.solution===q){
                             this.examdata = dt;
-                            console.log(this.examdata)
                         }})
-                        .catch(er=>{
-                            if(this.solution===q){console.log(er);}}
-                        )
                 }
             }
         }
@@ -59,7 +54,6 @@ const Game24cardPresenter={
                                                 return this.examdata.result[index]
                                             }
                                         }}
-                                        //addCorrect={()=>this.model.addcorrectsum()}
                                         previousUserSolution={this.model.previoususersolution}
                     />}
                 </div>
@@ -82,16 +76,12 @@ const Game24cardPresenter={
                                      OK={()=>{
                                          if(this.model.computeresult()){// Valid calculator syntax
                                              this.promise=Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
-                                             //promiseNoData(this.solution, this.examdata, this.error)
-                                             //this.model.addcorrectsum(this.solution.cnt)
                                          }else{
                                              throw -1
                                          }
                                      }}
                                      noSolution={()=>{this.model.nosolution();
                                          this.promise=Promise.all([CardSource.reShuffle(DECK_ID_24GAME_1),CardSource.drawCards(DECK_ID_24GAME_1,4)]);
-                                         //promiseNoData(this.solution, this.examdata, this.error)
-                                         //this.model.addcorrectsum(this.solution.cnt)
                                      }}
                                      findsampleSolution={()=>{
                                          this.model.previouscard=this.data
@@ -112,7 +102,6 @@ const Game24cardPresenter={
                                          this.model.addcnt(this.examdata.cnt,sol)
                                      }}
                                      calculatescore={()=>{
-                                         console.log("presenter calculate score")
                                          this.model.calculatescore()
                                      }}
                                      score={this.model.correctsum}
@@ -136,7 +125,7 @@ const Game24cardPresenter={
                                               return this.data
                                           }
                                       }}
-                                      cardChosen={code=>{console.log("The user chose card",code); this.model.addCardtoFormula(code)}}
+                                      cardChosen={code=>{this.model.addCardtoFormula(code)}}
                 />}
             </div>
         )
