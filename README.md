@@ -17,6 +17,8 @@ Web poker games collection: https://web-card-games.web.app
 Our project aims to provides players with several small games related to poker cards online. Players can learn and play different games on our website. Besides, we also hope to offer some interesting story about the game together with the game introduction.
 We utilized a set of APIs that allow us to draw decks of poker cards, shuffle, and draw cards [Deck of Cards API](https://stackoverflow.com/questions/6957443/how-to-display-div-after-click-the-button-in-javascript). In 24 game, we use an additional api([24 Point Poker Game Calculator](https://helloacm.com/24/)) to provide sample solutions for users. In this project, we use Vue as the base of our MVP model. We mainly use w3.css to decorate our website, but some other effects that are not included in w3.css are manually written, such as the homepage title background, buttons and flippable card in 24 game, etc.
 
+Third-Party APP: [W3.CSS](https://www.w3schools.com/w3css/default.asp) (Most of our responsive layout are stylish design are achieved using this)
+ 
 ---
 ## Project Structure 
 - index.html: display the content of the website from App

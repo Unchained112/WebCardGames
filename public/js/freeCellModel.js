@@ -40,7 +40,7 @@ class FreeCellModel{
         }
         this.notifyObservers();
         this.gameStart = true;
-        console.log("start");
+        //console.log("start");
         this.allCards = cards;
         for(var i = 0; i < 7; i++){
             this.pile_1.push(this.allCards[i]);
@@ -331,13 +331,13 @@ class FreeCellModel{
             .then(dt=>{
                 if(newPromise===p){
                     this.allCards = dt[0].cards;
-                    console.log(this.allCards);
+                    //console.log(this.allCards);
                     this.notifyObservers();
                 }
             })
             .catch(err=>{
                 if(newPromise===p){
-                    console.log(err);
+                    //console.log(err);
                     newPromise = Promise.all([CardSource.drawCards(DECK_ID_BREAKOUT_2, 52), CardSource.reShuffle(DECK_ID_BREAKOUT_2)]);
                 }
             });

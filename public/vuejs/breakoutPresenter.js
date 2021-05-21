@@ -12,10 +12,10 @@ const BreakoutPresenter = {
                 if(this.promise){
 			        const p = this.promise;
                     this.promise
-                    .then(dt=>{if(this.promise===p){this.data = dt[0];console.log(this.data)} })
+                    .then(dt=>{if(this.promise===p){this.data = dt[0];} })
                     .catch(er=>{
                         if(this.promise===p){
-                            console.log(er);
+                            console.error(er);
                             this.promise = Promise.all([CardSource.drawCards(DECK_ID_BREAKOUT_1, 52), CardSource.reShuffle(DECK_ID_BREAKOUT_1)]);
                         }
                     });

@@ -1,5 +1,5 @@
 function BreakoutView(props){
-    console.log(props.breakout_data);
+    //console.log(props.breakout_data);
     writeData(props.breakout_data);
     return (
 		<div class="w3-row-padding w3-text-white" id="breakout">
@@ -152,12 +152,12 @@ document.onkeydown = function(e){
 		dKeyDown = true;
 	}
 	if(e.keyCode === 82){
-        console.log(gameStart);
+        //console.log(gameStart);
 		if(gameOver) restart(cards);
 	}
     if(e.keyCode === 83){
         gameStart = true;
-        console.log(gameStart);
+        //console.log(gameStart);
     }
     if(e.keyCode == 80){
         if(isPause === false){
