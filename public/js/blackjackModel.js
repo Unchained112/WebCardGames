@@ -45,7 +45,7 @@ class BlackjackModel{
     Stand(){
         if(this.startnum===1){
             while(this.hostsum<this.playersum && this.hostsum<17){
-                //console.log(this.hostsum);
+                console.log(this.hostsum);
                 var x;
                 x=this.cardpool.pop();
                 this.host.push(x);
@@ -66,7 +66,7 @@ class BlackjackModel{
         var length=player.length;
         
         for(i=0;i<length;i++){ 
-            //console.log(player[i].value); 
+            console.log(player[i].value); 
             if(player[i].value ==="ACE"){ //从前往后遍历array，依次找到ace
                 for(j=length-1;j>=i;j--){ 
 
@@ -219,7 +219,7 @@ class BlackjackModel{
         })
         .catch(er=>{
             if(newPromise===p){
-                //console.log(er);
+                console.log(er);
                 newPromise = Promise.all([CardSource.reShuffle(DECK_ID_BLACKJACK),CardSource.drawCards(DECK_ID_BLACKJACK,24)]);
                 }
             });

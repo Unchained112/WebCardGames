@@ -22,12 +22,12 @@ const BlackjackPresenter = {
                     })
                     .catch(er=>{
                         if(this.promise===p){
-                            //console.log(er);
+                            console.log(er);
                             this.promise = Promise.all([CardSource.reShuffle(DECK_ID_BLACKJACK),CardSource.drawCards(DECK_ID_BLACKJACK,24)]);
                          }
                     });
                 }
-                //console.log(this.promise);
+                console.log(this.promise);
             }
         }
     },
