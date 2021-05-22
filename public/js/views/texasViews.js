@@ -4,7 +4,7 @@ function TexasView(props){
     {
         props.model.generateTable(totalCards);
         props.model.setInitialized(true);
-        console.log(props.model.state.initialized);
+        // console.log(props.model.state.initialized);
     }
    props.model.loop();
     

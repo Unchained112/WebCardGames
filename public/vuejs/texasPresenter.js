@@ -14,7 +14,7 @@ const TexasPresenter = {
                 if(this.promise){
 			        const p = this.promise;
                     this.promise.then(dt=>{if(this.promise===p)
-                        {this.data = dt[1];console.log(this.data)} })
+                        {this.data = dt[1];} })
                         .catch(er=>{if(this.promise===p){}});
                 }
             }
@@ -30,7 +30,7 @@ const TexasPresenter = {
                 call = {e => this.model.call()}
                 users =  {this.model.users}
                 totalCards={this.data} 
-                cardChosen={code=>{console.log("The user chose card",code); }}/>}
+                />}
             
         </div>
         
