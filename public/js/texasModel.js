@@ -101,7 +101,7 @@ class TexasModel{
 
         this.state.phase = 'Blind';
         this.state.pause = false;
-        console.log("generateTable done")
+        // console.log("generateTable done")
 
     }
     
@@ -137,7 +137,7 @@ class TexasModel{
  
     blind()
     {
-        console.log('Blind start')
+        // console.log('Blind start')
         // 
         if ((this.state.players[0].bet != 0) 
             && (this.state.pause == false))
@@ -152,7 +152,7 @@ class TexasModel{
         if (index == 0)
         {
             this.state.pause = true;
-            console.log('Pause');
+            // console.log('Pause');
             return  ;
         }
         else{
@@ -165,26 +165,26 @@ class TexasModel{
             
         }
         
-        console.log('Blind finished')
+        // console.log('Blind finished')
     }
 
 
 
     startBet()
     {
-        console.log('Start Bet')
+        // console.log('Start Bet')
         this.state.counter = this.state.alive.length; //counter reset at every round
         
         this.showDownCheck();
         if (this.state.players[this.state.blindIndex].folded)
         {
-            console.log('Big Blind Player has folded')
+            // console.log('Big Blind Player has folded')
             var tempIndex = (this.state.blindIndex + 1 ) % 5
             while (this.state.alive.indexOf(tempIndex) == -1){
                 tempIndex = (tempIndex + 1)%5
             }
             this.state.activePlayerIndex = tempIndex;
-            console.log('The new start should be', tempIndex)
+            // console.log('The new start should be', tempIndex)
         }
         else{
             this.state.activePlayerIndex = this.state.blindIndex;
@@ -219,7 +219,7 @@ class TexasModel{
             }
             else{
                 this.state.pause = true;
-                console.log('Pause');
+                // console.log('Pause');
                 return  ;
             }
             
@@ -235,11 +235,11 @@ class TexasModel{
             if (random > this.state.activePlayer.bet){
                 raiseBet = Math.floor(this.state.minBet * (Math.random() + 1 ) * 0.01 );
                 
-                console.log(this.state.activePlayer.name, 'raise', raiseBet);
+                // console.log(this.state.activePlayer.name, 'raise', raiseBet);
             }
             else{
                 raiseBet = 0;
-                console.log(this.state.activePlayer.name, 'call')
+                // console.log(this.state.activePlayer.name, 'call')
             }
             
 
@@ -269,7 +269,7 @@ class TexasModel{
             
         }
         
-        console.log('Start Bet finished')
+        // console.log('Start Bet finished')
     }
 
 
@@ -291,7 +291,7 @@ class TexasModel{
                 }
                 state.pause = true;
                  
-                console.log('Pause');
+                // console.log('Pause');
                 return ;
             }
             
@@ -302,21 +302,21 @@ class TexasModel{
                 var pointFactor = state.activePlayer.bestHand.bestPoint * 0.001;
                 var raiseFactor = (aggFactor + pointFactor) / 2
                 var expectedBet = raiseFactor * state.activePlayer.roundStartChips;
-                console.log(state.activePlayer.name,'expectedBet is', expectedBet)
+                // console.log(state.activePlayer.name,'expectedBet is', expectedBet)
                 
                 //  Fold
                 if (state.minBet > expectedBet && Math.random()  > aggFactor )
                 {
                     const oldIndex = state.alive.indexOf(index)
                     state.activePlayer.folded = true;
-                    console.log(state.activePlayer.name, 'choose to fold')
+                    // console.log(state.activePlayer.name, 'choose to fold')
                     state.alive.splice(state.alive.indexOf(index),1);
                     const nextTempIndex =  (oldIndex == state.alive.length? 0 : oldIndex);
                     const nextIndex = state.alive[nextTempIndex]
                     state.activePlayerIndex = nextIndex;
                     state.activePlayer = state.players[nextIndex];
                     
-                    console.log('now is', index, state.alive, 'next is', nextIndex)
+                    // console.log('now is', index, state.alive, 'next is', nextIndex)
                     return;
                 }
                 var random = Math.random() * expectedBet
@@ -326,12 +326,12 @@ class TexasModel{
                     raiseBet = Math.floor(state.minBet * (Math.random() + 1 ) * 0.1 );
                     
                     
-                    console.log(state.activePlayer.name, 'raise', raiseBet);
+                    // console.log(state.activePlayer.name, 'raise', raiseBet);
                 }
                 //  Call/Check
                 else{
                     raiseBet = 0;
-                    console.log(state.activePlayer.name, 'call')
+                    // console.log(state.activePlayer.name, 'call')
                 }
                 
     
@@ -346,9 +346,9 @@ class TexasModel{
                 
 
                 const nextTempIndex = (state.alive.indexOf(index) + 1) % state.alive.length;
-                console.log(state.alive,nextTempIndex)
+                // console.log(state.alive,nextTempIndex)
                 const nextIndex = state.alive[nextTempIndex]
-                console.log('next is', nextIndex)
+                // console.log('next is', nextIndex)
                 if ((state.activePlayer.bet == state.players[nextIndex].bet 
                         && (state.activePlayer.bet != 0)) 
                         && (state.pause == false)
@@ -450,7 +450,7 @@ class TexasModel{
    
 
     setUserBet(userBet){
-        console.log("user bet is", userBet)
+        // console.log("user bet is", userBet)
         this.state.userBet = parseInt(userBet);
         if ( this.state.userBet < 0){
             alert('Raise bet cannot be negative~')
@@ -731,21 +731,21 @@ class TexasModel{
         else{
             if (this.state.phase == 'Blind')
             {
-                console.log('Now is Blind bet')
+                // console.log('Now is Blind bet')
                 this.blind();
             }
             else if (this.state.phase == 'Start Bet')
             {
-                console.log('Now is start bet')
+                // console.log('Now is start bet')
                 this.startBet();
             }
             else if (this.state.phase == 'Show Down')
             {
-                console.log('Round complete')
+                // console.log('Round complete')
                 this.showDown();
             }
             else {
-                console.log('Now is bet loop', this.state.shownNum - 2)
+                // console.log('Now is bet loop', this.state.shownNum - 2)
                 this.PFTR();
             }
         }
@@ -758,7 +758,7 @@ class TexasModel{
 
     async waitForInput(){
         var temple=await this.sleep(1);
-        console.log('Waiting...')
+        // console.log('Waiting...')
         return temple
       }
 }
