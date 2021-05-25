@@ -114,7 +114,7 @@ As he went through different pages and tried different games, he noted some prob
 
 <img src="./public/assets/Er1.png" width="50%">
 
-Besides, every time he clicked on the play again button, the page would be refreshed, which is strange (This is fixed now). Then on the Breakout page, the text color is not consistent. Sometimes it became black, making it hard to read (This is fixed, now all text on that page is white). Finally, it is not intuitive to click the "Close" button to close the navigation bar (We are working on it). He expected it to disappear once it jumps to another page or clicks anywhere on the web page apart from the navigation bar.
+Besides, every time he clicked on the play again button, the page would be refreshed, which is strange (This is fixed now). Then on the Breakout page, the text color is not consistent. Sometimes it became black, making it hard to read (This is fixed, now all text on that page is white). Finally, it is not intuitive to click the "Close" button to close the navigation bar (This is fixed now). He expected it to disappear once it jumps to another page or clicks anywhere on the web page apart from the navigation bar.
 
 In the end, he said that the overall experience is satisfying as there are a lot of games to play, and there are some stories about the games. 
 

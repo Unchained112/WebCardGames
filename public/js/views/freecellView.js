@@ -283,17 +283,24 @@ function FreeCellView(props){
             <h2> Introduction to Freecell </h2>
         </div>
         <div class=" w3-content w3-text-white" style="max-width:1000px">
-        <p>Freecell is a well-known computer poker game, Microsoft included FreeCell with every release of the Windows operating system. 
-            One standard 52-card deck is used. Cards are dealt face-up into eight cascades, four of which comprise seven cards each and four of which comprise six cards each. 
-            There are four available units and four recycling units, available units can temporarily hold cards when moving cards.
-            Drag the cards from the bottom of each column and move them as follows:</p>
-        <p></p>
-        <p>From column to available unit. Only one card can be placed in each available unit at a time.</p>
-        <p>From column to column (or from available unit to column). In the column, the cards must be placed in descending order, with alternating red and black suits.</p>
-        <p>From the column to the recycling unit. Each stack of cards must consist of the same suit and start with A.</p>
-        <p>Only the bottom card can be moved in each column, and the pressed card cannot be moved directly. All the cards in the transfer unit on the upper left can be moved.</p>
-        <p></p>
-        <p>To win this game, player need create four recycling units, each with 13 cards in the same suit. Each unit must be arranged in order from small (A) to large (K).</p> 
+        <p>In Freecell, there is only one standard 52-card deck used. In the beginning, all the cards in eight tableau piles faced up and fanned down. Four of the tableaus will have seven cards each, the remaining four only six cards each. </p>
+        <p>Above eight piles,  there are four free cells on the left, which is probably where the name comes from. And to their right are the four foundations, all of which start empty.</p>
+        
+        <p>The goal of this game is to all cards to the foundations (top right), according to their suit and value order.</p>
+
+        <p>Notice: the restart button will send the game to the beginning state without reshuffle. Only if you win, clicking restart will start with a completely new game. If you really want a new layout, you can refresh the page.</p>
+
+        <p>Once you select a card, it would be placed at the center of the screen, which indicates that you are holding it. You can put it to the places where the following rules allow it. But you cannot select any other card if you do not place the currently selected card. Of course, you can click unselect button to unselect the card, and the card will be sent back to where it was. </p>
+
+        <p>Rules for four free cells (top left): Those four cells are used to store cards temporarily. One cell can store only one card. You can put any card you select (the card at the center of the screen) in the empty cell. You can also move the card in the cell to the places where the rules allow it.</p>
+
+        <p>Rules for four foundations (top right): Those four foundations are used to collect the card according to their value order (from Ace, 1, 2, ... to Queen, King). Each foundation only displays the top card of the cards it collects. Namely, for the corresponding suit, say Heart, you can only put Ace (Heart) if the foundation is empty, put 2 (Heart) if there is an Ace in it, and so on. Besides, the card you put in the foundation is collected and thus cannot be moved anymore.</p>
+
+        <p>Rules for eight piles (bottom): In the beginning, the cards in eight piles are placed in random order. If you do not select any card, you can pick up the card on the top of that pile (the card at the bottom of the pile with the complete figure). If you have selected one card and want to put it in a plie, you can only put it on a card whose value is smaller by exactly one and the suit color is different, or in an empty pile. <br/>
+        
+        For example, the current selection is Jack (Diamond, red color), you can put it on the 10 (Spade or Club, black color).</p>
+
+        
         </div>
 
         <p> </p>

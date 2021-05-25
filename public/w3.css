@@ -484,7 +484,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     /* The image used */
     background-image: url("./assets/background_6.jpg");
     /* Full height */
-    height: 200%;
+    height: 100% 100%;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: repeat;

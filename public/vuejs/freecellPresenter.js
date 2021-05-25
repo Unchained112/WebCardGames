@@ -20,7 +20,7 @@ const FreeCellPresenter = {
                     })
                     .catch(er=>{
                         if(this.promise===p){
-                            console.error(er);
+                            console.log(er + " Resolving");
                             this.promise = Promise.all([CardSource.drawCards(DECK_ID_BREAKOUT_2, 52), CardSource.reShuffle(DECK_ID_BREAKOUT_2)]);
                         }
                     });
@@ -28,22 +28,21 @@ const FreeCellPresenter = {
             }
         }
     },
-    render(){
-        var fromUndo = false; // Check the last operation, if it is not from undo, we need to pop one more time when "Undo" 
+    render(){ 
         return <div>
             {promiseNoData(this.promise, this.data, this.error) || 
             <FreeCellView model={this.model} 
                 startFreeCell={r=>{
                     this.model.startGame(this.data.cards);
                     LastGameState = [];
-                    LastGameState.push(JSON.parse(JSON.stringify(this.model)));
-                    fromUndo = false;
+                    SingleState = 0; // Clean up this var
+                    storeState(JSON.parse(JSON.stringify(this.model)));
                 }}
                 restartFreeCell={r=>{
                     LastGameState = [];
+                    SingleState = 0; // Clean up this var
                     this.model.restartGame();
-                    LastGameState.push(JSON.parse(JSON.stringify(this.model)));
-                    fromUndo = false;
+                    storeState(JSON.parse(JSON.stringify(this.model)));
                 }}
                 cellChosen={(r,i)=>{
                     //console.log(r);
@@ -52,15 +51,13 @@ const FreeCellPresenter = {
                         var int = i;
                         this.model.addCardtoCell(int);
                         this.model.emptyCurrentCard();
-                        LastGameState.push(JSON.parse(JSON.stringify(this.model)));
-                        fromUndo = false;
+                        storeState(JSON.parse(JSON.stringify(this.model)));
                     }
                     else if(this.model.cells[i].code !== "" && this.model.currentCard.code === ""){
                         var card = this.model.removeCardtoCell(i);
                         this.model.setCurrentCard(card);
                         this.model.setPreviousLocation(i);
-                        LastGameState.push(JSON.parse(JSON.stringify(this.model)));
-                        fromUndo = false;
+                        storeState(JSON.parse(JSON.stringify(this.model)));
                     }
                     else{
                         return;
@@ -75,8 +72,7 @@ const FreeCellPresenter = {
                             if(c_v === 1){
                                 this.model.addCardtoFoundation(i);
                                 this.model.emptyCurrentCard();
-                                LastGameState.push(JSON.parse(JSON.stringify(this.model)));
-                                fromUndo = false;
+                                storeState(JSON.parse(JSON.stringify(this.model)));
                             }
                             else{
                                 alert("Illegal move!");
@@ -89,8 +85,7 @@ const FreeCellPresenter = {
                             if(r_v === c_v - 1){
                                 this.model.addCardtoFoundation(i);
                                 this.model.emptyCurrentCard();
-                                LastGameState.push(JSON.parse(JSON.stringify(this.model)));
-                                fromUndo = false;
+                                storeState(JSON.parse(JSON.stringify(this.model)));
                             }
                             else{
                                 alert("Illegal move!");
@@ -114,23 +109,20 @@ const FreeCellPresenter = {
                             this.model.setCurrentCard(card);
                             this.model.setPreviousLocation(i);
                         }
-                        LastGameState.push(JSON.parse(JSON.stringify(this.model)));
-                        fromUndo = false;
+                        storeState(JSON.parse(JSON.stringify(this.model)));
                     }
                     else{
                         if(this.model.previousLocation === i){
                             this.model.addCardtoPile(i);
                             this.model.emptyCurrentCard();
-                            LastGameState.push(JSON.parse(JSON.stringify(this.model)));
-                            fromUndo = false;
+                            storeState(JSON.parse(JSON.stringify(this.model)));
                         }
                         else{
                             var flag = this.model.pileLegalCheck(i, this.model.currentCard);
                             if(flag){
                                 this.model.addCardtoPile(i);
                                 this.model.emptyCurrentCard();
-                                LastGameState.push(JSON.parse(JSON.stringify(this.model)));
-                                fromUndo = false;
+                                storeState(JSON.parse(JSON.stringify(this.model)));
                             }
                             else{
                                 alert("Illegal move!");
@@ -140,42 +132,61 @@ const FreeCellPresenter = {
                     }
                 }}
                 cancelSelect={r=>{
-                    if(this.model.previousLocation >= 0 && this.model.previousLocation < 4){
-                        this.model.addCardtoCell(this.model.previousLocation);
-                        this.model.setPreviousLocation(-1);
+                    if(LastGameState.length <= 1){
+                        LastGameState = [];
+                        SingleState = 0;
+                        this.model.restartGame();
+                        storeState(JSON.parse(JSON.stringify(this.model)));
                     }
-                    if(this.model.previousLocation >= 4 && this.model.previousLocation < 8){
-                        this.model.addCardtoFoundation(this.model.previousLocation);
-                        this.model.setPreviousLocation(-1);
+                    else{
+                        try{
+                            var temp = popState();
+                            this.model.setModel(temp);
+                            SingleState = JSON.parse(JSON.stringify(this.model));
+                        }
+                        catch(er){
+                            console.log(er);
+                        }
                     }
-                    if(this.model.previousLocation >= 10 && this.model.previousLocation < 18){
-                        this.model.addCardtoPile(this.model.previousLocation);
-                        this.model.setPreviousLocation(-1);
-                    }
-                    this.model.emptyCurrentCard();
-                    LastGameState.push(JSON.parse(JSON.stringify(this.model)));
-                    fromUndo = false;
                 }}
                 Undo={r=>{
-                    if(LastGameState.length >= 1){
-                        if(fromUndo){
-                            var temp = LastGameState.pop();
-                            //console.log(LastGameState);
-                            this.model.setModel(temp);
-                            fromUndo = true;
-                        }
-                        else{
-                            LastGameState.pop();
-                            var temp = LastGameState.pop();
-                            //console.log(LastGameState);
-                            this.model.setModel(temp);
-                            fromUndo = true;
-                        }
-                        
+                    // console.log(LastGameState);
+                    try{
+                        var temp = popState();
+                        this.model.setModel(temp);
+                        SingleState = JSON.parse(JSON.stringify(this.model));
+                    }
+                    catch(er){
+                        console.log(er);
                     }
                 }}
             />}
         </div>
         
+    }
+}
+
+
+function storeState(model){
+    if(SingleState !== undefined && SingleState !== 0){
+        console.log(SingleState);
+        LastGameState.push(SingleState);
+    }
+    SingleState = model;
+    console.log(SingleState);
+}
+
+function popState(){
+    var ls;
+    if(LastGameState){
+        if(LastGameState.length >= 1){
+            ls = LastGameState.pop();
+            SingleState = ls;
+            console.log(SingleState);
+            return ls;
+        }
+    }
+    else{
+        throw new Error("LastGameState Error");
     }
 }

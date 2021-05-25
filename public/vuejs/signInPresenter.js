@@ -9,7 +9,7 @@ function SignInPresenter(props){
                 //user
                 props.model.userID = u.user.uid;
                 props.model.userEmail = u.user.email;
-                console.log(props.model.userID);
+                // console.log(props.model.userID);
                 persistModel(props.model);
                 LastGameState = []; //Reload the global value that stores the FreeCell GameStates
                 window.location.hash = "#home";
@@ -19,7 +19,7 @@ function SignInPresenter(props){
             });
         }}
         GoSignUp={r=>{
-            console.log("si"); 
+            // console.log("si"); 
             window.location.hash = "#signUp";
         }}
         goHome={r=>{window.location.hash = "#home";}}
