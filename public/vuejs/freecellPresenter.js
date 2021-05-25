@@ -169,11 +169,9 @@ const FreeCellPresenter = {
 
 function storeState(model){
     if(SingleState !== undefined && SingleState !== 0){
-        console.log(SingleState);
         LastGameState.push(SingleState);
     }
     SingleState = model;
-    console.log(SingleState);
 }
 
 function popState(){
@@ -182,7 +180,6 @@ function popState(){
         if(LastGameState.length >= 1){
             ls = LastGameState.pop();
             SingleState = ls;
-            console.log(SingleState);
             return ls;
         }
     }
